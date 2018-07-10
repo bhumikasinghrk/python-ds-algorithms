@@ -1,4 +1,4 @@
-# Python Data Structures and Algorithms
+# Python Data Structures and Algorithms [![Build Status](https://travis-ci.org/ahcode0919/python-ds-algorithms.svg?branch=master)](https://travis-ci.org/ahcode0919/python-ds-algorithms) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Various Data Structures and Algorithm Solutions in Python (3.x)
 
