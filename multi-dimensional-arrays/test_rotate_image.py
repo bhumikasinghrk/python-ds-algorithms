@@ -30,8 +30,7 @@ def rotateImage90degrees(a):
             a[element][last] = top
             a[last][last - offset] = right_side
             a[last - offset][first] = bottom
-
-
+    return a
 
 def test_rotateImage90Degrees():
     a = [[1, 2, 3],
@@ -46,3 +45,6 @@ def test_rotateImage90Degrees():
 
 # Solve for rotating by one element
 #def rotateImage(a):
+
+# Tests
+test_rotateImage90Degrees()
