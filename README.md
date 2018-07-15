@@ -10,6 +10,7 @@ Various Data Structures and Algorithm Solutions in Python (3.x)
 
 * [First Duplicate](#first-duplicate)
 * [First Not Repeating Character](#first-not-repeating-character)
+* [Make Array Consecutive](#make-array-consecutive)
 
 #### First Duplicate
 
@@ -48,6 +49,28 @@ def firstNotRepeatingCharacter(s):
         checkedChars.add(char)
     return '_'
 ```
+
+#### Make Array Consecutive
+
+Find the number of elements that would need to be added so that each array value is separated by one.
+`[1,2,3,5] -> 1 #4 needs to be added to the array`
+
+```python
+def makeArrayConsecutive(arr):
+    length = len(arr)
+    statuesNeeded = 0
+
+    if length <= 1:
+        return statuesNeeded
+
+    sortedStatues = sorted(arr)
+    print(sortedStatues)
+
+    for i in range(1, length):
+        statuesNeeded += (sortedStatues[i] - sortedStatues[i - 1]) - 1
+
+    return statuesNeeded
+``` 
 
 ## Integers
 
