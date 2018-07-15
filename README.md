@@ -5,6 +5,7 @@ Various Data Structures and Algorithm Solutions in Python (3.x)
 * [Arrays](#arrays)
 * [Integers](#integers)
 * [Matrices](#matrices)
+* [Trees](#trees)
 
 ## Arrays
 
@@ -81,6 +82,7 @@ def makeArrayConsecutive(arr):
 #### Palindrome Number
 
 [Leetcode: Palindrome Number](https://leetcode.com/problems/palindrome-number/description/)
+
 Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
 
 Example 1:
@@ -102,6 +104,7 @@ def isPalindrome(x):
 #### Reverse Number
 
 [Leetcode: Reverse Number](https://leetcode.com/problems/reverse-integer/description/)
+
 Given a 32-bit signed integer, reverse digits of an integer.
 
 Example 1:
@@ -215,4 +218,44 @@ def rotateImage90degrees(a):
             a[element][last] = top
             a[last][last - offset] = right_side
             a[last - offset][first] = bottom
+```
+
+## Trees
+
+* [Binary Tree Path](#binary-tree-path)
+
+#### Binary Tree Path
+
+Given a binary tree, return all root-to-leaf paths.
+Note: A leaf is a node with no children.
+
+Example:
+
+Input:
+```
+   1
+ /   \
+2     3
+ \
+  5
+```
+Output: `["1->2->5", "1->3"]`
+
+Explanation: All root-to-leaf paths are: `1->2->5`, `1->3`
+
+```python
+def binaryTreePaths(root):
+    paths = []
+    if not root:
+        return paths
+    getPath(root, '', paths)
+    return paths
+
+def getPath(node, path, paths):
+    if not node.left and not node.right:
+        paths.append(path + str(node.val))
+    if node.left:
+        getPath(node.left, path + str(node.val) + '->', paths)
+    if node.right:
+        getPath(node.right, path + str(node.val) + '->', paths)
 ```
