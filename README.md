@@ -3,6 +3,7 @@
 Various Data Structures and Algorithm Solutions in Python (3.x)
 
 * [Arrays](#arrays)
+* [Binary Search](#binary-search)
 * [Integers](#integers)
 * [Matrices](#matrices)
 * [Trees](#trees)
@@ -72,6 +73,42 @@ def makeArrayConsecutive(arr):
 
     return statuesNeeded
 ``` 
+
+## Binary Search
+
+* [Search Insert Position](#search-insert-position)
+
+#### Search Insert Position
+
+[Leetcode: Search Insert Position](https://leetcode.com/problems/search-insert-position/description/)
+
+Given a sorted array and a target value, return the index if the target is found. If not, return the index where it 
+would be if it were inserted in order.
+
+You may assume no duplicates in the array.
+
+Example 1:
+
+Input: `[1,3,5,6], 5`
+Output: `2`
+
+```python
+def searchInsert(nums, target):
+    leftIndex = 0
+    rightIndex = len(nums) - 1
+
+    while leftIndex <= rightIndex:
+        middle = int((leftIndex + rightIndex) / 2)
+
+        if nums[middle] == target:
+            return middle
+        elif nums[middle] < target:
+            leftIndex = middle + 1
+        else:
+            rightIndex = middle - 1
+
+    return leftIndex
+```
 
 ## Integers
 
@@ -225,6 +262,8 @@ def rotateImage90degrees(a):
 * [Binary Tree Path](#binary-tree-path)
 
 #### Binary Tree Path
+
+[Leetcode: Binary Tree Path](https://leetcode.com/problems/binary-tree-paths/description/)
 
 Given a binary tree, return all root-to-leaf paths.
 Note: A leaf is a node with no children.
