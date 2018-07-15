@@ -92,6 +92,24 @@ Example 1:
 Input: `[1,3,5,6], 5`
 Output: `2`
 
+```python
+def searchInsert(nums, target):
+    leftIndex = 0
+    rightIndex = len(nums) - 1
+
+    while leftIndex <= rightIndex:
+        middle = int((leftIndex + rightIndex) / 2)
+
+        if nums[middle] == target:
+            return middle
+        elif nums[middle] < target:
+            leftIndex = middle + 1
+        else:
+            rightIndex = middle - 1
+
+    return leftIndex
+```
+
 ## Integers
 
 * [Palindrome Number](#palindrome-number)
