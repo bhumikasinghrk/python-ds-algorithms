@@ -74,11 +74,34 @@ def makeArrayConsecutive(arr):
 
 ## Integers
 
-[Two Sum](#two-sum)
+* [Reverse Number](#reverse-number)
+* [Two Sum](#two-sum)
+
+#### Reverse Number
+
+[Leetcode: Reverse Number](https://leetcode.com/problems/reverse-integer/description/)
+Given a 32-bit signed integer, reverse digits of an integer.
+
+Example 1:
+
+Input: 123
+Output: 321
+
+```python
+def reverse_number(number):
+    reversed = int(str(abs(number))[::-1])
+
+    if reversed > 2**31 - 1:
+        return 0
+
+    if number < 0:
+        return -reversed
+    return reversed
+```
 
 #### Two Sum
 
-[Leetcode : Two Sum](https://leetcode.com/problems/two-sum/description/)
+[Leetcode: Two Sum](https://leetcode.com/problems/two-sum/description/)
 
 Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 
