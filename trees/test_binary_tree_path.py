@@ -36,6 +36,7 @@ def binaryTreePaths(root):
 def getPath(node, path, paths):
     if not node.left and not node.right:
         paths.append(path + str(node.val))
+        return
     if node.left:
         getPath(node.left, path + str(node.val) + '->', paths)
     if node.right:

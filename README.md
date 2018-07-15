@@ -226,6 +226,8 @@ def rotateImage90degrees(a):
 
 #### Binary Tree Path
 
+[Leetcode: Binary Tree Path](https://leetcode.com/problems/binary-tree-paths/description/)
+
 Given a binary tree, return all root-to-leaf paths.
 Note: A leaf is a node with no children.
 
