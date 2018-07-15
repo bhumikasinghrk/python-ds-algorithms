@@ -74,8 +74,30 @@ def makeArrayConsecutive(arr):
 
 ## Integers
 
+* [Palindrome Number](#palindrome-number)
 * [Reverse Number](#reverse-number)
 * [Two Sum](#two-sum)
+
+#### Palindrome Number
+
+[Leetcode: Palindrome Number](https://leetcode.com/problems/palindrome-number/description/)
+Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
+
+Example 1:
+
+Input: 121
+Output: true
+Example 2:
+
+Input: -121
+Output: false
+Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+
+```python
+def isPalindrome(x):
+    num = str(x)
+    return num == num[::-1]
+```
 
 #### Reverse Number
 
