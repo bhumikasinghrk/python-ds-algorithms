@@ -13,6 +13,7 @@ Various Data Structures and Algorithm Solutions in Python (3.x)
 ## Algorithm Theory
 
 * [Binary Search](#binary-search)
+* [Linear Search](#linear-search)
 
 #### Binary Search
 
@@ -29,7 +30,7 @@ def binarySearchIterative(array, target):
     right = len(array) - 1
 
     while left <= right:
-        middle = int(left + ((right - left) / 2))
+        middle = int(left + right / 2)
 
         if array[middle] == target:
             return middle
@@ -47,7 +48,7 @@ Recursive Approach:
 def binarySearchRecursive(array, left, right, target):
     if right >= left:
 
-        mid = int(left + ((right - left) / 2))
+        mid = int(left + right / 2)
 
         # If element is present at the middle
         if array[mid] == target:
@@ -63,6 +64,19 @@ def binarySearchRecursive(array, left, right, target):
     else:
         return None
 ````
+
+#### Linear Search
+
+The most basic search. Start from the leftmost element of the array and one by one compare the target with each element 
+of the array. If the target matches with an element, return the index.
+
+```python
+def linear_search(array, length, target):
+    for index in range(0, length):
+        if array[index] == target:
+            return index
+    return None
+```
 
 ## Arrays
 
