@@ -5,22 +5,24 @@
 
 
 def binarySearchIterative(array, target):
-    start = 0
-    end = len(array)
+    left = 0
+    right = len(array) - 1
 
-    while start <= end:
-        middle = int((end - start) / 2)
-        if array[middle] < target:
-            start += 1
+    while left <= right:
+        middle = int(left + ((right - left) / 2))
+
+        if array[middle] == target:
+            return middle
+        elif array[middle] < target:
+            left = middle + 1
         elif array[middle] > target:
-            end -= 1
-        else:
-            return None
+            right = middle - 1
+    return None
 
 def binarySearchRecursive(array, left, right, target):
     if right >= left:
 
-        mid = int((right - left) / 2)
+        mid = int(left + ((right - left) / 2))
 
         # If element is present at the middle
         if array[mid] == target:
@@ -37,9 +39,12 @@ def binarySearchRecursive(array, left, right, target):
         return None
 
 def test_binarySearchIterative():
-    a = [9,8,7,6,5,4,3,2,1]
-    assert binarySearchIterative(a, 3) == 6
+    a = [2, 5, 36, 40, 58]
+    assert binarySearchIterative(a, 40) == 3
 
 def test_binarySearchRecursive():
-    a = [9,8,7,6,5,4,3,2,1]
-    assert binarySearchRecursive(a, 0, len(a), 3) == 6
+    a = [2, 5, 36, 40, 58]
+    assert binarySearchRecursive(a, 0, len(a), 5) == 1
+
+test_binarySearchIterative()
+test_binarySearchRecursive()

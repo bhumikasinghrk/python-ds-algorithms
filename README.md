@@ -25,26 +25,29 @@ Iterative Approach:
 
 ```python
 def binarySearchIterative(array, target):
-    start = 0
-    end = len(array)
+    left = 0
+    right = len(array) - 1
 
-    while start <= end:
-        middle = int((end - start) / 2)
-        if array[middle] < target:
-            start += 1
+    while left <= right:
+        middle = int(left + ((right - left) / 2))
+
+        if array[middle] == target:
+            return middle
+        elif array[middle] < target:
+            left = middle + 1
         elif array[middle] > target:
-            end -= 1
-        else:
-            return None
+            right = middle - 1
+    return None
 ```
 
 Recursive Approach:
 
 ````python
+
 def binarySearchRecursive(array, left, right, target):
     if right >= left:
 
-        mid = int((right - left) / 2)
+        mid = int(left + ((right - left) / 2))
 
         # If element is present at the middle
         if array[mid] == target:
