@@ -30,7 +30,7 @@ def binarySearchIterative(array, target):
     right = len(array) - 1
 
     while left <= right:
-        middle = int(left + right / 2)
+        middle = int((left + right) / 2)
 
         if array[middle] == target:
             return middle
@@ -48,7 +48,7 @@ Recursive Approach:
 def binarySearchRecursive(array, left, right, target):
     if right >= left:
 
-        mid = int(left + right / 2)
+        mid = int((left + right) / 2)
 
         # If element is present at the middle
         if array[mid] == target:

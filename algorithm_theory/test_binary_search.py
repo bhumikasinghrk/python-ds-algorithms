@@ -7,3 +7,6 @@ def test_binarySearchIterative():
 def test_binarySearchRecursive():
     a = [2, 5, 36, 40, 58]
     assert binarySearchRecursive(a, 0, len(a) - 1, 5) == 1
+
+test_binarySearchIterative()
+test_binarySearchRecursive()
