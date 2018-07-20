@@ -2,6 +2,7 @@
 
 Various Data Structures and Algorithm Solutions in Python (3.x)
 
+* [Algorithm Theory](#algorithm-theory)
 * [Arrays](#arrays)
 * [Binary Search](#binary-search)
 * [Integers](#integers)
@@ -9,11 +10,66 @@ Various Data Structures and Algorithm Solutions in Python (3.x)
 * [Strings](#strings)
 * [Trees](#trees)
 
+## Algorithm Theory
+
+* [Binary Search](#binary-search)
+
+#### Binary Search
+
+Search a sorted array by repeatedly dividing the search interval in half. Begin with an interval
+covering the whole array. If the value of the search key is less than the item in the middle of the interval, narrow
+the interval to the lower half. Otherwise narrow it to the upper half. Repeatedly check until the value is found or
+the interval is empty.
+
+Iterative Approach:
+
+```python
+def binarySearchIterative(array, target):
+    left = 0
+    right = len(array) - 1
+
+    while left <= right:
+        middle = int(left + ((right - left) / 2))
+
+        if array[middle] == target:
+            return middle
+        elif array[middle] < target:
+            left = middle + 1
+        elif array[middle] > target:
+            right = middle - 1
+    return None
+```
+
+Recursive Approach:
+
+````python
+
+def binarySearchRecursive(array, left, right, target):
+    if right >= left:
+
+        mid = int(left + ((right - left) / 2))
+
+        # If element is present at the middle
+        if array[mid] == target:
+            return mid
+
+        # If element is smaller than mid, then it can only be present in left subarray
+        elif array[mid] > target:
+            return binarySearchRecursive(array, left, mid - 1, target)
+
+        # Else the element can only be present in the right subarray
+        else:
+            return binarySearchRecursive(array, mid + 1, right, target)
+    else:
+        return None
+````
+
 ## Arrays
 
 * [First Duplicate](#first-duplicate)
 * [First Not Repeating Character](#first-not-repeating-character)
 * [Make Array Consecutive](#make-array-consecutive)
+* [Search Insert Position](#search-insert-position)
 
 #### First Duplicate
 
@@ -74,10 +130,6 @@ def makeArrayConsecutive(arr):
 
     return statuesNeeded
 ``` 
-
-## Binary Search
-
-* [Search Insert Position](#search-insert-position)
 
 #### Search Insert Position
 
