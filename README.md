@@ -12,9 +12,14 @@ Various Data Structures and Algorithm Solutions in Python (3.x)
 
 ## Algorithm Theory
 
-* [Binary Search](#binary-search)
-* [Jump Search](#jump-search)
-* [Linear Search](#linear-search)
+* [Searches](#searches)
+    * [Binary Search](#binary-search)
+    * [Jump Search](#jump-search)
+    * [Linear Search](#linear-search)
+* [Sorts](#sorts)
+    * [Bubble Sort]()
+    
+### Searches
 
 #### Binary Search
 
@@ -114,6 +119,41 @@ def linear_search(array, length, target):
     return None
 ```
 
+### Sorts
+
+#### Bubble Sort
+
+Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in 
+wrong order.
+
+Example: `[2, 1, 3] -> [1, 2, 3]`
+
+```python
+def bubble_sort(array):
+    length = len(array)
+    
+    # Return if nothing to sort
+    if length <= 1:
+        return array
+
+    # Reduce the upper limit with each iteration, since the correct value has 'bubbled' to the top
+    for i in reversed(range(0, length)):
+        swap = False
+        # Compare value and switch up to the upper limit 'i'
+        for j in range(0, i):
+            next = j + 1
+            if next < length and array[j] > array[next]:
+                temp = array[j]
+                array[j] = array[next]
+                array[next] = temp
+                swap = True
+
+        # Return if no swaps take place
+        if not swap:
+            return array
+    return array
+```
+
 ## Arrays
 
 * [First Duplicate](#first-duplicate)
@@ -129,14 +169,27 @@ In other words, if there are more than 1 duplicated numbers, return the number f
 which the second occurrence has a smaller index than the second occurrence of
 the other number does. If there are no such elements, return -1.
 
+First Duplicate w/ Set
+
 ```python
-def firstDuplicate(a):
-    uniqueSet = set()
+def first_duplicate(a):
+    uniqueset = set()
     for value in a:
-        if value in uniqueSet:
+        if value in uniqueset:
             return value
         else:
-            uniqueSet.add(value)
+            uniqueset.add(value)
+    return -1
+```
+
+First Duplicate (In-Place)
+
+```python
+def first_duplicate_in_place(array):
+    while len(array) > 0:
+        value = array.pop(0)
+        if value in array:
+            return value
     return -1
 ```
 
@@ -148,14 +201,28 @@ would be asked to do during a real interview.
 Given a string s, find and return the first instance of a non-repeating character in it. If there is no such character,
 return '_'.
 
+With Set:
 
 ```python
-def firstNotRepeatingCharacter(s):
+def first_not_repeating_character(s):
     checkedChars = set() #skip characters we've already checked.
     for char in s:
         if char not in checkedChars and s.index(char) == s.rindex(char):
             return char
         checkedChars.add(char)
+    return '_'
+```
+
+With Array Slices (less optimal):
+
+```python
+def first_not_repeating_character(s):
+    length = len(s)
+    index = 0
+    while index < length:
+        if s[index] not in s[:index] and s[index] not in s[index + 1:]:
+            return s[index]
+        index += 1
     return '_'
 ```
 
@@ -165,20 +232,19 @@ Find the number of elements that would need to be added so that each array value
 `[1,2,3,5] -> 1 #4 needs to be added to the array`
 
 ```python
-def makeArrayConsecutive(arr):
+def make_array_consecutive(arr):
     length = len(arr)
-    statuesNeeded = 0
+    statuesneeded = 0
 
     if length <= 1:
-        return statuesNeeded
+        return statuesneeded
 
-    sortedStatues = sorted(arr)
-    print(sortedStatues)
+    sortedstatues = sorted(arr)
 
     for i in range(1, length):
-        statuesNeeded += (sortedStatues[i] - sortedStatues[i - 1]) - 1
+        statuesneeded += (sortedstatues[i] - sortedstatues[i - 1]) - 1
 
-    return statuesNeeded
+    return statuesneeded
 ``` 
 
 #### Search Insert Position
