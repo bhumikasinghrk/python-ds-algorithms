@@ -12,9 +12,14 @@ Various Data Structures and Algorithm Solutions in Python (3.x)
 
 ## Algorithm Theory
 
-* [Binary Search](#binary-search)
-* [Jump Search](#jump-search)
-* [Linear Search](#linear-search)
+* [Searches](#searches)
+    * [Binary Search](#binary-search)
+    * [Jump Search](#jump-search)
+    * [Linear Search](#linear-search)
+* [Sorts](#sorts)
+    * [Bubble Sort]()
+    
+### Searches
 
 #### Binary Search
 
@@ -112,6 +117,41 @@ def linear_search(array, length, target):
         if array[index] == target:
             return index
     return None
+```
+
+### Sorts
+
+#### Bubble Sort
+
+Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in 
+wrong order.
+
+Example: `[2, 1, 3] -> [1, 2, 3]`
+
+```python
+def bubble_sort(array):
+    length = len(array)
+    
+    # Return if nothing to sort
+    if length <= 1:
+        return array
+
+    # Reduce the upper limit with each iteration, since the correct value has 'bubbled' to the top
+    for i in reversed(range(0, length)):
+        swap = False
+        # Compare value and switch up to the upper limit 'i'
+        for j in range(0, i):
+            next = j + 1
+            if next < length and array[j] > array[next]:
+                temp = array[j]
+                array[j] = array[next]
+                array[next] = temp
+                swap = True
+
+        # Return if no swaps take place
+        if not swap:
+            return array
+    return array
 ```
 
 ## Arrays
