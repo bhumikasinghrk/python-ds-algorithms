@@ -4,15 +4,16 @@ Various Data Structures and Algorithm Solutions in Python (3.x)
 
 * [Algorithm Theory](#algorithm-theory)
 * [Arrays](#arrays)
-* [Binary Search](#binary-search)
 * [Integers](#integers)
 * [Matrices](#matrices)
 * [Strings](#strings)
 * [Trees](#trees)
+* [Resources](#resources)
 
 ## Algorithm Theory
 
 * [Binary Search](#binary-search)
+* [Jump Search](#jump-search)
 * [Linear Search](#linear-search)
 
 #### Binary Search
@@ -43,7 +44,7 @@ def binarySearchIterative(array, target):
 
 Recursive Approach:
 
-````python
+```python
 
 def binarySearchRecursive(array, left, right, target):
     if right >= left:
@@ -63,7 +64,42 @@ def binarySearchRecursive(array, left, right, target):
             return binarySearchRecursive(array, mid + 1, right, target)
     else:
         return None
-````
+```
+
+#### Jump Search
+
+[Jump Search](https://www.geeksforgeeks.org/jump-search/) is a searching algorithm for sorted arrays. The basic idea is to check fewer elements (than linear search) 
+by jumping ahead by fixed steps or skipping some elements in place of searching all elements.
+
+For example, suppose we have an array arr[] of size n and block (to be jumped) size m. Then we search at the indexes
+ arr[0], arr[m], arr[2m]…..arr[km] and so on. Once we find the interval (arr[km] < x < arr[(k+1)m]), we perform a linear
+  search operation from the index km to find the element x.
+
+What is the optimal block size to be skipped?
+In the worst case, we have to do n/m jumps and if the last checked value is greater than the element to be searched for,
+ we perform m-1 comparisons more for linear search. Therefore the total number of comparisons in the worst case will be 
+ ((n/m) + m-1). The value of the function ((n/m) + m-1) will be minimum when m = √n. Therefore, the best step size is 
+ m = √n. (Geek For Geeks)
+
+```python
+def jump_search(array, target):
+    length = len(array)
+    interval = int(math.sqrt(length))
+    index = interval - 1  # 0 Based
+    previous = index
+
+    while index <= length - 1:
+        if array[index] == target:
+            return index
+        elif array[index] > target:
+            return linear_search(array, previous, index - 1, target)
+        else:
+            previous = index
+            index += interval
+
+    return None
+```
+
 
 #### Linear Search
 
@@ -402,3 +438,8 @@ def getPath(node, path, paths):
     if node.right:
         getPath(node.right, path + str(node.val) + '->', paths)
 ```
+
+## Resources
+
+* [Geek For Geeks](https://www.geeksforgeeks.org/)
+* [Leetcode](https://www.leetcode.com)
