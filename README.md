@@ -3,22 +3,23 @@
 Various Data Structures and Algorithm Solutions in Python (3.x)
 
 * [Algorithm Theory](#algorithm-theory)
-* [Arrays](#arrays)
-* [Integers](#integers)
-* [Matrices](#matrices)
-* [Strings](#strings)
-* [Trees](#trees)
+    * [Searches](#searches)
+        * [Binary Search](#binary-search)
+        * [Jump Search](#jump-search)
+        * [Linear Search](#linear-search)
+    * [Sorts](#sorts)
+        * [Bubble Sort](#bubble-sort)
+* [Data Structures](#data-structures)
+* [Algorithms]()
+    * [Arrays](#arrays)
+    * [Integers](#integers)
+    * [Matrices](#matrices)
+    * [Strings](#strings)
+    * [Trees](#trees)
 * [Resources](#resources)
 
 ## Algorithm Theory
 
-* [Searches](#searches)
-    * [Binary Search](#binary-search)
-    * [Jump Search](#jump-search)
-    * [Linear Search](#linear-search)
-* [Sorts](#sorts)
-    * [Bubble Sort]()
-    
 ### Searches
 
 #### Binary Search
@@ -105,7 +106,6 @@ def jump_search(array, target):
     return None
 ```
 
-
 #### Linear Search
 
 The most basic search. Start from the leftmost element of the array and one by one compare the target with each element 
@@ -153,6 +153,9 @@ def bubble_sort(array):
             return array
     return array
 ```
+
+## Data Structures
+
 
 ## Arrays
 
@@ -507,5 +510,5 @@ def getPath(node, path, paths):
 
 ## Resources
 
-* [Geek For Geeks](https://www.geeksforgeeks.org/)
+* [Geeks For Geeks](https://www.geeksforgeeks.org/)
 * [Leetcode](https://www.leetcode.com)
