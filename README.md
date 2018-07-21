@@ -232,6 +232,7 @@ def first_not_repeating_character(s):
 #### Make Array Consecutive
 
 Find the number of elements that would need to be added so that each array value is separated by one.
+
 `[1,2,3,5] -> 1 #4 needs to be added to the array`
 
 ```python
@@ -265,21 +266,21 @@ Input: `[1,3,5,6], 5`
 Output: `2`
 
 ```python
-def searchInsert(nums, target):
-    leftIndex = 0
-    rightIndex = len(nums) - 1
+def search_insert(nums, target):
+    leftindex = 0
+    rightindex = len(nums) - 1
 
-    while leftIndex <= rightIndex:
-        middle = int((leftIndex + rightIndex) / 2)
+    while leftindex <= rightindex:
+        middle = int((leftindex + rightindex) / 2)
 
         if nums[middle] == target:
             return middle
         elif nums[middle] < target:
-            leftIndex = middle + 1
+            leftindex = middle + 1
         else:
-            rightIndex = middle - 1
+            rightindex = middle - 1
 
-    return leftIndex
+    return leftindex
 ```
 
 ## Integers
@@ -318,8 +319,9 @@ Given a 32-bit signed integer, reverse digits of an integer.
 
 Example 1:
 
-Input: 123
-Output: 321
+Input: `123`
+
+Output: `321`
 
 ```python
 def reverse_number(number):
@@ -345,8 +347,7 @@ Example:
 
 Given `nums = [2, 7, 11, 15], target = 9`,
 
-Because `nums[0] + nums[1] = 2 + 7 = 9`,
-`return [0, 1]`.
+Because `nums[0] + nums[1] = 2 + 7 = 9`, `return [0, 1]`.
 
 Solution - O(N)
 ```python
