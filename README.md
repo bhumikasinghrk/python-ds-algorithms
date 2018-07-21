@@ -85,7 +85,7 @@ What is the optimal block size to be skipped?
 In the worst case, we have to do n/m jumps and if the last checked value is greater than the element to be searched for,
  we perform m-1 comparisons more for linear search. Therefore the total number of comparisons in the worst case will be 
  ((n/m) + m-1). The value of the function ((n/m) + m-1) will be minimum when m = √n. Therefore, the best step size is 
- m = √n. (Geek For Geeks)
+ m = √n. (Geeks For Geeks)
 
 ```python
 def jump_search(array, target):
@@ -112,8 +112,8 @@ The most basic search. Start from the leftmost element of the array and one by o
 of the array. If the target matches with an element, return the index.
 
 ```python
-def linear_search(array, length, target):
-    for index in range(0, length):
+def linear_search(array, left, right, target):
+    for index in range(left, right + 1):
         if array[index] == target:
             return index
     return None
