@@ -295,15 +295,11 @@ def search_insert(nums, target):
 
 Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
 
-Example 1:
+Example 1: `121` -> `true`
 
-Input: 121
-Output: true
-Example 2:
+Example 2: `-121` -> `false`
 
-Input: -121
-Output: false
-Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+Explanation: From left to right, it reads `-121`. From right to left, it becomes `121-`. Therefore it is not a palindrome.
 
 ```python
 def isPalindrome(x):
