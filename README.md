@@ -1,6 +1,7 @@
 # Python Data Structures and Algorithms [![Build Status](https://travis-ci.org/ahcode0919/python-ds-algorithms.svg?branch=master)](https://travis-ci.org/ahcode0919/python-ds-algorithms) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Various Data Structures and Algorithm Solutions in Python (3.x)
+Various Data Structures and Algorithm Solutions in Python (3.x). Succint Python one-liners are avoided in most solutions
+prevent obscuring the function and logic of the algorithms / data-structures.  
 
 * [Algorithm Theory](#algorithm-theory)
     * [Searches](#searches)
@@ -11,7 +12,9 @@ Various Data Structures and Algorithm Solutions in Python (3.x)
         * [Bubble Sort](#bubble-sort)
 * [Data Structures](#data-structures)
     * [Singly Linked List](#singly-linked-list)
-* [Algorithms]()
+    * [Doubly Linked List (WIP)](#)
+    * [Circularly Linked List (WIP)](#)
+* [Algorithms](#algorithms)
     * [Arrays](#arrays)
     * [Integers](#integers)
     * [Matrices](#matrices)
@@ -33,7 +36,7 @@ the interval is empty.
 Iterative Approach:
 
 ```python
-def binarySearchIterative(array, target):
+def binary_search_iterative(array, target):
     left = 0
     right = len(array) - 1
 
@@ -53,7 +56,7 @@ Recursive Approach:
 
 ```python
 
-def binarySearchRecursive(array, left, right, target):
+def binary_search_recursive(array, left, right, target):
     if right >= left:
 
         mid = int((left + right) / 2)
@@ -64,11 +67,11 @@ def binarySearchRecursive(array, left, right, target):
 
         # If element is smaller than mid, then it can only be present in left subarray
         elif array[mid] > target:
-            return binarySearchRecursive(array, left, mid - 1, target)
+            return binary_search_recursive(array, left, mid - 1, target)
 
         # Else the element can only be present in the right subarray
         else:
-            return binarySearchRecursive(array, mid + 1, right, target)
+            return binary_search_recursive(array, mid + 1, right, target)
     else:
         return None
 ```
@@ -78,15 +81,15 @@ def binarySearchRecursive(array, left, right, target):
 [Jump Search](https://www.geeksforgeeks.org/jump-search/) is a searching algorithm for sorted arrays. The basic idea is to check fewer elements (than linear search) 
 by jumping ahead by fixed steps or skipping some elements in place of searching all elements.
 
-For example, suppose we have an array arr[] of size n and block (to be jumped) size m. Then we search at the indexes
- arr[0], arr[m], arr[2m]…..arr[km] and so on. Once we find the interval (arr[km] < x < arr[(k+1)m]), we perform a linear
-  search operation from the index km to find the element x.
+For example, suppose we have an array arr[] of size n and block (to be jumped) size `m`. Then we search at the indexes
+`arr[0]`, `arr[m]`, `arr[2m]…..arr[km]`, and so on. Once we find the interval (`arr[km] < x < arr[(k+1)m]`), we perform
+a linear search operation from the index `km` to find the element `x`.
 
 What is the optimal block size to be skipped?
-In the worst case, we have to do n/m jumps and if the last checked value is greater than the element to be searched for,
- we perform m-1 comparisons more for linear search. Therefore the total number of comparisons in the worst case will be 
- ((n/m) + m-1). The value of the function ((n/m) + m-1) will be minimum when m = √n. Therefore, the best step size is 
- m = √n. (Geeks For Geeks)
+In the worst case, we have to do `n/m` jumps and if the last checked value is greater than the element to be searched for,
+ we perform `m-1` comparisons more for linear search. Therefore the total number of comparisons in the worst case will be 
+ `((n/m) + m-1)`. The value of the function `((n/m) + m-1)` will be minimum when `m = √n`. Therefore, the best step size is 
+ `m = √n`. (Geeks For Geeks)
 
 ```python
 def jump_search(array, target):
@@ -158,7 +161,9 @@ def bubble_sort(array):
 ## Data Structures
 
 * [Singly Linked List](#singly-linked-list)
-    
+* [Doubly Linked List (WIP)](#)
+* [Circularly Linked List (WIP)](#)
+
 #### Singly Linked List
 
 [Wikipedia - Linked Lists](https://en.wikipedia.org/wiki/Linked_list): Singly linked lists contain nodes which have a data field as well as 'next' field, which points to the next
@@ -297,7 +302,9 @@ class SinglyLinkedList(object):
         return count
 ```
 
-## Arrays
+## Algorithms
+
+### Arrays
 
 * [First Duplicate](#first-duplicate)
 * [First Not Repeating Character](#first-not-repeating-character)
@@ -306,11 +313,11 @@ class SinglyLinkedList(object):
 
 #### First Duplicate
 
-Given an array a that contains only numbers in the range from 1 to a.length, find
+Given an array a that contains only numbers in the range from `1` to `a.length`, find
 the first duplicate number for which the second occurrence has the minimal index.
 In other words, if there are more than 1 duplicated numbers, return the number for
 which the second occurrence has a smaller index than the second occurrence of
-the other number does. If there are no such elements, return -1.
+the other number does. If there are no such elements, return `-1`.
 
 First Duplicate w/ Set
 
@@ -423,7 +430,7 @@ def search_insert(nums, target):
     return leftindex
 ```
 
-## Integers
+### Integers
 
 * [Palindrome Number](#palindrome-number)
 * [Reverse Number](#reverse-number)
@@ -522,7 +529,7 @@ def two_sum_sorted(array, target):
 ```
  
 
-## Matrices
+###Matrices
 
 * [Rotate Image 90 Degrees Clockwise](#rotate-image-90-degrees-clockwise)
 
@@ -566,7 +573,7 @@ def rotateImage90degrees(a):
             a[last - offset][first] = bottom
 ```
 
-## Strings
+### Strings
 
 * [Jewels and Stones](#jewels-and-stones)
 
@@ -603,7 +610,7 @@ def numJewelsInStones(J, S):
     return count
 ```
 
-## Trees
+### Trees
 
 * [Binary Tree Path](#binary-tree-path)
 
@@ -647,5 +654,7 @@ def getPath(node, path, paths):
 
 ## Resources
 
+* [Code Signal](https://codesignal.com)
 * [Geeks For Geeks](https://www.geeksforgeeks.org/)
+* [Hackerrank](https://www.hackerrank.com/)
 * [Leetcode](https://www.leetcode.com)

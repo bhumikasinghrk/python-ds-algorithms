@@ -4,7 +4,7 @@
 # the interval is empty.
 
 
-def binarySearchIterative(array, target):
+def binary_search_iterative(array, target):
     left = 0
     right = len(array) - 1
 
@@ -19,7 +19,7 @@ def binarySearchIterative(array, target):
             right = middle - 1
     return None
 
-def binarySearchRecursive(array, left, right, target):
+def binary_search_recursive(array, left, right, target):
     if right >= left:
 
         mid = int((left + right) / 2)
@@ -30,10 +30,10 @@ def binarySearchRecursive(array, left, right, target):
 
         # If element is smaller than mid, then it can only be present in left subarray
         elif array[mid] > target:
-            return binarySearchRecursive(array, left, mid - 1, target)
+            return binary_search_recursive(array, left, mid - 1, target)
 
         # Else the element can only be present in the right subarray
         else:
-            return binarySearchRecursive(array, mid + 1, right, target)
+            return binary_search_recursive(array, mid + 1, right, target)
     else:
         return None
