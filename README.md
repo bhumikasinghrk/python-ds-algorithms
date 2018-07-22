@@ -85,7 +85,7 @@ What is the optimal block size to be skipped?
 In the worst case, we have to do n/m jumps and if the last checked value is greater than the element to be searched for,
  we perform m-1 comparisons more for linear search. Therefore the total number of comparisons in the worst case will be 
  ((n/m) + m-1). The value of the function ((n/m) + m-1) will be minimum when m = √n. Therefore, the best step size is 
- m = √n. (Geek For Geeks)
+ m = √n. (Geeks For Geeks)
 
 ```python
 def jump_search(array, target):
@@ -112,8 +112,8 @@ The most basic search. Start from the leftmost element of the array and one by o
 of the array. If the target matches with an element, return the index.
 
 ```python
-def linear_search(array, length, target):
-    for index in range(0, length):
+def linear_search(array, left, right, target):
+    for index in range(left, right + 1):
         if array[index] == target:
             return index
     return None
@@ -156,6 +156,145 @@ def bubble_sort(array):
 
 ## Data Structures
 
+* [Singly Linked List](#singly-linked-list)
+    
+#### Singly Linked List
+
+Wikipedia: Singly linked lists contain nodes which have a data field as well as 'next' field, which points to the next
+node in line of nodes. Operations that can be performed on singly linked lists include insertion, deletion and
+traversal.
+
+Benefits:
+
+* Dynamic data structure the can expand or shrink as needed
+* Requires no extra space (memory efficient)
+* Does not require a continuous block of memory like arrays
+
+Drawbacks:
+
+* Operations take O(N) time (Ex: Search)
+* Tracking of pointers takes up additional memory
+
+
+Node Implementation: 
+
+```python
+class Node:
+    def __init__(self, data=None, next_node=None):
+        self.data = data
+        self.next_node = next_node
+```
+
+Singly Linked List Implementation:
+
+```python
+class SinglyLinkedList(object):
+    _head = None
+
+    def __init__(self, head: Node = None) -> None:
+        if head:
+            self._head = head
+
+    def allvalues(self) -> []:
+        values = []
+        node = self._head
+
+        while node:
+            values.append(node.data)
+            node = node.next_node
+
+        return values
+
+    # O(N)
+    def append(self, node: Node) -> None:
+        if not self._head:
+            self._head = node
+            return
+
+        last_node = self._head
+
+        while last_node:
+            next_node = last_node.next_node
+
+            if not next_node:
+                break
+            last_node = next_node
+
+        last_node.next_node = node
+
+    # O(N)
+    def get(self, index: int = None) -> Node:
+        if not index and not self._head:  # No index and head is null
+            return None
+        elif not index and self._head:    # No index but head is present
+            return self._head
+        elif index:                       # Index provided
+            count = 0
+            current_node = self._head
+
+            while current_node:
+                next_node = current_node.next_node
+                count += 1
+
+                if next_node and count == index:
+                    return next_node
+                if next_node:
+                    current_node = next_node
+                    continue
+                break
+
+        return None                       # Index not valid, return None
+
+    # O(N)
+    def insert(self, node: Node, index: int = None) -> bool:
+        success = False
+
+        if not index or index == 0:
+            if not self._head:
+                self._head = node
+            else:
+                node.next_node = self._head
+                self._head = node
+            success = True
+        else:
+            previous_node = self.get(index - 1)
+            insert_node = previous_node.next_node
+
+            if previous_node:
+                node.next_node = insert_node
+                previous_node.next_node = node
+                success = True
+
+        return success
+
+    # O(N)
+    def remove(self, index: int) -> Node:
+        node = None
+
+        if index == 0:
+            if self._head:
+                node = self._head
+                self._head = self._head.next_node
+        else:
+            previous_node = self.get(index - 1)
+            node = previous_node.next_node
+
+            # If node_to_remove is not present the index was invalid and we can return False
+            if previous_node and node:
+                previous_node.next_node = node.next_node
+        return node
+
+    # O(N)
+    def size(self) -> int:
+        count = 0
+        node = self._head
+
+        while node:
+            count += 1
+            node = node.next_node
+
+        return count
+```
 
 ## Arrays
 
@@ -232,6 +371,7 @@ def first_not_repeating_character(s):
 #### Make Array Consecutive
 
 Find the number of elements that would need to be added so that each array value is separated by one.
+
 `[1,2,3,5] -> 1 #4 needs to be added to the array`
 
 ```python
@@ -265,21 +405,21 @@ Input: `[1,3,5,6], 5`
 Output: `2`
 
 ```python
-def searchInsert(nums, target):
-    leftIndex = 0
-    rightIndex = len(nums) - 1
+def search_insert(nums, target):
+    leftindex = 0
+    rightindex = len(nums) - 1
 
-    while leftIndex <= rightIndex:
-        middle = int((leftIndex + rightIndex) / 2)
+    while leftindex <= rightindex:
+        middle = int((leftindex + rightindex) / 2)
 
         if nums[middle] == target:
             return middle
         elif nums[middle] < target:
-            leftIndex = middle + 1
+            leftindex = middle + 1
         else:
-            rightIndex = middle - 1
+            rightindex = middle - 1
 
-    return leftIndex
+    return leftindex
 ```
 
 ## Integers
@@ -294,15 +434,11 @@ def searchInsert(nums, target):
 
 Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
 
-Example 1:
+Example 1: `121` -> `true`
 
-Input: 121
-Output: true
-Example 2:
+Example 2: `-121` -> `false`
 
-Input: -121
-Output: false
-Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+Explanation: From left to right, it reads `-121`. From right to left, it becomes `121-`. Therefore it is not a palindrome.
 
 ```python
 def isPalindrome(x):
@@ -318,8 +454,9 @@ Given a 32-bit signed integer, reverse digits of an integer.
 
 Example 1:
 
-Input: 123
-Output: 321
+Input: `123`
+
+Output: `321`
 
 ```python
 def reverse_number(number):
@@ -345,8 +482,7 @@ Example:
 
 Given `nums = [2, 7, 11, 15], target = 9`,
 
-Because `nums[0] + nums[1] = 2 + 7 = 9`,
-`return [0, 1]`.
+Because `nums[0] + nums[1] = 2 + 7 = 9`, `return [0, 1]`.
 
 Solution - O(N)
 ```python
