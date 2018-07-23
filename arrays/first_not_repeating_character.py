@@ -5,7 +5,7 @@
 # If there is no such character, return '_'.
 
 
-def first_not_repeating_character(s):
+def first_not_repeating_character(s: str) -> str:
     length = len(s)
     index = 0
     while index < length:
@@ -15,8 +15,8 @@ def first_not_repeating_character(s):
     return '_'
 
 
-def first_not_repeating_character_set(s):
-    checkedChars = set() #skip characters we've already checked.
+def first_not_repeating_character_set(s: str) -> str:
+    checkedChars = set()  # skip characters we've already checked.
     for char in s:
         if char not in checkedChars and s.index(char) == s.rindex(char):
             return char

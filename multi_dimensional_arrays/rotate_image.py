@@ -10,7 +10,9 @@
 #    [[7, 4, 1],
 #     [8, 5, 2],
 #     [9, 6, 3]]
-def rotateImage90degrees(a):
+
+
+def rotate_image_90_degrees(a: [[int]]) -> [[int]]:
     size = len(a)
     layer_count = int(size / 2)
 
@@ -31,20 +33,3 @@ def rotateImage90degrees(a):
             a[last][last - offset] = right_side
             a[last - offset][first] = bottom
     return a
-
-def test_rotateImage90Degrees():
-    a = [[1, 2, 3],
-         [4, 5, 6],
-         [7, 8, 9]]
-
-    b = [[7, 4, 1],
-         [8, 5, 2],
-         [9, 6, 3]]
-
-    assert rotateImage90degrees(a) == b
-
-# Solve for rotating by one element
-#def rotateImage(a):
-
-# Tests
-test_rotateImage90Degrees()

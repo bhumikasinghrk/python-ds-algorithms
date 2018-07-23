@@ -10,17 +10,7 @@
 # Output: false
 # Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
 
-def isPalindrome(x):
-    """
-    :type x: int
-    :rtype: bool
-    """
+
+def is_palindrome(x: int) -> bool:
     num = str(x)
     return num == num[::-1]
-
-def test_isPalindrome():
-    assert isPalindrome(121)
-    assert not isPalindrome(-121)
-
-print(isPalindrome(121))
-print(isPalindrome(-121))

@@ -5,8 +5,10 @@
 
 import math
 from algorithm_theory.linear_search import linear_search
+from typing import Optional
 
-def jump_search(array, target):
+
+def jump_search(array: [int], target: int) -> Optional[int]:
     length = len(array)
     interval = int(math.sqrt(length))
     index = interval - 1  # 0 Based

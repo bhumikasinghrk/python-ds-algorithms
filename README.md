@@ -1,6 +1,7 @@
 # Python Data Structures and Algorithms [![Build Status](https://travis-ci.org/ahcode0919/python-ds-algorithms.svg?branch=master)](https://travis-ci.org/ahcode0919/python-ds-algorithms) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Various Data Structures and Algorithm Solutions in Python (3.x)
+Various Data Structures and Algorithm Solutions in Python (3.x). Succint Python one-liners are avoided in most solutions
+prevent obscuring the function and logic of the algorithms / data-structures.  
 
 * [Algorithm Theory](#algorithm-theory)
     * [Searches](#searches)
@@ -11,7 +12,9 @@ Various Data Structures and Algorithm Solutions in Python (3.x)
         * [Bubble Sort](#bubble-sort)
 * [Data Structures](#data-structures)
     * [Singly Linked List](#singly-linked-list)
-* [Algorithms]()
+    * [Doubly Linked List (WIP)](#)
+    * [Circularly Linked List (WIP)](#)
+* [Algorithms](#algorithms)
     * [Arrays](#arrays)
     * [Integers](#integers)
     * [Matrices](#matrices)
@@ -33,7 +36,7 @@ the interval is empty.
 Iterative Approach:
 
 ```python
-def binarySearchIterative(array, target):
+def binary_search_iterative(array: [int], target: int) -> Optional[int]:
     left = 0
     right = len(array) - 1
 
@@ -53,7 +56,7 @@ Recursive Approach:
 
 ```python
 
-def binarySearchRecursive(array, left, right, target):
+def binary_search_recursive(array: [int], left: int, right: int, target: int) -> Optional[int]:
     if right >= left:
 
         mid = int((left + right) / 2)
@@ -64,32 +67,33 @@ def binarySearchRecursive(array, left, right, target):
 
         # If element is smaller than mid, then it can only be present in left subarray
         elif array[mid] > target:
-            return binarySearchRecursive(array, left, mid - 1, target)
+            return binary_search_recursive(array, left, mid - 1, target)
 
         # Else the element can only be present in the right subarray
         else:
-            return binarySearchRecursive(array, mid + 1, right, target)
+            return binary_search_recursive(array, mid + 1, right, target)
     else:
         return None
 ```
 
 #### Jump Search
 
-[Jump Search](https://www.geeksforgeeks.org/jump-search/) is a searching algorithm for sorted arrays. The basic idea is to check fewer elements (than linear search) 
-by jumping ahead by fixed steps or skipping some elements in place of searching all elements.
+[Jump Search](https://www.geeksforgeeks.org/jump-search/) is a searching algorithm for sorted arrays. The basic idea is 
+to check fewer elements (than linear search) by jumping ahead by fixed steps or skipping some elements in place of 
+searching all elements.
 
-For example, suppose we have an array arr[] of size n and block (to be jumped) size m. Then we search at the indexes
- arr[0], arr[m], arr[2m]…..arr[km] and so on. Once we find the interval (arr[km] < x < arr[(k+1)m]), we perform a linear
-  search operation from the index km to find the element x.
+For example, suppose we have an array arr[] of size n and block (to be jumped) size `m`. Then we search at the indexes
+`arr[0]`, `arr[m]`, `arr[2m]…..arr[km]`, and so on. Once we find the interval (`arr[km] < x < arr[(k+1)m]`), we perform
+a linear search operation from the index `km` to find the element `x`.
 
 What is the optimal block size to be skipped?
-In the worst case, we have to do n/m jumps and if the last checked value is greater than the element to be searched for,
- we perform m-1 comparisons more for linear search. Therefore the total number of comparisons in the worst case will be 
- ((n/m) + m-1). The value of the function ((n/m) + m-1) will be minimum when m = √n. Therefore, the best step size is 
- m = √n. (Geeks For Geeks)
+In the worst case, we have to do `n/m` jumps and if the last checked value is greater than the element to be searched 
+for, we perform `m-1` comparisons more for linear search. Therefore the total number of comparisons in the worst case 
+will be `((n/m) + m-1)`. The value of the function `((n/m) + m-1)` will be minimum when `m = √n`. Therefore, the best 
+step size is `m = √n`. (Geeks For Geeks)
 
 ```python
-def jump_search(array, target):
+def jump_search(array: [int], target: int) -> Optional[int]:
     length = len(array)
     interval = int(math.sqrt(length))
     index = interval - 1  # 0 Based
@@ -113,7 +117,7 @@ The most basic search. Start from the leftmost element of the array and one by o
 of the array. If the target matches with an element, return the index.
 
 ```python
-def linear_search(array, left, right, target):
+def linear_search(array: [int], left: int, right: int, target: int) -> Optional[int]:
     for index in range(left, right + 1):
         if array[index] == target:
             return index
@@ -130,7 +134,7 @@ wrong order.
 Example: `[2, 1, 3] -> [1, 2, 3]`
 
 ```python
-def bubble_sort(array):
+def bubble_sort(array: [int]) -> [int]:
     length = len(array)
     
     # Return if nothing to sort
@@ -158,12 +162,14 @@ def bubble_sort(array):
 ## Data Structures
 
 * [Singly Linked List](#singly-linked-list)
-    
+* [Doubly Linked List (WIP)](#)
+* [Circularly Linked List (WIP)](#)
+
 #### Singly Linked List
 
-[Wikipedia - Linked Lists](https://en.wikipedia.org/wiki/Linked_list): Singly linked lists contain nodes which have a data field as well as 'next' field, which points to the next
-node in line of nodes. Operations that can be performed on singly linked lists include insertion, deletion and
-traversal.
+[Wikipedia - Linked Lists](https://en.wikipedia.org/wiki/Linked_list): Singly linked lists contain nodes which have a 
+data field as well as 'next' field, which points to the next node in line of nodes. Operations that can be performed on 
+singly linked lists include insertion, deletion and traversal.
 
 Benefits:
 
@@ -297,7 +303,9 @@ class SinglyLinkedList(object):
         return count
 ```
 
-## Arrays
+## Algorithms
+
+### Arrays
 
 * [First Duplicate](#first-duplicate)
 * [First Not Repeating Character](#first-not-repeating-character)
@@ -306,16 +314,16 @@ class SinglyLinkedList(object):
 
 #### First Duplicate
 
-Given an array a that contains only numbers in the range from 1 to a.length, find
+Given an array a that contains only numbers in the range from `1` to `a.length`, find
 the first duplicate number for which the second occurrence has the minimal index.
 In other words, if there are more than 1 duplicated numbers, return the number for
 which the second occurrence has a smaller index than the second occurrence of
-the other number does. If there are no such elements, return -1.
+the other number does. If there are no such elements, return `-1`.
 
 First Duplicate w/ Set
 
 ```python
-def first_duplicate(a):
+def first_duplicate(a: [int]) -> int:
     uniqueset = set()
     for value in a:
         if value in uniqueset:
@@ -328,7 +336,7 @@ def first_duplicate(a):
 First Duplicate (In-Place)
 
 ```python
-def first_duplicate_in_place(array):
+def first_duplicate_in_place(array: [int]) -> int:
     while len(array) > 0:
         value = array.pop(0)
         if value in array:
@@ -347,7 +355,7 @@ return '_'.
 With Set:
 
 ```python
-def first_not_repeating_character(s):
+def first_not_repeating_character(s: str) -> str:
     checkedChars = set() #skip characters we've already checked.
     for char in s:
         if char not in checkedChars and s.index(char) == s.rindex(char):
@@ -359,7 +367,7 @@ def first_not_repeating_character(s):
 With Array Slices (less optimal):
 
 ```python
-def first_not_repeating_character(s):
+def first_not_repeating_character(s: str) -> str:
     length = len(s)
     index = 0
     while index < length:
@@ -376,7 +384,7 @@ Find the number of elements that would need to be added so that each array value
 `[1,2,3,5] -> 1 #4 needs to be added to the array`
 
 ```python
-def make_array_consecutive(arr):
+def make_array_consecutive(arr: [int]) -> int:
     length = len(arr)
     statuesneeded = 0
 
@@ -406,7 +414,7 @@ Input: `[1,3,5,6], 5`
 Output: `2`
 
 ```python
-def search_insert(nums, target):
+def search_insert(nums: [int], target: int) -> int:
     leftindex = 0
     rightindex = len(nums) - 1
 
@@ -423,7 +431,7 @@ def search_insert(nums, target):
     return leftindex
 ```
 
-## Integers
+### Integers
 
 * [Palindrome Number](#palindrome-number)
 * [Reverse Number](#reverse-number)
@@ -442,7 +450,7 @@ Example 2: `-121` -> `false`
 Explanation: From left to right, it reads `-121`. From right to left, it becomes `121-`. Therefore it is not a palindrome.
 
 ```python
-def isPalindrome(x):
+def is_palindrome(x: int) -> bool:
     num = str(x)
     return num == num[::-1]
 ```
@@ -460,15 +468,15 @@ Input: `123`
 Output: `321`
 
 ```python
-def reverse_number(number):
-    reversed = int(str(abs(number))[::-1])
+def reverse_number(number: int) -> int:
+    reversed_number = int(str(abs(number))[::-1])
 
-    if reversed > 2**31 - 1:
+    if reversed_number > 2**31 - 1:  # Check for integer overflow (per question)
         return 0
 
     if number < 0:
-        return -reversed
-    return reversed
+        return -reversed_number
+    return reversed_number
 ```
 
 #### Two Sum
@@ -487,8 +495,7 @@ Because `nums[0] + nums[1] = 2 + 7 = 9`, `return [0, 1]`.
 
 Solution - O(N)
 ```python
-
-def two_sum(array, target):
+def two_sum(array: [], target: int) -> []:
     complements = dict()
 
     for index, num in enumerate(array):
@@ -503,8 +510,7 @@ def two_sum(array, target):
 Solution for sorted arrays - O(N)
 
 ```python
-
-def two_sum_sorted(array, target):
+def two_sum_sorted(array: [], target: int) -> []:
     length = len(array)
     start = 0
     end = length - 1
@@ -518,11 +524,10 @@ def two_sum_sorted(array, target):
             return [start, end]
 
     return [start, end]
-
 ```
  
 
-## Matrices
+###Matrices
 
 * [Rotate Image 90 Degrees Clockwise](#rotate-image-90-degrees-clockwise)
 
@@ -532,19 +537,23 @@ Note: Try to solve this task in-place (with O(1) additional memory), since this 
 an interview.
 
 You are given an n x n 2D matrix that represents an image. Rotate the image by 90 degrees (clockwise).
+
+Input:
 ```python
-a = [[1, 2, 3],
+    [[1, 2, 3],
      [4, 5, 6],
      [7, 8, 9]]
-     
-rotateImage(a) ==
+```
+
+Output:
+```python
     [[7, 4, 1],
      [8, 5, 2],
      [9, 6, 3]]
-``` 
+```     
 
 ```python
-def rotateImage90degrees(a):
+def rotate_image_90_degrees(a: [[int]]) -> [[int]]:
     size = len(a)
     layer_count = int(size / 2)
 
@@ -564,9 +573,10 @@ def rotateImage90degrees(a):
             a[element][last] = top
             a[last][last - offset] = right_side
             a[last - offset][first] = bottom
+    return a
 ```
 
-## Strings
+### Strings
 
 * [Jewels and Stones](#jewels-and-stones)
 
@@ -584,26 +594,26 @@ Input: `J = "aA"`, `S = "aAAbbbb"`
 Output: `3`
 
 ```python
-
-def numJewelsInStones(J, S):
-    stoneCount = dict()
-    for stone in S:
-        if stone in stoneCount:
-            stoneCount[stone] += 1
+def jewels_and_stones(jewels: str, stones: str) -> int:
+    stonecount = dict()
+    
+    for stone in stones:
+        if stone in stonecount:
+            stonecount[stone] += 1
         else:
-            stoneCount[stone] = 1
+            stonecount[stone] = 1
 
     count = 0
-    jSet = set(J)
+    jset = set(jewels)
 
-    for jewel in jSet:
-        if jewel in stoneCount:
-            count += stoneCount[jewel]
+    for jewel in jset:
+        if jewel in stonecount:
+            count += stonecount[jewel]
 
     return count
 ```
 
-## Trees
+### Trees
 
 * [Binary Tree Path](#binary-tree-path)
 
@@ -629,23 +639,26 @@ Output: `["1->2->5", "1->3"]`
 Explanation: All root-to-leaf paths are: `1->2->5`, `1->3`
 
 ```python
-def binaryTreePaths(root):
+def binary_tree_paths(root_node: TreeNode) -> str:
     paths = []
-    if not root:
+    if not root_node:
         return paths
-    getPath(root, '', paths)
+    get_path(root_node, '', paths)
     return paths
 
-def getPath(node, path, paths):
+def get_path(node: TreeNode, path: str, paths: []) -> str:
     if not node.left and not node.right:
         paths.append(path + str(node.val))
+        return
     if node.left:
-        getPath(node.left, path + str(node.val) + '->', paths)
+        get_path(node.left, path + str(node.val) + '->', paths)
     if node.right:
-        getPath(node.right, path + str(node.val) + '->', paths)
+        get_path(node.right, path + str(node.val) + '->', paths)
 ```
 
 ## Resources
 
+* [Code Signal](https://codesignal.com)
 * [Geeks For Geeks](https://www.geeksforgeeks.org/)
+* [Hackerrank](https://www.hackerrank.com/)
 * [Leetcode](https://www.leetcode.com)
