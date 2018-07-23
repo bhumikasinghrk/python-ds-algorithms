@@ -536,19 +536,23 @@ Note: Try to solve this task in-place (with O(1) additional memory), since this 
 an interview.
 
 You are given an n x n 2D matrix that represents an image. Rotate the image by 90 degrees (clockwise).
+
+Input:
 ```python
-a = [[1, 2, 3],
+    [[1, 2, 3],
      [4, 5, 6],
      [7, 8, 9]]
-     
-rotateImage(a) ==
+```
+
+Output:
+```python
     [[7, 4, 1],
      [8, 5, 2],
      [9, 6, 3]]
-``` 
+```     
 
 ```python
-def rotateImage90degrees(a):
+def rotate_image_90_degrees(a: [[]]) -> [[]]:
     size = len(a)
     layer_count = int(size / 2)
 
@@ -568,6 +572,7 @@ def rotateImage90degrees(a):
             a[element][last] = top
             a[last][last - offset] = right_side
             a[last - offset][first] = bottom
+    return a
 ```
 
 ### Strings
