@@ -449,7 +449,7 @@ Example 2: `-121` -> `false`
 Explanation: From left to right, it reads `-121`. From right to left, it becomes `121-`. Therefore it is not a palindrome.
 
 ```python
-def isPalindrome(x):
+def is_palindrome(x: int) -> bool:
     num = str(x)
     return num == num[::-1]
 ```
@@ -467,15 +467,15 @@ Input: `123`
 Output: `321`
 
 ```python
-def reverse_number(number):
-    reversed = int(str(abs(number))[::-1])
+def reverse_number(number: int) -> int:
+    reversed_number = int(str(abs(number))[::-1])
 
-    if reversed > 2**31 - 1:
+    if reversed_number > 2**31 - 1:  # Check for integer overflow (per question)
         return 0
 
     if number < 0:
-        return -reversed
-    return reversed
+        return -reversed_number
+    return reversed_number
 ```
 
 #### Two Sum
@@ -494,8 +494,7 @@ Because `nums[0] + nums[1] = 2 + 7 = 9`, `return [0, 1]`.
 
 Solution - O(N)
 ```python
-
-def two_sum(array, target):
+def two_sum(array: [], target: int) -> []:
     complements = dict()
 
     for index, num in enumerate(array):
@@ -510,8 +509,7 @@ def two_sum(array, target):
 Solution for sorted arrays - O(N)
 
 ```python
-
-def two_sum_sorted(array, target):
+def two_sum_sorted(array: [], target: int) -> []:
     length = len(array)
     start = 0
     end = length - 1
@@ -525,7 +523,6 @@ def two_sum_sorted(array, target):
             return [start, end]
 
     return [start, end]
-
 ```
  
 

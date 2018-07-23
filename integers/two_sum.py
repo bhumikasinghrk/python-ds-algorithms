@@ -10,7 +10,8 @@
 # # Because nums[0] + nums[1] = 2 + 7 = 9,
 # # return [0, 1].
 
-def two_sum(array, target):
+
+def two_sum(array: [], target: int) -> []:
     complements = dict()
 
     for index, num in enumerate(array):
@@ -21,12 +22,8 @@ def two_sum(array, target):
             complements[str(num)] = index
     return [-1, -1]
 
-def test_two_sum():
-    a = [2, 15, 7, 32]
-    target = 9
-    assert two_sum(a, target) == [2, 0]
 
-def two_sum_sorted(array, target):
+def two_sum_sorted(array: [], target: int) -> []:
     length = len(array)
     start = 0
     end = length - 1
@@ -40,11 +37,3 @@ def two_sum_sorted(array, target):
             return [start, end]
 
     return [start, end]
-
-def test_two_sum_sorted():
-    a = [2, 7, 11, 15]
-    target = 9
-    assert two_sum_sorted(a, target) == [0, 1]
-
-print(test_two_sum_sorted())
-print(test_two_sum())
