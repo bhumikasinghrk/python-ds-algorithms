@@ -1,7 +1,8 @@
 # Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in
 # wrong order.
 
-def bubble_sort(array):
+
+def bubble_sort(array: [int]) -> []:
     length = len(array)
 
     # Return if nothing to sort

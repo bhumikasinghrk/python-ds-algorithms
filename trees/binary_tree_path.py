@@ -34,7 +34,7 @@ def binary_tree_paths(root_node: TreeNode) -> str:
     return paths
 
 
-def get_path(node: TreeNode, path: str, paths: []) -> str:
+def get_path(node: TreeNode, path: str, paths: [str]) -> str:
     if not node.left and not node.right:
         paths.append(path + str(node.val))
         return

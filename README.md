@@ -36,7 +36,7 @@ the interval is empty.
 Iterative Approach:
 
 ```python
-def binary_search_iterative(array, target):
+def binary_search_iterative(array: [int], target: int) -> Optional[int]:
     left = 0
     right = len(array) - 1
 
@@ -56,7 +56,7 @@ Recursive Approach:
 
 ```python
 
-def binary_search_recursive(array, left, right, target):
+def binary_search_recursive(array: [int], left: int, right: int, target: int) -> Optional[int]:
     if right >= left:
 
         mid = int((left + right) / 2)
@@ -78,21 +78,22 @@ def binary_search_recursive(array, left, right, target):
 
 #### Jump Search
 
-[Jump Search](https://www.geeksforgeeks.org/jump-search/) is a searching algorithm for sorted arrays. The basic idea is to check fewer elements (than linear search) 
-by jumping ahead by fixed steps or skipping some elements in place of searching all elements.
+[Jump Search](https://www.geeksforgeeks.org/jump-search/) is a searching algorithm for sorted arrays. The basic idea is 
+to check fewer elements (than linear search) by jumping ahead by fixed steps or skipping some elements in place of 
+searching all elements.
 
 For example, suppose we have an array arr[] of size n and block (to be jumped) size `m`. Then we search at the indexes
 `arr[0]`, `arr[m]`, `arr[2m]…..arr[km]`, and so on. Once we find the interval (`arr[km] < x < arr[(k+1)m]`), we perform
 a linear search operation from the index `km` to find the element `x`.
 
 What is the optimal block size to be skipped?
-In the worst case, we have to do `n/m` jumps and if the last checked value is greater than the element to be searched for,
- we perform `m-1` comparisons more for linear search. Therefore the total number of comparisons in the worst case will be 
- `((n/m) + m-1)`. The value of the function `((n/m) + m-1)` will be minimum when `m = √n`. Therefore, the best step size is 
- `m = √n`. (Geeks For Geeks)
+In the worst case, we have to do `n/m` jumps and if the last checked value is greater than the element to be searched 
+for, we perform `m-1` comparisons more for linear search. Therefore the total number of comparisons in the worst case 
+will be `((n/m) + m-1)`. The value of the function `((n/m) + m-1)` will be minimum when `m = √n`. Therefore, the best 
+step size is `m = √n`. (Geeks For Geeks)
 
 ```python
-def jump_search(array, target):
+def jump_search(array: [int], target: int) -> Optional[int]:
     length = len(array)
     interval = int(math.sqrt(length))
     index = interval - 1  # 0 Based
@@ -116,7 +117,7 @@ The most basic search. Start from the leftmost element of the array and one by o
 of the array. If the target matches with an element, return the index.
 
 ```python
-def linear_search(array, left, right, target):
+def linear_search(array: [int], left: int, right: int, target: int) -> Optional[int]:
     for index in range(left, right + 1):
         if array[index] == target:
             return index
@@ -133,7 +134,7 @@ wrong order.
 Example: `[2, 1, 3] -> [1, 2, 3]`
 
 ```python
-def bubble_sort(array):
+def bubble_sort(array: [int]) -> [int]:
     length = len(array)
     
     # Return if nothing to sort
@@ -166,9 +167,9 @@ def bubble_sort(array):
 
 #### Singly Linked List
 
-[Wikipedia - Linked Lists](https://en.wikipedia.org/wiki/Linked_list): Singly linked lists contain nodes which have a data field as well as 'next' field, which points to the next
-node in line of nodes. Operations that can be performed on singly linked lists include insertion, deletion and
-traversal.
+[Wikipedia - Linked Lists](https://en.wikipedia.org/wiki/Linked_list): Singly linked lists contain nodes which have a 
+data field as well as 'next' field, which points to the next node in line of nodes. Operations that can be performed on 
+singly linked lists include insertion, deletion and traversal.
 
 Benefits:
 
@@ -322,7 +323,7 @@ the other number does. If there are no such elements, return `-1`.
 First Duplicate w/ Set
 
 ```python
-def first_duplicate(a):
+def first_duplicate(a: [int]) -> int:
     uniqueset = set()
     for value in a:
         if value in uniqueset:
@@ -335,7 +336,7 @@ def first_duplicate(a):
 First Duplicate (In-Place)
 
 ```python
-def first_duplicate_in_place(array):
+def first_duplicate_in_place(array: [int]) -> int:
     while len(array) > 0:
         value = array.pop(0)
         if value in array:
@@ -354,7 +355,7 @@ return '_'.
 With Set:
 
 ```python
-def first_not_repeating_character(s):
+def first_not_repeating_character(s: str) -> str:
     checkedChars = set() #skip characters we've already checked.
     for char in s:
         if char not in checkedChars and s.index(char) == s.rindex(char):
@@ -366,7 +367,7 @@ def first_not_repeating_character(s):
 With Array Slices (less optimal):
 
 ```python
-def first_not_repeating_character(s):
+def first_not_repeating_character(s: str) -> str:
     length = len(s)
     index = 0
     while index < length:
@@ -383,7 +384,7 @@ Find the number of elements that would need to be added so that each array value
 `[1,2,3,5] -> 1 #4 needs to be added to the array`
 
 ```python
-def make_array_consecutive(arr):
+def make_array_consecutive(arr: [int]) -> int:
     length = len(arr)
     statuesneeded = 0
 
@@ -413,7 +414,7 @@ Input: `[1,3,5,6], 5`
 Output: `2`
 
 ```python
-def search_insert(nums, target):
+def search_insert(nums: [int], target: int) -> int:
     leftindex = 0
     rightindex = len(nums) - 1
 
@@ -552,7 +553,7 @@ Output:
 ```     
 
 ```python
-def rotate_image_90_degrees(a: [[]]) -> [[]]:
+def rotate_image_90_degrees(a: [[int]]) -> [[int]]:
     size = len(a)
     layer_count = int(size / 2)
 

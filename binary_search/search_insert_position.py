@@ -8,7 +8,8 @@
 # Input: [1,3,5,6], 5
 # Output: 2
 
-def search_insert(nums, target):
+
+def search_insert(nums: [int], target: int) -> int:
     leftindex = 0
     rightindex = len(nums) - 1
 

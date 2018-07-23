@@ -2,7 +2,7 @@
 # [1,2,3,5] -> 1 #4 needs to be added to the array
 
 
-def make_array_consecutive(statues):
+def make_array_consecutive(statues: [int]) -> int:
     length = len(statues)
     statuesneeded = 0
 

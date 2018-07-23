@@ -4,7 +4,7 @@
 #  there are no such elements, return -1.
 
 
-def first_duplicate(array):
+def first_duplicate(array: [int]) -> int:
     uniqueset = set()
     for value in array:
         if value in uniqueset:
@@ -13,7 +13,8 @@ def first_duplicate(array):
             uniqueset.add(value)
     return -1
 
-def first_duplicate_in_place(array):
+
+def first_duplicate_in_place(array: [int]) -> int:
     while len(array) > 0:
         value = array.pop(0)
         if value in array:

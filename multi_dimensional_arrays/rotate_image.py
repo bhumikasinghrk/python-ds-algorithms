@@ -12,7 +12,7 @@
 #     [9, 6, 3]]
 
 
-def rotate_image_90_degrees(a: [[]]) -> [[]]:
+def rotate_image_90_degrees(a: [[int]]) -> [[int]]:
     size = len(a)
     layer_count = int(size / 2)
 

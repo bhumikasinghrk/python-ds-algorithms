@@ -11,7 +11,7 @@
 # # return [0, 1].
 
 
-def two_sum(array: [], target: int) -> []:
+def two_sum(array: [int], target: int) -> [int]:
     complements = dict()
 
     for index, num in enumerate(array):
@@ -23,7 +23,7 @@ def two_sum(array: [], target: int) -> []:
     return [-1, -1]
 
 
-def two_sum_sorted(array: [], target: int) -> []:
+def two_sum_sorted(array: [int], target: int) -> [int]:
     length = len(array)
     start = 0
     end = length - 1

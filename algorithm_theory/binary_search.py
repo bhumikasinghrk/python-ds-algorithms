@@ -2,9 +2,10 @@
 # covering the whole array. If the value of the search key is less than the item in the middle of the interval, narrow
 # the interval to the lower half. Otherwise narrow it to the upper half. Repeatedly check until the value is found or
 # the interval is empty.
+from typing import Optional
 
 
-def binary_search_iterative(array, target):
+def binary_search_iterative(array: [int], target: int) -> Optional[int]:
     left = 0
     right = len(array) - 1
 
@@ -19,7 +20,8 @@ def binary_search_iterative(array, target):
             right = middle - 1
     return None
 
-def binary_search_recursive(array, left, right, target):
+
+def binary_search_recursive(array: [int], left: int, right: int, target: int) -> Optional[int]:
     if right >= left:
 
         mid = int((left + right) / 2)
