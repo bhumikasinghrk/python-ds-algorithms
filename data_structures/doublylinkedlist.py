@@ -21,6 +21,7 @@ class DoublyLinkedList(object):
         self._head.next_node = self._tail
         self._tail.previous_node = self._head
 
+    # O(N)
     def allvalues(self) -> [int]:
         values = []
         node = self._head.next_node
@@ -31,7 +32,7 @@ class DoublyLinkedList(object):
 
         return values
 
-    # O(N)
+    # O(1)
     def append(self, node: Node) -> None:
         last_node = self._tail.previous_node
         # Last <-> Tail --> Last <-> New <-> Tail
@@ -44,6 +45,7 @@ class DoublyLinkedList(object):
         node.next_node = self._tail
         self._tail.previous_node = node
 
+    # O(N)
     def get_node(self, index: int) -> Optional[Node]:
         current_node = self._head.next_node
         if current_node == self._tail:  # empty list
