@@ -638,20 +638,21 @@ Output: `["1->2->5", "1->3"]`
 Explanation: All root-to-leaf paths are: `1->2->5`, `1->3`
 
 ```python
-def binaryTreePaths(root):
+def binary_tree_paths(root_node: TreeNode) -> str:
     paths = []
-    if not root:
+    if not root_node:
         return paths
-    getPath(root, '', paths)
+    get_path(root_node, '', paths)
     return paths
 
-def getPath(node, path, paths):
+def get_path(node: TreeNode, path: str, paths: []) -> str:
     if not node.left and not node.right:
         paths.append(path + str(node.val))
+        return
     if node.left:
-        getPath(node.left, path + str(node.val) + '->', paths)
+        get_path(node.left, path + str(node.val) + '->', paths)
     if node.right:
-        getPath(node.right, path + str(node.val) + '->', paths)
+        get_path(node.right, path + str(node.val) + '->', paths)
 ```
 
 ## Resources
