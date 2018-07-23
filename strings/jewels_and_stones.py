@@ -17,24 +17,22 @@
 # S and J will consist of letters and have length at most 50.
 # The characters in J are distinct.
 
-def numJewelsInStones(J, S):
-    stoneCount = dict()
-    for stone in S:
-        if stone in stoneCount:
-            stoneCount[stone] += 1
+
+def jewels_and_stones(jewels: str, stones: str) -> int:
+    stonecount = dict()
+
+    for stone in stones:
+        if stone in stonecount:
+            stonecount[stone] += 1
         else:
-            stoneCount[stone] = 1
+            stonecount[stone] = 1
 
     count = 0
-    jSet = set(J)
+    jset = set(jewels)
 
-    for jewel in jSet:
-        if jewel in stoneCount:
-            count += stoneCount[jewel]
+    for jewel in jset:
+        if jewel in stonecount:
+            count += stonecount[jewel]
 
     return count
 
-def test_numJewelsInStones():
-    assert numJewelsInStones("aA", "aAAbbbb") == 3
-
-print(numJewelsInStones("aA", "aAAbbbb"))

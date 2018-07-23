@@ -593,21 +593,21 @@ Input: `J = "aA"`, `S = "aAAbbbb"`
 Output: `3`
 
 ```python
-
-def numJewelsInStones(J, S):
-    stoneCount = dict()
-    for stone in S:
-        if stone in stoneCount:
-            stoneCount[stone] += 1
+def jewels_and_stones(jewels: str, stones: str) -> int:
+    stonecount = dict()
+    
+    for stone in stones:
+        if stone in stonecount:
+            stonecount[stone] += 1
         else:
-            stoneCount[stone] = 1
+            stonecount[stone] = 1
 
     count = 0
-    jSet = set(J)
+    jset = set(jewels)
 
-    for jewel in jSet:
-        if jewel in stoneCount:
-            count += stoneCount[jewel]
+    for jewel in jset:
+        if jewel in stonecount:
+            count += stonecount[jewel]
 
     return count
 ```
