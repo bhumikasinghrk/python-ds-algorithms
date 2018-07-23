@@ -12,7 +12,7 @@ prevent obscuring the function and logic of the algorithms / data-structures.
         * [Bubble Sort](#bubble-sort)
 * [Data Structures](#data-structures)
     * [Singly Linked List](#singly-linked-list)
-    * [Doubly Linked List (WIP)](#)
+    * [Doubly Linked List](#doubly-linked-list)
     * [Circularly Linked List (WIP)](#)
 * [Algorithms](#algorithms)
     * [Arrays](#arrays)
@@ -162,7 +162,7 @@ def bubble_sort(array: [int]) -> [int]:
 ## Data Structures
 
 * [Singly Linked List](#singly-linked-list)
-* [Doubly Linked List (WIP)](#)
+* [Doubly Linked List](#doubly-linked-list)
 * [Circularly Linked List (WIP)](#)
 
 #### Singly Linked List
@@ -202,94 +202,73 @@ class SinglyLinkedList(object):
         if head:
             self._head = head
 
-    def allvalues(self) -> []:
-        values = []
-        node = self._head
-
-        while node:
-            values.append(node.data)
-            node = node.next_node
-
-        return values
-
     # O(N)
     def append(self, node: Node) -> None:
         if not self._head:
             self._head = node
             return
-
         last_node = self._head
 
         while last_node:
             next_node = last_node.next_node
-
             if not next_node:
                 break
             last_node = next_node
-
         last_node.next_node = node
 
     # O(N)
-    def get(self, index: int = None) -> Node:
-        if not index and not self._head:  # No index and head is null
+    def get(self, index: int) -> Optional[int]:
+        if not self._head:  # No index and head is null
             return None
-        elif not index and self._head:    # No index but head is present
-            return self._head
-        elif index:                       # Index provided
-            count = 0
-            current_node = self._head
-
-            while current_node:
-                next_node = current_node.next_node
-                count += 1
-
-                if next_node and count == index:
-                    return next_node
-                if next_node:
-                    current_node = next_node
-                    continue
-                break
-
-        return None                       # Index not valid, return None
+        node = self.get_node(index)
+        if node:
+            return node.data
+        return None
 
     # O(N)
-    def insert(self, node: Node, index: int = None) -> bool:
-        success = False
+    def get_node(self, index: int) -> Optional[Node]:
+        if not self._head:  # No index and head is null
+            return None
+        count = 0
+        current_node = self._head
 
-        if not index or index == 0:
-            if not self._head:
-                self._head = node
-            else:
-                node.next_node = self._head
-                self._head = node
-            success = True
-        else:
-            previous_node = self.get(index - 1)
-            insert_node = previous_node.next_node
-
-            if previous_node:
-                node.next_node = insert_node
-                previous_node.next_node = node
-                success = True
-
-        return success
+        while current_node:
+            if count == index:
+                return current_node
+            current_node = current_node.next_node
+            count += 1
+        return None
 
     # O(N)
-    def remove(self, index: int) -> Node:
-        node = None
-
-        if index == 0:
-            if self._head:
-                node = self._head
-                self._head = self._head.next_node
+    def insert(self, node: Node, index: int) -> None:
+        # None --> Node
+        if not self._head:
+            self._head = node
+        # Head -> .... --> Node -> Head -> ....
+        elif index == 0:
+            node.next_node = self._head
+            self._head = node
+        # Previous -> Next --> Previous -> Node -> Next
         else:
-            previous_node = self.get(index - 1)
-            node = previous_node.next_node
+            previous_node = self.get_node(index - 1)
+            if not previous_node:
+                raise IndexError("Index out of bounds")
+            node.next_node = previous_node.next_node
+            previous_node.next_node = node
 
-            # If node_to_remove is not present the index was invalid and we can return False
-            if previous_node and node:
-                previous_node.next_node = node.next_node
-        return node
+    # O(N)
+    def remove(self, index: int) -> Optional[int]:
+        value = None
+
+        if index == 0 and self._head:
+            value = self._head.data
+            self._head = self._head.next_node
+        else:
+            previous_node = self.get_node(index - 1)
+            if previous_node and previous_node.next_node:
+                value = previous_node.next_node.data
+                previous_node.next_node = previous_node.next_node.next_node
+        return value
 
     # O(N)
     def size(self) -> int:
@@ -299,7 +278,110 @@ class SinglyLinkedList(object):
         while node:
             count += 1
             node = node.next_node
+        return count
+```
 
+#### Doubly Linked List
+
+[Wikipedia: Doubly Linked List](https://en.wikipedia.org/wiki/Doubly_linked_list): In a 'doubly linked list', each node 
+contains, besides the next-node link, a second link field pointing to the 'previous' node in the sequence.
+
+Doubly Linked List Node:
+
+```python
+class Node:
+    def __init__(self, data=None, previous_node=None, next_node=None):
+        self.data = data
+        self.previous_node = previous_node
+        self.next_node = next_node
+```
+
+Implementation:
+
+```python
+class DoublyLinkedList(object):
+
+    def __init__(self) -> None:
+        self._head = Node()
+        self._tail = Node()
+
+        self._head.next_node = self._tail
+        self._tail.previous_node = self._head
+
+    # O(N)
+    def append(self, node: Node) -> None:
+        last_node = self._tail.previous_node
+        # Last <-> Tail --> Last <-> New <-> Tail
+
+        # Link the new node to the original last node and the tail
+        last_node.next_node = node
+        node.previous_node = last_node
+
+        # Point the tail to the new last node
+        node.next_node = self._tail
+        self._tail.previous_node = node
+
+    def get_node(self, index: int) -> Optional[Node]:
+        current_node = self._head.next_node
+        if current_node == self._tail:  # empty list
+            return None
+
+        count = 0
+
+        while current_node:
+            if count == index:
+                return current_node
+            current_node = current_node.next_node
+            count += 1
+        return None
+
+    # O(N)
+    def get_value(self, index: int) -> Optional[int]:
+        node = self.get_node(index)
+        if node:
+            return node.data
+        return None
+
+    # O(N)
+    def insert(self, node: Node, index: int) -> None:
+        original_node = self._tail
+
+        if index != 0 or self._head.next_node != self._tail:  # empty list
+            original_node = self.get_node(index)
+
+        if not original_node:
+            raise IndexError("Node not present at index")
+
+        previous_node = original_node.previous_node
+        # Previous <-> Original --> Previous <-> New <-> Original
+        previous_node.next_node = node      # previous node points to the new node
+        node.previous_node = previous_node  # previous node is new node's previous node
+        node.next_node = original_node      # new node's next node is the original node
+        original_node.previous = node       # original node's previous node is the new node
+
+    # O(N)
+    def remove(self, index: int) -> Optional[int]:
+        node = self.get_node(index)
+        if not node:
+            return None  # Could also raise an exception
+
+        previous_node = node.previous_node
+        next_node = node.next_node
+
+        # Previous <-> Node <-> Next --> Previous <-> Next
+        previous_node.next_node = next_node
+        next_node.previous_node = previous_node
+
+        return node.data
+
+    # O(N)
+    def size(self) -> int:
+        count = 0
+        node = self._head.next_node
+
+        while node != self._tail:
+            count += 1
+            node = node.next_node
         return count
 ```
 
@@ -349,8 +431,8 @@ def first_duplicate_in_place(array: [int]) -> int:
 Note: Write a solution that only iterates over the string once and uses O(1) additional memory, since this is what you
 would be asked to do during a real interview.
 
-Given a string s, find and return the first instance of a non-repeating character in it. If there is no such character,
-return '_'.
+Given a string `s`, find and return the first instance of a non-repeating character in it. If there is no such 
+character, return `_`.
 
 With Set:
 
