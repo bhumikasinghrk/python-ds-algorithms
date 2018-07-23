@@ -67,7 +67,11 @@ class DoublyLinkedList(object):
 
     # O(N)
     def insert(self, node: Node, index: int) -> None:
-        original_node = self.get_node(index)
+        original_node = self._tail
+
+        if index != 0 or self._head.next_node != self._tail:  # empty list
+            original_node = self.get_node(index)
+
         if not original_node:
             raise IndexError("Node not present at index")
 

@@ -84,9 +84,11 @@ def test_insert_tail():
     assert singly_linked_list.get(3) == 22
     assert singly_linked_list.get(4) == 1
 
+
 def test_remove_empty():
     singly_linked_list = SinglyLinkedList()
     assert not singly_linked_list.remove(0)
+
 
 def test_remove():
     singly_linked_list = get_multi_node_list()
@@ -95,6 +97,7 @@ def test_remove():
 
     assert singly_linked_list.remove(2) == 1
     assert singly_linked_list.size() == 2
+
 
 def test_size():
     assert empty_list.size() == 0
