@@ -386,6 +386,53 @@ class DoublyLinkedList(object):
         return count
 ```
 
+#### Circularly Linked List (WIP)
+
+#### Binary Tree
+
+A Binary tree is a non-linear tree data structure with one "root" node. Each node has only two child nodes. These are
+donated "left" and "right".
+
+Further Reading - [Wikipedia: Binary Tree](https://en.wikipedia.org/wiki/Binary_tree)
+
+```text
+     Root
+      / \
+     L   R
+    / \
+   L   R
+```
+
+Binary Tree Node
+
+```python
+class BinaryTreeNode:
+
+    def __init__(self, data, left_node=None, right_node=None):
+        self._data = data
+        self._left_node = left_node
+        self._right_node = right_node
+        
+     # ... Getters and Setters #
+```
+
+Binary Tree
+
+```python
+class BinaryTree(object):
+
+    def __init__(self, root: BinaryTreeNode = None):
+        self._root = root
+
+    @property
+    def root(self) -> BinaryTreeNode:
+        return self._root
+
+    @root.setter
+    def root(self, root: BinaryTreeNode):
+        self._root = root
+```
+ 
 ## Algorithms
 
 ### Arrays
