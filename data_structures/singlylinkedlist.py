@@ -12,13 +12,11 @@ class Node:
 
 
 class SinglyLinkedList(object):
-    _head = None
 
     def __init__(self, head: Node = None) -> None:
-        if head:
-            self._head = head
+        self._head = head
 
-    def allvalues(self) -> []:
+    def all_values(self) -> []:
         values = []
         node = self._head
 
