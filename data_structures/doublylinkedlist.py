@@ -22,7 +22,7 @@ class DoublyLinkedList(object):
         self._tail.previous_node = self._head
 
     # O(N)
-    def allvalues(self) -> [int]:
+    def all_values(self) -> [int]:
         values = []
         node = self._head.next_node
 

@@ -2,16 +2,16 @@
 # [1,2,3,5] -> 1 #4 needs to be added to the array
 
 
-def make_array_consecutive(statues: [int]) -> int:
-    length = len(statues)
-    statuesneeded = 0
+def make_array_consecutive(values: [int]) -> int:
+    length = len(values)
+    numbers_needed = 0
 
     if length <= 1:
-        return statuesneeded
+        return numbers_needed
 
-    sortedstatues = sorted(statues)
+    sorted_numbers = sorted(values)
 
     for i in range(1, length):
-        statuesneeded += (sortedstatues[i] - sortedstatues[i - 1]) - 1
+        numbers_needed += (sorted_numbers[i] - sorted_numbers[i - 1]) - 1
 
-    return statuesneeded
+    return numbers_needed
