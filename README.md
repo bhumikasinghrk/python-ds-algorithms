@@ -13,7 +13,7 @@ prevent obscuring the function and logic of the algorithms / data-structures.
 * [Data Structures](#data-structures)
     * [Singly Linked List](#singly-linked-list)
     * [Doubly Linked List](#doubly-linked-list)
-    * [Circularly Linked List (WIP)](#)
+    * [Circularly Linked List](#circularly-linked-list)
 * [Algorithms](#algorithms)
     * [Arrays](#arrays)
     * [Integers](#integers)
