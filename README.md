@@ -610,17 +610,17 @@ Find the number of elements that would need to be added so that each array value
 ```python
 def make_array_consecutive(arr: [int]) -> int:
     length = len(arr)
-    statuesneeded = 0
+    numbers_needed = 0
 
     if length <= 1:
-        return statuesneeded
+        return numbers_needed
 
-    sortedstatues = sorted(arr)
+    sorted_numbers = sorted(arr)
 
     for i in range(1, length):
-        statuesneeded += (sortedstatues[i] - sortedstatues[i - 1]) - 1
+        numbers_needed += (sorted_numbers[i] - sorted_numbers[i - 1]) - 1
 
-    return statuesneeded
+    return numbers_needed
 ``` 
 
 #### Search Insert Position
