@@ -1,7 +1,7 @@
 # Python Data Structures and Algorithms [![Build Status](https://travis-ci.org/ahcode0919/python-ds-algorithms.svg?branch=master)](https://travis-ci.org/ahcode0919/python-ds-algorithms) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Various Data Structures and Algorithm Solutions in Python (3.x). Succint Python one-liners are avoided in most solutions
-prevent obscuring the function and logic of the algorithms / data-structures.  
+to prevent obscuring the function and logic of the algorithms / data-structures.  
 
 * [Algorithm Theory](#algorithm-theory)
     * [Searches](#searches)
@@ -751,7 +751,7 @@ def two_sum_sorted(array: [], target: int) -> []:
 ```
  
 
-###Matrices
+### Matrices
 
 * [Rotate Image 90 Degrees Clockwise](#rotate-image-90-degrees-clockwise)
 
