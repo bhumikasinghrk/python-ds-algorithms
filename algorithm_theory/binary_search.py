@@ -14,7 +14,7 @@ def binary_search_iterative(array: [int], target: int) -> Optional[int]:
 
         if array[middle] == target:
             return middle
-        elif array[middle] < target:
+        if array[middle] < target:
             left = middle + 1
         elif array[middle] > target:
             right = middle - 1
@@ -31,11 +31,9 @@ def binary_search_recursive(array: [int], left: int, right: int, target: int) ->
             return mid
 
         # If element is smaller than mid, then it can only be present in left sub-array
-        elif array[mid] > target:
+        if array[mid] > target:
             return binary_search_recursive(array, left, mid - 1, target)
 
         # Else the element can only be present in the right sub-array
-        else:
-            return binary_search_recursive(array, mid + 1, right, target)
-    else:
-        return None
+        return binary_search_recursive(array, mid + 1, right, target)
+    return None

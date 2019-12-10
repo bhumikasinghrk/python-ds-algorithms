@@ -18,8 +18,7 @@ def two_sum(array: [int], target: int) -> [int]:
         complement = str(target - num)
         if complement in complements:
             return [index, complements[complement]]
-        else:
-            complements[str(num)] = index
+        complements[str(num)] = index
     return [-1, -1]
 
 

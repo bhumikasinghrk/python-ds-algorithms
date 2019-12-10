@@ -1,18 +1,18 @@
-from data_structures.doublylinkedlist import *
+from data_structures.doublylinkedlist import DoublyLinkedList, Node
 
-empty_list = DoublyLinkedList()
-one_node_list = DoublyLinkedList()
-one_node_list.append(Node(5))
+EMPTY_LIST = DoublyLinkedList()
+ONE_NODE_LIST = DoublyLinkedList()
+ONE_NODE_LIST.append(Node(5))
 
 
 def test_init():
-    assert one_node_list.size() == 1
-    assert one_node_list.get_value(0) == 5
+    assert ONE_NODE_LIST.size() == 1
+    assert ONE_NODE_LIST.get_value(0) == 5
 
 
 def test_init_none():
-    assert not empty_list.get_value(0)
-    assert empty_list.size() == 0
+    assert not EMPTY_LIST.get_value(0)
+    assert EMPTY_LIST.size() == 0
 
 
 def test_all_values():
@@ -37,7 +37,7 @@ def test_append():
 
 
 def test_get_empty():
-    assert not empty_list.get_value(0)
+    assert not EMPTY_LIST.get_value(0)
 
 
 def test_get_invalid():
@@ -101,8 +101,8 @@ def test_remove():
 
 
 def test_size():
-    assert empty_list.size() == 0
-    assert one_node_list.size() == 1
+    assert EMPTY_LIST.size() == 0
+    assert ONE_NODE_LIST.size() == 1
     assert get_multi_node_list().size() == 4
 
 

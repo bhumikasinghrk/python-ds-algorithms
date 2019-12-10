@@ -1,7 +1,7 @@
 from data_structures.binary_tree_node import BinaryTreeNode
 
 
-class BinaryTree(object):
+class BinaryTree:
     def __init__(self, root: BinaryTreeNode = None):
         self._root = root
 

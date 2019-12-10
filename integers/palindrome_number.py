@@ -11,6 +11,6 @@
 # Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
 
 
-def is_palindrome(x: int) -> bool:
-    num = str(x)
+def is_palindrome(a_string: int) -> bool:
+    num = str(a_string)
     return num == num[::-1]

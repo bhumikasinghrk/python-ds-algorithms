@@ -12,8 +12,8 @@
 #     [9, 6, 3]]
 
 
-def rotate_image_90_degrees(a: [[int]]) -> [[int]]:
-    size = len(a)
+def rotate_image_90_degrees(arr: [[int]]) -> [[int]]:
+    size = len(arr)
     layer_count = int(size / 2)
 
     for layer in range(0, layer_count):
@@ -23,13 +23,13 @@ def rotate_image_90_degrees(a: [[int]]) -> [[int]]:
         for element in range(first, last):
             offset = element - first
 
-            top = a[first][element]
-            right_side = a[element][last]
-            bottom = a[last][last - offset]
-            left_side = a[last - offset][first]
+            top = arr[first][element]
+            right_side = arr[element][last]
+            bottom = arr[last][last - offset]
+            left_side = arr[last - offset][first]
 
-            a[first][element] = left_side
-            a[element][last] = top
-            a[last][last - offset] = right_side
-            a[last - offset][first] = bottom
-    return a
+            arr[first][element] = left_side
+            arr[element][last] = top
+            arr[last][last - offset] = right_side
+            arr[last - offset][first] = bottom
+    return arr

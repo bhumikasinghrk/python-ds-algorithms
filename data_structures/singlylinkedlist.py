@@ -12,7 +12,7 @@ class Node:
 # traversal.
 
 
-class SinglyLinkedList(object):
+class SinglyLinkedList:
 
     def __init__(self, head: Node = None) -> None:
         self._head = head

@@ -1,4 +1,4 @@
-from arrays.first_not_repeating_character import *
+from arrays.first_not_repeating_character import first_not_repeating_character, first_not_repeating_character_set
 
 
 def test_first_not_repeating_character():

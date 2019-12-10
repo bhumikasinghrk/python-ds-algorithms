@@ -13,7 +13,7 @@ class Node:
 # 'prev'('previous').
 
 
-class DoublyLinkedList(object):
+class DoublyLinkedList:
 
     def __init__(self) -> None:
         self._head = Node()
@@ -80,10 +80,10 @@ class DoublyLinkedList(object):
 
         previous_node = original_node.previous_node
         # Previous <-> Original --> Previous <-> New <-> Original
-        previous_node.next_node = node  # previous node points to the new node
+        previous_node.next_node = node      # previous node points to the new node
         node.previous_node = previous_node  # previous node is new node's previous node
-        node.next_node = original_node  # new node's next node is the original node
-        original_node.previous = node  # original node's previous node is the new node
+        node.next_node = original_node      # new node's next node is the original node
+        original_node.previous_node = node  # original node's previous node is the new node
 
     # O(N)
     def remove(self, index: int) -> Optional[int]:

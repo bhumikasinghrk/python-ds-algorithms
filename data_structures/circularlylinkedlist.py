@@ -1,7 +1,7 @@
 from data_structures.singlylinkedlist import Node
 
 
-class CircularlyLinkedList(object):
+class CircularlyLinkedList:
     def __init__(self, node=None):
         self._head = node
         if node:

@@ -1,11 +1,11 @@
-from algorithm_theory.binary_search import *
+from algorithm_theory.binary_search import binary_search_iterative, binary_search_recursive
 
 
-def binary_search_iterative():
-    a = [2, 5, 36, 40, 58]
-    assert binary_search_iterative(a, 40) == 3
+def test_binary_search_iterative():
+    arr = [2, 5, 36, 40, 58]
+    assert binary_search_iterative(arr, 40) == 3
 
 
 def test_binary_search_recursive():
-    a = [2, 5, 36, 40, 58]
-    assert binary_search_recursive(a, 0, len(a) - 1, 5) == 1
+    arr = [2, 5, 36, 40, 58]
+    assert binary_search_recursive(arr, 0, len(arr) - 1, 5) == 1

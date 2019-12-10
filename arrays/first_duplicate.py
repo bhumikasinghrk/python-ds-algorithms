@@ -9,8 +9,7 @@ def first_duplicate(array: [int]) -> int:
     for value in array:
         if value in unique_set:
             return value
-        else:
-            unique_set.add(value)
+        unique_set.add(value)
     return -1
 
 

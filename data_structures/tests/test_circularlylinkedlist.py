@@ -1,31 +1,31 @@
-from data_structures.circularlylinkedlist import *
+from data_structures.circularlylinkedlist import CircularlyLinkedList, Node
 
-empty_list = CircularlyLinkedList()
-one_node_list = CircularlyLinkedList(Node(1))
-multi_node_list = CircularlyLinkedList(Node(1))
-multi_node_list.append(Node(2))
-multi_node_list.append(Node(3))
+EMPTY_LIST = CircularlyLinkedList()
+ONE_NODE_LIST = CircularlyLinkedList(Node(1))
+MULTI_NODE_LIST = CircularlyLinkedList(Node(1))
+MULTI_NODE_LIST.append(Node(2))
+MULTI_NODE_LIST.append(Node(3))
 
 
 def test_init():
-    assert empty_list.size() == 0
-    assert empty_list.all_values() == []
-    assert one_node_list.size() == 1
-    assert one_node_list.all_values() == [1]
+    assert EMPTY_LIST.size() == 0
+    assert EMPTY_LIST.all_values() == []
+    assert ONE_NODE_LIST.size() == 1
+    assert ONE_NODE_LIST.all_values() == [1]
 
 
 def test_tail():
-    assert not empty_list.head
-    assert one_node_list.head
+    assert not EMPTY_LIST.head
+    assert ONE_NODE_LIST.head
     test_list = CircularlyLinkedList()
     test_list.head = Node(1)
     assert test_list.size() == 1
 
 
 def test_all_values():
-    assert empty_list.all_values() == []
-    assert one_node_list.all_values() == [1]
-    assert multi_node_list.all_values() == [1, 2, 3]
+    assert EMPTY_LIST.all_values() == []
+    assert ONE_NODE_LIST.all_values() == [1]
+    assert MULTI_NODE_LIST.all_values() == [1, 2, 3]
 
 
 def test_append():
@@ -61,6 +61,6 @@ def test_remove():
 
 
 def test_size():
-    assert empty_list.size() == 0
-    assert one_node_list.size() == 1
-    assert multi_node_list.size() == 3
+    assert EMPTY_LIST.size() == 0
+    assert ONE_NODE_LIST.size() == 1
+    assert MULTI_NODE_LIST.size() == 3

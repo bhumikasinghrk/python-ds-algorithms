@@ -4,8 +4,8 @@
 # step size is m = √n.
 
 import math
-from algorithm_theory.linear_search import linear_search
 from typing import Optional
+from algorithm_theory.linear_search import linear_search
 
 
 def jump_search(array: [int], target: int) -> Optional[int]:
@@ -17,10 +17,9 @@ def jump_search(array: [int], target: int) -> Optional[int]:
     while index <= length - 1:
         if array[index] == target:
             return index
-        elif array[index] > target:
+        if array[index] > target:
             return linear_search(array, previous, index - 1, target)
-        else:
-            previous = index
-            index += interval
+        previous = index
+        index += interval
 
     return None

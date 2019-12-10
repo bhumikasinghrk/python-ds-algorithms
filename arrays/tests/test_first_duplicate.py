@@ -1,4 +1,4 @@
-from arrays.first_duplicate import *
+from arrays.first_duplicate import first_duplicate, first_duplicate_in_place
 
 
 def test_first_duplicate():

@@ -5,20 +5,20 @@
 # If there is no such character, return '_'.
 
 
-def first_not_repeating_character(s: str) -> str:
-    length = len(s)
+def first_not_repeating_character(string: str) -> str:
+    length = len(string)
     index = 0
     while index < length:
-        if s[index] not in s[:index] and s[index] not in s[index + 1:]:
-            return s[index]
+        if string[index] not in string[:index] and string[index] not in string[index + 1:]:
+            return string[index]
         index += 1
     return '_'
 
 
-def first_not_repeating_character_set(s: str) -> str:
+def first_not_repeating_character_set(string: str) -> str:
     checked_characters = set()  # skip characters we've already checked.
-    for char in s:
-        if char not in checked_characters and s.index(char) == s.rindex(char):
+    for char in string:
+        if char not in checked_characters and string.index(char) == string.rindex(char):
             return char
         checked_characters.add(char)
     return '_'

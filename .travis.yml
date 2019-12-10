@@ -6,10 +6,11 @@ python:
   - "3.6"
 
 # command to install dependencies
-# install:
-#  - pip install -r requirements.txt
+install:
+  - pip3 install pylint
 
 # command to run tests
 script:
-  - python compile-files.py
+  - pylint *
+  - python compile_files.py
   - pytest # or py.test for Python versions 3.5 and below
