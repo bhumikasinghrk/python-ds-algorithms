@@ -1,8 +1,8 @@
 # Arrays
 
-
 * [First Duplicate](#first-duplicate)
 * [First Not Repeating Character](#first-not-repeating-character)
+* [First Pivot Index](#first-pivot-index)
 * [Make Array Consecutive](#make-array-consecutive)
 * [Search Insert Position](#search-insert-position)
 
@@ -70,6 +70,32 @@ def first_not_repeating_character(s: str) -> str:
             return s[index]
         index += 1
     return '_'
+```
+
+## First Pivot Index
+
+Given an array of integers nums, write a method that returns the "pivot" index of this array.
+
+We define the pivot index as the index where the sum of the numbers to the left of the index is equal to the sum of the 
+numbers to the right of the index.
+
+If no such index exists, we should return -1. If there are multiple pivot indexes, you should return the left-most pivot 
+index.
+
+Input: `[1, 7, 3, 6, 5, 6]`
+
+Output: 3
+
+```python
+def find_pivot_index(nums: [int]) -> int:
+    total = sum(nums)
+    left_sum = 0
+
+    for index, value in enumerate(nums):
+        if left_sum == total - left_sum - value:
+            return index
+        left_sum += value
+    return -1
 ```
 
 ## Make Array Consecutive
