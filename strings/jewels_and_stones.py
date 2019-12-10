@@ -19,20 +19,19 @@
 
 
 def jewels_and_stones(jewels: str, stones: str) -> int:
-    stonecount = dict()
+    stone_count = dict()
 
     for stone in stones:
-        if stone in stonecount:
-            stonecount[stone] += 1
+        if stone in stone_count:
+            stone_count[stone] += 1
         else:
-            stonecount[stone] = 1
+            stone_count[stone] = 1
 
     count = 0
-    jset = set(jewels)
+    jewel_set = set(jewels)
 
-    for jewel in jset:
-        if jewel in stonecount:
-            count += stonecount[jewel]
+    for jewel in jewel_set:
+        if jewel in stone_count:
+            count += stone_count[jewel]
 
     return count
-

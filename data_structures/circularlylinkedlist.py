@@ -81,5 +81,3 @@ class CircularlyLinkedList(object):
             count += 1
             node = node.next_node
         return count
-
-

@@ -9,7 +9,7 @@
 def reverse_number(number: int) -> int:
     reversed_number = int(str(abs(number))[::-1])
 
-    if reversed_number > 2**31 - 1:  # Check for integer overflow (per question)
+    if reversed_number > 2 ** 31 - 1:  # Check for integer overflow (per question)
         return 0
 
     if number < 0:

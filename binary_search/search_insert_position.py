@@ -10,17 +10,17 @@
 
 
 def search_insert(nums: [int], target: int) -> int:
-    leftindex = 0
-    rightindex = len(nums) - 1
+    left_index = 0
+    right_index = len(nums) - 1
 
-    while leftindex <= rightindex:
-        middle = int((leftindex + rightindex) / 2)
+    while left_index <= right_index:
+        middle = int((left_index + right_index) / 2)
 
         if nums[middle] == target:
             return middle
         elif nums[middle] < target:
-            leftindex = middle + 1
+            left_index = middle + 1
         else:
-            rightindex = middle - 1
+            right_index = middle - 1
 
-    return leftindex
+    return left_index

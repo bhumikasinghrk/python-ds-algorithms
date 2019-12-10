@@ -1,6 +1,6 @@
 # Python Data Structures and Algorithms [![Build Status](https://travis-ci.org/ahcode0919/python-ds-algorithms.svg?branch=master)](https://travis-ci.org/ahcode0919/python-ds-algorithms) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Various Data Structures and Algorithm Solutions in Python (3.x). Succint Python one-liners are avoided in most solutions
+Various Data Structures and Algorithm Solutions in Python (3.x). Succinct Python one-liners are avoided in most solutions
 to prevent obscuring the function and logic of the algorithms / data-structures.  
 
 * [Algorithm Theory](#algorithm-theory)
@@ -15,7 +15,7 @@ to prevent obscuring the function and logic of the algorithms / data-structures.
     * [Doubly Linked List](#doubly-linked-list)
     * [Circularly Linked List](#circularly-linked-list)
 * [Algorithms](#algorithms)
-    * [Arrays](#arrays)
+    * [Arrays](./arrays/README.md)
     * [Integers](#integers)
     * [Matrices](#matrices)
     * [Strings](#strings)
@@ -65,11 +65,11 @@ def binary_search_recursive(array: [int], left: int, right: int, target: int) ->
         if array[mid] == target:
             return mid
 
-        # If element is smaller than mid, then it can only be present in left subarray
+        # If element is smaller than mid, then it can only be present in left sub-array
         elif array[mid] > target:
             return binary_search_recursive(array, left, mid - 1, target)
 
-        # Else the element can only be present in the right subarray
+        # Else the element can only be present in the right sub-array
         else:
             return binary_search_recursive(array, mid + 1, right, target)
     else:
@@ -146,11 +146,11 @@ def bubble_sort(array: [int]) -> [int]:
         swap = False
         # Compare value and switch up to the upper limit 'i'
         for j in range(0, i):
-            next = j + 1
-            if next < length and array[j] > array[next]:
+            next_val = j + 1
+            if next_val < length and array[j] > array[next_val]:
                 temp = array[j]
-                array[j] = array[next]
-                array[next] = temp
+                array[j] = array[next_val]
+                array[next_val] = temp
                 swap = True
 
         # Return if no swaps take place
@@ -529,132 +529,6 @@ class BinaryTree(object):
  
 ## Algorithms
 
-### Arrays
-
-* [First Duplicate](#first-duplicate)
-* [First Not Repeating Character](#first-not-repeating-character)
-* [Make Array Consecutive](#make-array-consecutive)
-* [Search Insert Position](#search-insert-position)
-
-#### First Duplicate
-
-Given an array a that contains only numbers in the range from `1` to `a.length`, find
-the first duplicate number for which the second occurrence has the minimal index.
-In other words, if there are more than 1 duplicated numbers, return the number for
-which the second occurrence has a smaller index than the second occurrence of
-the other number does. If there are no such elements, return `-1`.
-
-First Duplicate w/ Set
-
-```python
-def first_duplicate(a: [int]) -> int:
-    uniqueset = set()
-    for value in a:
-        if value in uniqueset:
-            return value
-        else:
-            uniqueset.add(value)
-    return -1
-```
-
-First Duplicate (In-Place)
-
-```python
-def first_duplicate_in_place(array: [int]) -> int:
-    while len(array) > 0:
-        value = array.pop(0)
-        if value in array:
-            return value
-    return -1
-```
-
-#### First Not Repeating Character
-
-Note: Write a solution that only iterates over the string once and uses O(1) additional memory, since this is what you
-would be asked to do during a real interview.
-
-Given a string `s`, find and return the first instance of a non-repeating character in it. If there is no such 
-character, return `_`.
-
-With Set:
-
-```python
-def first_not_repeating_character(s: str) -> str:
-    checkedChars = set() #skip characters we've already checked.
-    for char in s:
-        if char not in checkedChars and s.index(char) == s.rindex(char):
-            return char
-        checkedChars.add(char)
-    return '_'
-```
-
-With Array Slices (less optimal):
-
-```python
-def first_not_repeating_character(s: str) -> str:
-    length = len(s)
-    index = 0
-    while index < length:
-        if s[index] not in s[:index] and s[index] not in s[index + 1:]:
-            return s[index]
-        index += 1
-    return '_'
-```
-
-#### Make Array Consecutive
-
-Find the number of elements that would need to be added so that each array value is separated by one.
-
-`[1,2,3,5] -> 1 #4 needs to be added to the array`
-
-```python
-def make_array_consecutive(arr: [int]) -> int:
-    length = len(arr)
-    numbers_needed = 0
-
-    if length <= 1:
-        return numbers_needed
-
-    sorted_numbers = sorted(arr)
-
-    for i in range(1, length):
-        numbers_needed += (sorted_numbers[i] - sorted_numbers[i - 1]) - 1
-
-    return numbers_needed
-``` 
-
-#### Search Insert Position
-
-[Leetcode: Search Insert Position](https://leetcode.com/problems/search-insert-position/description/)
-
-Given a sorted array and a target value, return the index if the target is found. If not, return the index where it 
-would be if it were inserted in order.
-
-You may assume no duplicates in the array.
-
-Example 1:
-
-Input: `[1,3,5,6], 5`
-Output: `2`
-
-```python
-def search_insert(nums: [int], target: int) -> int:
-    leftindex = 0
-    rightindex = len(nums) - 1
-
-    while leftindex <= rightindex:
-        middle = int((leftindex + rightindex) / 2)
-
-        if nums[middle] == target:
-            return middle
-        elif nums[middle] < target:
-            leftindex = middle + 1
-        else:
-            rightindex = middle - 1
-
-    return leftindex
-```
-
 ### Integers
 
 * [Palindrome Number](#palindrome-number)
@@ -763,14 +637,14 @@ an interview.
 You are given an n x n 2D matrix that represents an image. Rotate the image by 90 degrees (clockwise).
 
 Input:
-```python
+```
     [[1, 2, 3],
      [4, 5, 6],
      [7, 8, 9]]
 ```
 
 Output:
-```python
+```
     [[7, 4, 1],
      [8, 5, 2],
      [9, 6, 3]]
@@ -819,20 +693,20 @@ Output: `3`
 
 ```python
 def jewels_and_stones(jewels: str, stones: str) -> int:
-    stonecount = dict()
+    stone_count = dict()
     
     for stone in stones:
-        if stone in stonecount:
-            stonecount[stone] += 1
+        if stone in stone_count:
+            stone_count[stone] += 1
         else:
-            stonecount[stone] = 1
+            stone_count[stone] = 1
 
     count = 0
-    jset = set(jewels)
+    jewel_set = set(jewels)
 
-    for jewel in jset:
-        if jewel in stonecount:
-            count += stonecount[jewel]
+    for jewel in jewel_set:
+        if jewel in stone_count:
+            count += stone_count[jewel]
 
     return count
 ```

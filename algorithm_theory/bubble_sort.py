@@ -14,15 +14,14 @@ def bubble_sort(array: [int]) -> []:
         swap = False
         # Compare value and switch up to the upper limit 'i'
         for j in range(0, i):
-            next = j + 1
-            if next < length and array[j] > array[next]:
+            next_val = j + 1
+            if next_val < length and array[j] > array[next_val]:
                 temp = array[j]
-                array[j] = array[next]
-                array[next] = temp
+                array[j] = array[next_val]
+                array[next_val] = temp
                 swap = True
 
         # Return if no swaps take place
         if not swap:
             return array
     return array
-

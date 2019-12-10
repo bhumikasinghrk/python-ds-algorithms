@@ -30,11 +30,11 @@ def binary_search_recursive(array: [int], left: int, right: int, target: int) ->
         if array[mid] == target:
             return mid
 
-        # If element is smaller than mid, then it can only be present in left subarray
+        # If element is smaller than mid, then it can only be present in left sub-array
         elif array[mid] > target:
             return binary_search_recursive(array, left, mid - 1, target)
 
-        # Else the element can only be present in the right subarray
+        # Else the element can only be present in the right sub-array
         else:
             return binary_search_recursive(array, mid + 1, right, target)
     else:

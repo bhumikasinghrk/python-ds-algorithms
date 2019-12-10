@@ -16,9 +16,9 @@ def first_not_repeating_character(s: str) -> str:
 
 
 def first_not_repeating_character_set(s: str) -> str:
-    checkedChars = set()  # skip characters we've already checked.
+    checked_characters = set()  # skip characters we've already checked.
     for char in s:
-        if char not in checkedChars and s.index(char) == s.rindex(char):
+        if char not in checked_characters and s.index(char) == s.rindex(char):
             return char
-        checkedChars.add(char)
+        checked_characters.add(char)
     return '_'

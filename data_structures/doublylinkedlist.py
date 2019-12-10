@@ -7,6 +7,7 @@ class Node:
         self.previous_node = previous_node
         self.next_node = next_node
 
+
 # Wikipedia: In a 'doubly linked list', each node contains, besides the next-node link, a second link field pointing
 # to the 'previous' node in the sequence. The two links may be called 'forward('s') and 'backwards', or 'next' and
 # 'prev'('previous').
@@ -79,10 +80,10 @@ class DoublyLinkedList(object):
 
         previous_node = original_node.previous_node
         # Previous <-> Original --> Previous <-> New <-> Original
-        previous_node.next_node = node      # previous node points to the new node
+        previous_node.next_node = node  # previous node points to the new node
         node.previous_node = previous_node  # previous node is new node's previous node
-        node.next_node = original_node      # new node's next node is the original node
-        original_node.previous = node       # original node's previous node is the new node
+        node.next_node = original_node  # new node's next node is the original node
+        original_node.previous = node  # original node's previous node is the new node
 
     # O(N)
     def remove(self, index: int) -> Optional[int]:

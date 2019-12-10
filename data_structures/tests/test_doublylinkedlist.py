@@ -15,7 +15,7 @@ def test_init_none():
     assert empty_list.size() == 0
 
 
-def test_allvalues():
+def test_all_values():
     doubly_linked_list = get_multi_node_list()
     assert doubly_linked_list.all_values() == [5, 2, 4, 1]
 
