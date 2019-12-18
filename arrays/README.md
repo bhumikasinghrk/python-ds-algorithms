@@ -3,6 +3,7 @@
 * [First Duplicate](#first-duplicate)
 * [First Not Repeating Character](#first-not-repeating-character)
 * [First Pivot Index](#first-pivot-index)
+* [Largest Number At Least Twice of Others](#largest-number-at-least-twice-of-others)
 * [Make Array Consecutive](#make-array-consecutive)
 * [Search Insert Position](#search-insert-position)
 
@@ -84,7 +85,7 @@ index.
 
 Input: `[1, 7, 3, 6, 5, 6]`
 
-Output: 3
+Output: `3`
 
 ```python
 def find_pivot_index(nums: [int]) -> int:
@@ -95,6 +96,61 @@ def find_pivot_index(nums: [int]) -> int:
         if left_sum == total - left_sum - value:
             return index
         left_sum += value
+    return -1
+```
+
+## Largest Number At Least Twice of Others
+
+In a given integer array nums, there is always exactly one largest element.
+
+Find whether the largest element in the array is at least twice as much as every other number in the array.
+
+If it is, return the index of the largest element, otherwise return -1.
+
+Input: `[3, 6, 1, 0]`
+
+Output: `1`
+
+[Leetcode Problem](https://leetcode.com/problems/largest-number-at-least-twice-of-others/)
+
+```python
+def largest_number_at_least_twice_of_others(nums: [int]) -> int:
+    if len(nums) == 0:
+        return -1
+
+    largest = None
+    next_largest = None
+
+    for idx, num in enumerate(nums):
+        if largest is None:
+            largest = idx
+            continue
+        if num > nums[largest]:
+            next_largest = largest
+            largest = idx
+            continue
+        if next_largest is None or num > nums[next_largest]:
+            next_largest = idx
+
+    if next_largest is None or (nums[next_largest] * 2) <= nums[largest]:
+        return largest
+    return -1
+
+```
+
+With array manipulation and built-in functions. Slightly slower but easier to read
+
+```python
+def largest_number_at_least_twice_of_others2(nums: [int]) -> int:
+    if len(nums) == 1:
+        return 0
+
+    max_index = nums.index(max(nums))
+    max_val = nums.pop(max_index)
+    next_max = max(nums)
+
+    if next_max * 2 <= max_val:
+        return max_index
     return -1
 ```
 

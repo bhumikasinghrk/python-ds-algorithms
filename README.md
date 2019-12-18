@@ -19,6 +19,7 @@ to prevent obscuring the function and logic of the algorithms / data-structures.
         * [First Duplicate](./arrays/README.md#first-duplicate)
         * [First Not Repeating Character](./arrays/README.md#first-not-repeating-character)
         * [First Pivot Index](./arrays/README.md#first-pivot-index)
+        * [Largest Number Twice Of Others](./arrays/README.md#largest-number-at-least-twice-of-others)
         * [Make Array Consecutive](./arrays/README.md#make-array-consecutive)
         * [Search Insert Position](./arrays/README.md#search-insert-position)
     * [Binary Search](./binary_search/README.md)
