@@ -5,6 +5,7 @@
 * [First Pivot Index](#first-pivot-index)
 * [Largest Number At Least Twice of Others](#largest-number-at-least-twice-of-others)
 * [Make Array Consecutive](#make-array-consecutive)
+* [Plus One](#plus-one)
 * [Search Insert Position](#search-insert-position)
 
 ## First Duplicate
@@ -175,6 +176,42 @@ def make_array_consecutive(arr: [int]) -> int:
 
     return numbers_needed
 ``` 
+
+## Plus One
+
+[Leetcode: Plus One](https://leetcode.com/problems/plus-one/)
+
+Given a non-empty array of digits representing a non-negative integer, plus one to the integer.
+
+The digits are stored such that the most significant digit is at the head of the list, and each element in the array
+contain a single digit.
+
+You may assume the integer does not contain any leading zero, except the number 0 itself.
+
+Input: `[1,2,3]`
+Output: `[1,2,4]`
+Explanation: The array represents the integer 123.
+
+
+```python
+def plus_one(digits: List[int]) -> List[int]:
+    """
+    Increment array of digits by one as if a number
+    [1, 2, 3] -> [1, 2, 4]
+
+    :param digits: list of int numbers representing a non-negative number
+    :return: incremented list
+    """
+
+    for i in reversed(range(len(digits))):
+        digits[i] = (digits[i] + 1) % 10
+        if digits[i] != 0:
+            break
+        if i == 0:
+            digits.insert(0, 1)
+            break
+    return digits
+```
 
 ## Search Insert Position
 

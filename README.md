@@ -34,7 +34,14 @@ to prevent obscuring the function and logic of the algorithms / data-structures.
         * [Jewels and Stones](./strings/README.md#jewels-and-stones)
     * [Trees](./trees/README.md)
         * [Binary Tree Path](./trees/README.md#binary-tree-path)
+* [Project Commands](#project-commands)
 * [Resources](#resources)
+
+## Project Commands
+
+* Compile project files - `python compile_files.py`
+* Lint project - `pylint *`
+* Run Unit Tests - `pytest` or `py.test` for Python versions 3.5 and below
 
 ## Resources
 
