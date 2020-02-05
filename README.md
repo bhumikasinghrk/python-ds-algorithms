@@ -30,6 +30,7 @@ to prevent obscuring the function and logic of the algorithms / data-structures.
         * [Reverse Number](./integers/README.md#reverse-number)
         * [Two Sum](./integers/README.md#two-sum)
     * [Matrices](./multi_dimensional_arrays/README.md)
+        * [Diagonal Traverse](./multi_dimensional_arrays/README.md#diagonal-traverse)
         * [Rotate Image 90 Degrees Clockwise](./multi_dimensional_arrays/README.md#rotate-image-90-degrees-clockwise)
     * [Strings](./strings/README.md)
         * [Jewels and Stones](./strings/README.md#jewels-and-stones)
