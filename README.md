@@ -32,6 +32,7 @@ to prevent obscuring the function and logic of the algorithms / data-structures.
     * [Matrices](./multi_dimensional_arrays/README.md)
         * [Diagonal Traverse](./multi_dimensional_arrays/README.md#diagonal-traverse)
         * [Rotate Image 90 Degrees Clockwise](./multi_dimensional_arrays/README.md#rotate-image-90-degrees-clockwise)
+        * [Spiral Matrix](./multi_dimensional_arrays/README.md#spiral-matrix)
     * [Strings](./strings/README.md)
         * [Jewels and Stones](./strings/README.md#jewels-and-stones)
     * [Trees](./trees/README.md)
