@@ -14,31 +14,15 @@ to prevent obscuring the function and logic of the algorithms / data-structures.
     * [Singly Linked List](./data_structures/README.md#singly-linked-list)
     * [Doubly Linked List](./data_structures/README.md#doubly-linked-list)
     * [Circularly Linked List](./data_structures/README.md#circularly-linked-list)
-* Algorithms
-    * [Arrays](./arrays/README.md)
-        * [First Duplicate](./arrays/README.md#first-duplicate)
-        * [First Not Repeating Character](./arrays/README.md#first-not-repeating-character)
-        * [First Pivot Index](./arrays/README.md#first-pivot-index)
-        * [Largest Number Twice Of Others](./arrays/README.md#largest-number-at-least-twice-of-others)
-        * [Make Array Consecutive](./arrays/README.md#make-array-consecutive)
-        * [Plus One](./arrays/README.md#plus-one)
-        * [Search Insert Position](./arrays/README.md#search-insert-position)
-    * [Binary Search](./binary_search/README.md)
-        * [Search Insert Position](./binary_search/README.md#search-insert-position)
-    * [Integers](./integers/README.md)
-        * [Palindrome Number](./integers/README.md#palindrome-number)
-        * [Reverse Number](./integers/README.md#reverse-number)
-        * [Two Sum](./integers/README.md#two-sum)
-    * [Matrices](./multi_dimensional_arrays/README.md)
-        * [Diagonal Traverse](./multi_dimensional_arrays/README.md#diagonal-traverse)
-        * [Rotate Image 90 Degrees Clockwise](./multi_dimensional_arrays/README.md#rotate-image-90-degrees-clockwise)
-        * [Spiral Matrix](./multi_dimensional_arrays/README.md#spiral-matrix)
-    * [Strings](./strings/README.md)
-        * [Jewels and Stones](./strings/README.md#jewels-and-stones)
-    * [Trees](./trees/README.md)
-        * [Binary Tree Path](./trees/README.md#binary-tree-path)
-* [Project Commands](#project-commands)
-* [Resources](#resources)
+
+## Algorithms
+
+* [Arrays](./arrays/README.md)
+* [Binary Search](./binary_search/README.md)
+* [Integers](./integers/README.md)
+* [Matrices](./multi_dimensional_arrays/README.md)
+* [Strings](./strings/README.md)
+* [Trees](./trees/README.md)
 
 ## Project Commands
 
