@@ -365,3 +365,37 @@ class BinaryTree(object):
     def root(self, root: BinaryTreeNode):
         self._root = root
 ```
+
+## Queue
+
+A Queue is a FIFO (first in first out) data structure. The simplest analogy would be waiting in line.  
+
+```text
+
+Front             Back
+    [1, 2, 3, 4] 
+Remove values from the front and add new values to the back
+Enqueue - Add new value to the back
+Dequeue - Remove value from the front
+```
+
+Basic queue backed with a list. Not optimal since list has O(N) complexity for inserting and removing elements at the
+beginning of the list
+
+```python
+class QueueList:
+
+    T = TypeVar('T')
+
+    def __init__(self):
+        self.queue = []
+
+    def __len__(self):
+        return len(self.queue)
+
+    def dequeue(self) -> T:
+        return self.queue.pop(0)
+
+    def enqueue(self, element: T):
+        self.queue.append(element)
+```
