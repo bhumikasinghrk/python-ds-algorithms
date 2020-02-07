@@ -14,7 +14,10 @@ to prevent obscuring the function and logic of the algorithms / data-structures.
     * [Singly Linked List](./data_structures/README.md#singly-linked-list)
     * [Doubly Linked List](./data_structures/README.md#doubly-linked-list)
     * [Circularly Linked List](./data_structures/README.md#circularly-linked-list)
-
+    * [Binary Tree](./data_structures/README.md#binary-tree)
+    * [Stack](./data_structures/README.md#stack)
+    * [Queues](./data_structures/README.md#queue)
+    
 ## Algorithms
 
 * [Arrays](./arrays/README.md)
