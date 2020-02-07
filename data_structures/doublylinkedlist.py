@@ -1,8 +1,10 @@
-from typing import Optional
+from typing import Generic, Optional, TypeVar
+
+T = TypeVar('T')
 
 
-class Node:
-    def __init__(self, data=None, previous_node=None, next_node=None):
+class Node(Generic[T]):
+    def __init__(self, data: T = None, previous_node=None, next_node=None):
         self.data = data
         self.previous_node = previous_node
         self.next_node = next_node
@@ -13,7 +15,7 @@ class Node:
 # 'prev'('previous').
 
 
-class DoublyLinkedList:
+class DoublyLinkedList(Generic[T]):
 
     def __init__(self) -> None:
         self._head = Node()
@@ -23,7 +25,7 @@ class DoublyLinkedList:
         self._tail.previous_node = self._head
 
     # O(N)
-    def all_values(self) -> [int]:
+    def all_values(self) -> [T]:
         values = []
         node = self._head.next_node
 
@@ -34,7 +36,8 @@ class DoublyLinkedList:
         return values
 
     # O(1)
-    def append(self, node: Node) -> None:
+    def append(self, data: T) -> None:
+        node = Node(data)
         last_node = self._tail.previous_node
         # Last <-> Tail --> Last <-> New <-> Tail
 
@@ -62,14 +65,15 @@ class DoublyLinkedList:
         return None
 
     # O(N)
-    def get_value(self, index: int) -> Optional[int]:
+    def get_value(self, index: int) -> Optional[T]:
         node = self.get_node(index)
         if node:
             return node.data
         return None
 
     # O(N)
-    def insert(self, node: Node, index: int) -> None:
+    def insert(self, data: T, index: int) -> None:
+        node = Node(data)
         original_node = self._tail
 
         if index != 0 or self._head.next_node != self._tail:  # empty list
@@ -86,7 +90,7 @@ class DoublyLinkedList:
         original_node.previous_node = node  # original node's previous node is the new node
 
     # O(N)
-    def remove(self, index: int) -> Optional[int]:
+    def remove(self, index: int) -> Optional[T]:
         node = self.get_node(index)
         if not node:
             return None  # Could also raise an exception

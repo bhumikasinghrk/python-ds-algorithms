@@ -1,8 +1,8 @@
-from data_structures.doublylinkedlist import DoublyLinkedList, Node
+from data_structures.doublylinkedlist import DoublyLinkedList
 
 EMPTY_LIST = DoublyLinkedList()
 ONE_NODE_LIST = DoublyLinkedList()
-ONE_NODE_LIST.append(Node(5))
+ONE_NODE_LIST.append(5)
 
 
 def test_init():
@@ -22,15 +22,15 @@ def test_all_values():
 
 def test_append_empty():
     doubly_linked_list = DoublyLinkedList()
-    doubly_linked_list.append(Node(1))
+    doubly_linked_list.append(1)
     assert doubly_linked_list.size() == 1
     assert doubly_linked_list.get_value(0) == 1
 
 
 def test_append():
     doubly_linked_list = DoublyLinkedList()
-    doubly_linked_list.append(Node(3))
-    doubly_linked_list.append(Node(4))
+    doubly_linked_list.append(3)
+    doubly_linked_list.append(4)
     assert doubly_linked_list.size() == 2
     assert doubly_linked_list.get_value(0) == 3
     assert doubly_linked_list.get_value(1) == 4
@@ -50,20 +50,20 @@ def test_get_valid():
 
 def test_get_node():
     doubly_linked_list = DoublyLinkedList()
-    doubly_linked_list.insert(Node(3), 0)
+    doubly_linked_list.insert(3, 0)
     assert doubly_linked_list.get_node(0).data == 3
 
 
 def test_insert_empty():
     doubly_linked_list = DoublyLinkedList()
-    doubly_linked_list.insert(Node(3), 0)
+    doubly_linked_list.insert(3, 0)
     assert doubly_linked_list.size() == 1
     assert doubly_linked_list.get_value(0) == 3
 
 
 def test_insert_head():
     doubly_linked_list = get_multi_node_list()
-    doubly_linked_list.insert(Node(32), 0)
+    doubly_linked_list.insert(32, 0)
     assert doubly_linked_list.size() == 5
     assert doubly_linked_list.get_value(0) == 32
     assert doubly_linked_list.get_value(1) == 5
@@ -71,7 +71,7 @@ def test_insert_head():
 
 def test_insert_middle():
     doubly_linked_list = get_multi_node_list()
-    doubly_linked_list.insert(Node(11), 1)
+    doubly_linked_list.insert(11, 1)
     assert doubly_linked_list.size() == 5
     assert doubly_linked_list.get_value(0) == 5
     assert doubly_linked_list.get_value(1) == 11
@@ -80,7 +80,7 @@ def test_insert_middle():
 
 def test_insert_tail():
     doubly_linked_list = get_multi_node_list()
-    doubly_linked_list.insert(Node(22), 3)
+    doubly_linked_list.insert(22, 3)
     assert doubly_linked_list.size() == 5
     assert doubly_linked_list.get_value(3) == 22
     assert doubly_linked_list.get_value(4) == 1
@@ -111,8 +111,8 @@ def test_size():
 
 def get_multi_node_list() -> DoublyLinkedList:
     multi_node_list = DoublyLinkedList()
-    multi_node_list.append(Node(5))
-    multi_node_list.append(Node(2))
-    multi_node_list.append(Node(4))
-    multi_node_list.append(Node(1))
+    multi_node_list.append(5)
+    multi_node_list.append(2)
+    multi_node_list.append(4)
+    multi_node_list.append(1)
     return multi_node_list

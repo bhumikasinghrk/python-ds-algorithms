@@ -3,6 +3,8 @@
 * [Singly Linked List](#singly-linked-list)
 * [Doubly Linked List](#doubly-linked-list)
 * [Circularly Linked List](#circularly-linked-list)
+* [Queues](#queue)
+    * [Built-ins](#built-ins)
 
 ## Singly Linked List
 
@@ -128,8 +130,8 @@ contains, besides the next-node link, a second link field pointing to the 'previ
 Doubly Linked List Node:
 
 ```python
-class Node:
-    def __init__(self, data=None, previous_node=None, next_node=None):
+class Node(Generic[T]):
+    def __init__(self, data: T = None, previous_node=None, next_node=None):
         self.data = data
         self.previous_node = previous_node
         self.next_node = next_node
@@ -138,7 +140,7 @@ class Node:
 Implementation:
 
 ```python
-class DoublyLinkedList(object):
+class DoublyLinkedList(Generic[T]):
 
     def __init__(self) -> None:
         self._head = Node()
@@ -147,8 +149,20 @@ class DoublyLinkedList(object):
         self._head.next_node = self._tail
         self._tail.previous_node = self._head
 
+    # O(N)
+    def all_values(self) -> [T]:
+        values = []
+        node = self._head.next_node
+
+        while node and node.next_node:
+            values.append(node.data)
+            node = node.next_node
+
+        return values
+
     # O(1)
-    def append(self, node: Node) -> None:
+    def append(self, data: T) -> None:
+        node = Node(data)
         last_node = self._tail.previous_node
         # Last <-> Tail --> Last <-> New <-> Tail
 
@@ -176,14 +190,15 @@ class DoublyLinkedList(object):
         return None
 
     # O(N)
-    def get_value(self, index: int) -> Optional[int]:
+    def get_value(self, index: int) -> Optional[T]:
         node = self.get_node(index)
         if node:
             return node.data
         return None
 
     # O(N)
-    def insert(self, node: Node, index: int) -> None:
+    def insert(self, data: T, index: int) -> None:
+        node = Node(data)
         original_node = self._tail
 
         if index != 0 or self._head.next_node != self._tail:  # empty list
@@ -197,10 +212,10 @@ class DoublyLinkedList(object):
         previous_node.next_node = node      # previous node points to the new node
         node.previous_node = previous_node  # previous node is new node's previous node
         node.next_node = original_node      # new node's next node is the original node
-        original_node.previous = node       # original node's previous node is the new node
+        original_node.previous_node = node  # original node's previous node is the new node
 
     # O(N)
-    def remove(self, index: int) -> Optional[int]:
+    def remove(self, index: int) -> Optional[T]:
         node = self.get_node(index)
         if not node:
             return None  # Could also raise an exception
@@ -227,11 +242,10 @@ class DoublyLinkedList(object):
 
 ## Circularly Linked List
 
-[Wikipedia: Doubly Linked List](https://en.wikipedia.org/wiki/Doubly_linked_list) In the last node of a list, the link 
-field often contains a null reference, a special value used to indicate the lack of further nodes. A less common 
-convention is to make it point to the first node of the list; in that case the list is said to be 'circular' or 
-'circularly linked'; otherwise it is said to be 'open' or 'linear'. It is a list where the last pointer points 
-to the first node.
+In the last node of a list, the link field often contains a null reference, a special value used to indicate the lack of
+further nodes. A less common convention is to make it point to the first node of the list; in that case the list is said
+to be 'circular' or 'circularly linked'; otherwise it is said to be 'open' or 'linear'. It is a list where the last
+pointer points to the first node.
 
 This is more of an example. It can be optimized in a variety of ways depending on its intended usage.
 
@@ -399,3 +413,19 @@ class QueueList:
     def enqueue(self, element: T):
         self.queue.append(element)
 ```
+
+### Built-ins
+
+Deque
+
+```python
+from collections import deque
+
+queue = deque()
+queue.append(1)
+queue.popleft() # 1
+```
+
+Queue
+LifoQueue
+Priority Queue
