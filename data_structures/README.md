@@ -3,6 +3,8 @@
 * [Singly Linked List](#singly-linked-list)
 * [Doubly Linked List](#doubly-linked-list)
 * [Circularly Linked List](#circularly-linked-list)
+* [Binary Tree](#binary-tree)
+* [Stack](#stack)
 * [Queues](#queue)
     * [Built-ins](#built-ins)
 
@@ -27,8 +29,8 @@ Drawbacks:
 Node Implementation: 
 
 ```python
-class Node:
-    def __init__(self, data=None, next_node=None):
+class Node(Generic[T]):
+    def __init__(self, data: T = None, next_node: 'Node' = None):
         self.data = data
         self.next_node = next_node
 ```
@@ -36,15 +38,24 @@ class Node:
 Singly Linked List Implementation:
 
 ```python
-class SinglyLinkedList(object):
-    _head = None
+class SinglyLinkedList(Generic[T]):
 
-    def __init__(self, head: Node = None) -> None:
-        if head:
-            self._head = head
+    def __init__(self, data: Optional[T] = None):
+        self._head = Node(data) if data else None
+
+    def all_values(self) -> [T]:
+        values = []
+        node = self._head
+
+        while node:
+            values.append(node.data)
+            node = node.next_node
+
+        return values
 
     # O(N)
-    def append(self, node: Node) -> None:
+    def append(self, data: T) -> None:
+        node = Node(data)
         if not self._head:
             self._head = node
             return
@@ -58,7 +69,7 @@ class SinglyLinkedList(object):
         last_node.next_node = node
 
     # O(N)
-    def get(self, index: int) -> Optional[int]:
+    def get(self, index: int) -> Optional[T]:
         if not self._head:  # No index and head is null
             return None
         node = self.get_node(index)
@@ -81,7 +92,8 @@ class SinglyLinkedList(object):
         return None
 
     # O(N)
-    def insert(self, node: Node, index: int) -> None:
+    def insert(self, data: T, index: int):
+        node = Node(data)
         # None --> Node
         if not self._head:
             self._head = node
@@ -98,7 +110,7 @@ class SinglyLinkedList(object):
             previous_node.next_node = node
 
     # O(N)
-    def remove(self, index: int) -> Optional[int]:
+    def remove(self, index: int) -> Optional[T]:
         value = None
 
         if index == 0 and self._head:
@@ -131,7 +143,7 @@ Doubly Linked List Node:
 
 ```python
 class Node(Generic[T]):
-    def __init__(self, data: T = None, previous_node=None, next_node=None):
+    def __init__(self, data: T = None, previous_node: 'Node' = None, next_node: 'Node' = None):
         self.data = data
         self.previous_node = previous_node
         self.next_node = next_node
@@ -142,7 +154,7 @@ Implementation:
 ```python
 class DoublyLinkedList(Generic[T]):
 
-    def __init__(self) -> None:
+    def __init__(self):
         self._head = Node()
         self._tail = Node()
 
@@ -161,7 +173,7 @@ class DoublyLinkedList(Generic[T]):
         return values
 
     # O(1)
-    def append(self, data: T) -> None:
+    def append(self, data: T):
         node = Node(data)
         last_node = self._tail.previous_node
         # Last <-> Tail --> Last <-> New <-> Tail
@@ -197,7 +209,7 @@ class DoublyLinkedList(Generic[T]):
         return None
 
     # O(N)
-    def insert(self, data: T, index: int) -> None:
+    def insert(self, data: T, index: int):
         node = Node(data)
         original_node = self._tail
 
@@ -250,9 +262,6 @@ pointer points to the first node.
 This is more of an example. It can be optimized in a variety of ways depending on its intended usage.
 
 ```python
-from data_structures.singlylinkedlist import Node
-
-
 class CircularlyLinkedList(object):
     def __init__(self, node=None):
         self._head = node
@@ -378,6 +387,26 @@ class BinaryTree(object):
     @root.setter
     def root(self, root: BinaryTreeNode):
         self._root = root
+```
+
+## Stack
+
+A stack is a FIFO (first in first out) data structure. It can be backed by a list since append and pop are O(1)
+
+```python
+class StackList(Generic[T]):
+
+    def __init__(self):
+        self.__list = []
+
+    def __len__(self):
+        return len(self.__list)
+
+    def push(self, data: T):
+        self.__list.append(data)
+
+    def pop(self, data: T):
+        self.__list.pop(data)
 ```
 
 ## Queue

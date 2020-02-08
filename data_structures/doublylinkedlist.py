@@ -4,7 +4,7 @@ T = TypeVar('T')
 
 
 class Node(Generic[T]):
-    def __init__(self, data: T = None, previous_node=None, next_node=None):
+    def __init__(self, data: T = None, previous_node: 'Node' = None, next_node: 'Node' = None):
         self.data = data
         self.previous_node = previous_node
         self.next_node = next_node
@@ -17,7 +17,7 @@ class Node(Generic[T]):
 
 class DoublyLinkedList(Generic[T]):
 
-    def __init__(self) -> None:
+    def __init__(self):
         self._head = Node()
         self._tail = Node()
 
@@ -36,7 +36,7 @@ class DoublyLinkedList(Generic[T]):
         return values
 
     # O(1)
-    def append(self, data: T) -> None:
+    def append(self, data: T):
         node = Node(data)
         last_node = self._tail.previous_node
         # Last <-> Tail --> Last <-> New <-> Tail
@@ -72,7 +72,7 @@ class DoublyLinkedList(Generic[T]):
         return None
 
     # O(N)
-    def insert(self, data: T, index: int) -> None:
+    def insert(self, data: T, index: int):
         node = Node(data)
         original_node = self._tail
 

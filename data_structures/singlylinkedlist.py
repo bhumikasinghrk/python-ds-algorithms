@@ -1,8 +1,10 @@
-from typing import Optional
+from typing import Generic, Optional, TypeVar
+
+T = TypeVar('T')
 
 
-class Node:
-    def __init__(self, data=None, next_node=None):
+class Node(Generic[T]):
+    def __init__(self, data: T = None, next_node: 'Node' = None):
         self.data = data
         self.next_node = next_node
 
@@ -12,12 +14,12 @@ class Node:
 # traversal.
 
 
-class SinglyLinkedList:
+class SinglyLinkedList(Generic[T]):
 
-    def __init__(self, head: Node = None) -> None:
-        self._head = head
+    def __init__(self, data: Optional[T] = None):
+        self._head = Node(data) if data else None
 
-    def all_values(self) -> []:
+    def all_values(self) -> [T]:
         values = []
         node = self._head
 
@@ -28,7 +30,8 @@ class SinglyLinkedList:
         return values
 
     # O(N)
-    def append(self, node: Node) -> None:
+    def append(self, data: T) -> None:
+        node = Node(data)
         if not self._head:
             self._head = node
             return
@@ -42,7 +45,7 @@ class SinglyLinkedList:
         last_node.next_node = node
 
     # O(N)
-    def get(self, index: int) -> Optional[int]:
+    def get(self, index: int) -> Optional[T]:
         if not self._head:  # No index and head is null
             return None
         node = self.get_node(index)
@@ -65,7 +68,8 @@ class SinglyLinkedList:
         return None
 
     # O(N)
-    def insert(self, node: Node, index: int) -> None:
+    def insert(self, data: T, index: int):
+        node = Node(data)
         # None --> Node
         if not self._head:
             self._head = node
@@ -82,7 +86,7 @@ class SinglyLinkedList:
             previous_node.next_node = node
 
     # O(N)
-    def remove(self, index: int) -> Optional[int]:
+    def remove(self, index: int) -> Optional[T]:
         value = None
 
         if index == 0 and self._head:
