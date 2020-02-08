@@ -6,7 +6,6 @@
 * [Binary Tree](#binary-tree)
 * [Stack](#stack)
 * [Queues](#queue)
-    * [Built-ins](#built-ins)
 
 ## Singly Linked List
 
@@ -443,9 +442,80 @@ class QueueList:
         self.queue.append(element)
 ```
 
-### Built-ins
+Queue with Linked List
 
-Deque
+```python
+class QueueLinkList(Generic[T]):
+    """
+    Queue backed by a doubly linked list
+    """
+
+    def __init__(self):
+        self.linked_list = DoublyLinkedList()
+
+    def __len__(self):
+        return self.linked_list.size()
+
+    # O(1)
+    def dequeue(self) -> T:
+        return self.linked_list.remove(0)
+
+    # O(1)
+    def enqueue(self, element: T):
+        self.linked_list.append(element)
+```
+
+Circular Queue - Similar to linked-list in time complexity but uses an array to mimic the same functionality
+
+```python
+class CircularQueue(Generic[T]):
+
+    def __init__(self, k: int):
+        self.queue = [0] * k
+        self.count = 0
+        self.size = k
+        self.head = 0
+
+    def enqueue(self, value: T) -> bool:
+        if self.isfull():
+            return False
+        tail = (self.head + self.count) % self.size
+        self.queue[tail] = value
+        self.count += 1
+        return True
+
+    def dequeue(self) -> bool:
+        if self.isempty():
+            return False
+        self.head = (self.head + 1) % self.size
+        self.count -= 1
+        return True
+
+    def front(self) -> T:
+        """
+        Get the front item from the queue.
+        """
+        if self.isempty():
+            return -1
+        return self.queue[self.head]
+
+    def rear(self) -> T:
+        """
+        Get the last item from the queue.
+        """
+        if self.isempty():
+            return -1
+        tail = (self.head + self.count - 1) % self.size
+        return self.queue[tail]
+
+    def isempty(self) -> bool:
+        return self.count == 0
+
+    def isfull(self) -> bool:
+        return self.count == self.size
+```
+
+Deque (Built-in)
 
 ```python
 from collections import deque
@@ -454,7 +524,3 @@ queue = deque()
 queue.append(1)
 queue.popleft() # 1
 ```
-
-Queue
-LifoQueue
-Priority Queue
