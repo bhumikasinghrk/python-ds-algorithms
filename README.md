@@ -25,6 +25,7 @@ to prevent obscuring the function and logic of the algorithms / data-structures.
 * [Integers](./integers/README.md)
 * [Matrices](./multi_dimensional_arrays/README.md)
 * [Strings](./strings/README.md)
+* [Queues](./queues/README.md)
 * [Trees](./trees/README.md)
 
 ## Project Commands
