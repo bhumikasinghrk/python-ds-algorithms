@@ -24,8 +24,9 @@ to prevent obscuring the function and logic of the algorithms / data-structures.
 * [Binary Search](./binary_search/README.md)
 * [Integers](./integers/README.md)
 * [Matrices](./multi_dimensional_arrays/README.md)
-* [Strings](./strings/README.md)
 * [Queues](./queues/README.md)
+* [Stacks](./stacks/README.md)
+* [Strings](./strings/README.md)
 * [Trees](./trees/README.md)
 
 ## Project Commands
