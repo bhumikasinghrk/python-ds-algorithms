@@ -1,6 +1,7 @@
 # Stacks
 
 * [Min Stack](#min-stack)
+* [Valid Parentheses](#valid-parentheses)
 
 ## Min Stack
 
@@ -37,4 +38,45 @@ class MinStack:
 
     def get_min(self) -> int:
         return self.stack[self.min_index]
+```
+
+## Valid Parentheses
+
+Given a string containing just the characters `'(', ')', '{', '}', '[' and ']'`, determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+Note that an empty string is also considered valid.
+
+Example:
+
+```text
+Input: "()[]{}"
+Output: true
+
+Input: "(]"
+Output: false
+```
+
+```python
+def valid_parentheses(value: str) -> bool:
+    if len(value) % 2 != 0:
+        return False
+
+    closing_values = {'(': ')', '{': '}', '[': ']'}
+    open_chars = closing_values.keys()
+    stack = LifoQueue(len(value))
+
+    for char in value:
+        if char in open_chars:
+            stack.put(char)
+        else:
+            if stack.empty():
+                return False
+            if closing_values[stack.get()] != char:
+                return False
+
+    return stack.empty()
 ```
