@@ -1,4 +1,4 @@
-from typing import Generic, TypeVar
+from typing import Deque, Generic, TypeVar
 from collections import deque
 
 T = TypeVar('T')
@@ -6,7 +6,7 @@ T = TypeVar('T')
 
 class Queue(Generic[T]):
     def __init__(self):
-        self.queue = deque()
+        self.queue: Deque[T] = deque()
 
     def push(self, item: T) -> None:
         self.queue.append(item)

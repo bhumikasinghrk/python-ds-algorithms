@@ -28,7 +28,7 @@ queue.empty() # returns false
 ```python
 class Queue(Generic[T]):
     def __init__(self):
-        self.queue = deque()
+        self.queue: Deque[T] = deque()
 
     def push(self, item: T) -> None:
         self.queue.append(item)

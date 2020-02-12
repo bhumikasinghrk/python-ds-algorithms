@@ -2,6 +2,7 @@
 
 * [Daily Temperatures](#daily-temperatures)
 * [Evaluate Reverse Polish Notation](#evaluate-reverse-polish-notation)
+* [Implement Stack with Queue](#implement-stack-with-queue)
 * [Min Stack](#min-stack)
 * [Valid Parentheses](#valid-parentheses)
 
@@ -113,6 +114,44 @@ def compute(left: int, right: int, operator: str) -> int:
     if operator == '/':
         return trunc(float(left) / right)
     return left * right
+```
+
+## Implement Stack with Queue
+
+Implement the following operations of a stack using queues.
+
+push(x) -- Push element x onto stack.
+pop() -- Removes the element on top of the stack.
+top() -- Get the top element.
+empty() -- Return whether the stack is empty.
+
+Example:
+
+```python
+stack.push(1)
+stack.push(2)  
+stack.top()   # returns 2
+stack.pop()   # returns 2
+stack.empty() # returns false
+```
+
+```python
+class Stack(Generic[T]):
+
+    def __init__(self):
+        self.stack: Deque[T] = deque()
+
+    def push(self, item: T) -> None:
+        self.stack.append(item)
+
+    def pop(self) -> T:
+        return self.stack.pop()
+
+    def top(self) -> T:
+        return self.stack[-1]
+
+    def empty(self) -> bool:
+        return len(self.stack) == 0
 ```
 
 ## Min Stack
