@@ -1,5 +1,6 @@
 from typing import List
-from _collections import deque
+from collections import deque
+from queue import LifoQueue
 
 
 def daily_temperatures_brute_force(temps: List[int]) -> List[int]:
@@ -18,15 +19,15 @@ def daily_temperatures_brute_force(temps: List[int]) -> List[int]:
 
 def daily_temperatures(temps: List[int]) -> List[int]:
     daily_temps = deque()
-    stack = []
+    stack = LifoQueue()
 
     for index in range(len(temps) - 1, -1, -1):
-        while stack and temps[index] >= temps[stack[-1]]:
-            stack.pop()
+        while not stack.empty() and temps[index] >= temps[stack.queue[-1]]:
+            stack.get()
 
-        if stack:
-            daily_temps.appendleft(stack[-1] - index)
+        if not stack.empty():
+            daily_temps.appendleft(stack.queue[-1] - index)
         else:
             daily_temps.appendleft(0)
-        stack.append(index)
+        stack.put(index)
     return list(daily_temps)

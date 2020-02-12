@@ -1,6 +1,7 @@
 # Stacks
 
 * [Daily Temperatures](#daily-temperatures)
+* [Evaluate Reverse Polish Notation](#evaluate-reverse-polish-notation)
 * [Min Stack](#min-stack)
 * [Valid Parentheses](#valid-parentheses)
 
@@ -35,18 +36,83 @@ def daily_temperatures_brute_force(temps: List[int]) -> List[int]:
 
 def daily_temperatures(temps: List[int]) -> List[int]:
     daily_temps = deque()
-    stack = []
+    stack = LifoQueue()
 
     for index in range(len(temps) - 1, -1, -1):
-        while stack and temps[index] >= temps[stack[-1]]:
-            stack.pop()
+        while not stack.empty() and temps[index] >= temps[stack.queue[-1]]:
+            stack.get()
 
-        if stack:
-            daily_temps.appendleft(stack[-1] - index)
+        if not stack.empty():
+            daily_temps.appendleft(stack.queue[-1] - index)
         else:
             daily_temps.appendleft(0)
-        stack.append(index)
+        stack.put(index)
     return list(daily_temps)
+```
+
+## Evaluate Reverse Polish Notation
+
+Evaluate the value of an arithmetic expression in Reverse Polish Notation.
+
+Valid operators are +, -, *, /. Each operand may be an integer or another expression.
+
+Note:
+
+Division between two integers should truncate toward zero.
+The given RPN expression is always valid. That means the expression would always evaluate to a result and there won't be
+any divide by zero operation.
+
+Example 1:
+
+Input: `["2", "1", "+", "3", "*"]`
+Output: `9`
+Explanation: `((2 + 1) * 3) = 9`
+
+Example 2:
+
+Input: `["4", "13", "5", "/", "+"]`
+Output: `6`
+Explanation: `(4 + (13 / 5)) = 6`
+
+Example 3:
+
+Input: `["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]`
+Output: `22`
+Explanation: 
+
+```text
+= ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
+= ((10 * (6 / (12 * -11))) + 17) + 5
+= ((10 * (6 / -132)) + 17) + 5
+= ((10 * 0) + 17) + 5
+= (0 + 17) + 5
+= 17 + 5
+= 22
+```
+
+```python
+def evaluate_rpn(tokens: List[str]) -> int:
+    stack = LifoQueue()
+
+    for token in tokens:
+        if token.lstrip('-').isdigit():
+            stack.put(token)
+        else:
+            right = int(stack.get())
+            left = int(stack.get())
+            stack.put(compute(left, right, token))
+
+    return stack.get()
+
+
+def compute(left: int, right: int, operator: str) -> int:
+    if operator == '-':
+        return left - right
+    if operator == '+':
+        return left + right
+    if operator == '/':
+        return trunc(float(left) / right)
+    return left * right
 ```
 
 ## Min Stack
