@@ -4,9 +4,12 @@
 * [Evaluate Reverse Polish Notation](#evaluate-reverse-polish-notation)
 * [Implement Stack with Queue](#implement-stack-with-queue)
 * [Min Stack](#min-stack)
+* [Roman to Integer](#roman-to-integer)
 * [Valid Parentheses](#valid-parentheses)
 
 ## Daily Temperatures
+
+Leetcode
 
 Given a list of daily temperatures T, return a list such that, for each day in the input, tells you how many days you
 would have to wait until a warmer temperature. If there is no future day for which this is possible, put 0 instead.
@@ -52,6 +55,8 @@ def daily_temperatures(temps: List[int]) -> List[int]:
 ```
 
 ## Evaluate Reverse Polish Notation
+
+Leetcode
 
 Evaluate the value of an arithmetic expression in Reverse Polish Notation.
 
@@ -118,6 +123,8 @@ def compute(left: int, right: int, operator: str) -> int:
 
 ## Implement Stack with Queue
 
+Leetcode
+
 Implement the following operations of a stack using queues.
 
 push(x) -- Push element x onto stack.
@@ -156,6 +163,8 @@ class Stack(Generic[T]):
 
 ## Min Stack
 
+Leetcode
+
 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
 
 push(x) -- Push element x onto stack.
@@ -191,7 +200,60 @@ class MinStack:
         return self.stack[self.min_index]
 ```
 
+## Roman to Integer
+
+Leetcode
+
+Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+
+```text
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+```
+
+Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.
+
+Example:
+
+Input: `"MCMXCIV"`
+Output: `1994`
+
+```python
+ROMAN_NUMERALS = {
+    'I': 1,
+    'V': 5,
+    'X': 10,
+    'L': 50,
+    'C': 100,
+    'D': 500,
+    'M': 1000
+}
+
+
+def roman_to_integer(roman: str) -> int:
+    number = 0
+    accumulator = []
+
+    for index in range(len(roman) - 1, -1, -1):
+        if accumulator and ROMAN_NUMERALS[accumulator[-1]] > ROMAN_NUMERALS[roman[index]]:
+            number += ROMAN_NUMERALS[accumulator.pop()] - ROMAN_NUMERALS[roman[index]]
+        else:
+            accumulator.append(roman[index])
+    while accumulator:
+        number += ROMAN_NUMERALS[accumulator.pop()]
+
+    return number
+```
+
 ## Valid Parentheses
+
+Leetcode
 
 Given a string containing just the characters `'(', ')', '{', '}', '[' and ']'`, determine if the input string is valid.
 
