@@ -1,6 +1,7 @@
 # Stacks
 
 * [Daily Temperatures](#daily-temperatures)
+* [Decode String](#decode-string)
 * [Evaluate Reverse Polish Notation](#evaluate-reverse-polish-notation)
 * [Implement Stack with Queue](#implement-stack-with-queue)
 * [Min Stack](#min-stack)
@@ -52,6 +53,45 @@ def daily_temperatures(temps: List[int]) -> List[int]:
             daily_temps.appendleft(0)
         stack.put(index)
     return list(daily_temps)
+```
+
+## Decode String
+
+Leetcode
+
+Given an encoded string, return its decoded string.
+
+The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly 
+k times. Note that k is guaranteed to be a positive integer.
+
+You may assume that the input string is always valid; No extra white spaces, square brackets are well-formed, etc.
+
+Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat
+numbers, k. For example, there won't be input like 3a or 2[4].
+
+Example:
+
+`3[a2[c]]` -> `accaccacc`
+
+```python
+def decode_string(value: str) -> str:
+    stack = []
+    for char in value:
+        if char != ']':
+            stack.append(char)
+        else:
+            temp_string, num = '', ''
+            while stack and stack[-1] != '[':
+                temp_string = stack.pop() + temp_string
+
+            stack.pop()
+            while stack and stack[-1].isdigit():
+                num = stack.pop() + num
+
+            num = int(num)
+            stack.append(temp_string * num)
+
+    return ''.join(stack)
 ```
 
 ## Evaluate Reverse Polish Notation
