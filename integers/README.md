@@ -6,8 +6,6 @@
 
 ## Palindrome Number
 
-[Leetcode: Palindrome Number](https://leetcode.com/problems/palindrome-number/description/)
-
 Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
 
 Example 1: `121` -> `true`
@@ -23,8 +21,6 @@ def is_palindrome(x: int) -> bool:
 ```
 
 ## Reverse Number
-
-[Leetcode: Reverse Number](https://leetcode.com/problems/reverse-integer/description/)
 
 Given a 32-bit signed integer, reverse digits of an integer.
 
@@ -47,8 +43,6 @@ def reverse_number(number: int) -> int:
 ```
 
 ## Two Sum
-
-[Leetcode: Two Sum](https://leetcode.com/problems/two-sum/description/)
 
 Given an array of integers, return indices of the two numbers such that they add up to a specific target.
 

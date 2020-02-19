@@ -3,6 +3,7 @@
 * [First Duplicate](#first-duplicate)
 * [First Not Repeating Character](#first-not-repeating-character)
 * [First Pivot Index](#first-pivot-index)
+* [Intersection of Three Sorted Arrays](#intersection-of-three-sorted-arrays)
 * [Largest Number At Least Twice of Others](#largest-number-at-least-twice-of-others)
 * [Make Array Consecutive](#make-array-consecutive)
 * [Plus One](#plus-one)
@@ -100,6 +101,50 @@ def find_pivot_index(nums: [int]) -> int:
     return -1
 ```
 
+## Intersection of Three Sorted Arrays
+
+Given three integer arrays arr1, arr2 and arr3 sorted in strictly increasing order, return a sorted array of only the
+integers that appeared in all three arrays.
+
+Example:
+
+Input: `arr1 = [1,2,3,4,5], arr2 = [1,2,5,7,9], arr3 = [1,3,4,5,8]`
+Output: `[1,5]`
+
+```python
+def arrays_intersection(arr1: List[int], arr2: List[int], arr3: List[int]) -> List[int]:
+    intersection = set(arr1)
+    intersection = intersection.intersection(arr2)
+    return sorted(list(intersection.intersection(arr3)))
+```
+
+```python
+def arrays_intersection2(arr1: List[int], arr2: List[int], arr3: List[int]) -> List[int]:
+    index1 = 0
+    index2 = 0
+    index3 = 0
+    result = []
+
+    while index1 < len(arr1) and index2 < len(arr2) and index3 < len(arr3):
+        if arr1[index1] == arr2[index2] == arr3[index3]:
+            result.append(arr1[index1])
+            index1 += 1
+            index2 += 1
+            index3 += 1
+            continue
+
+        current_max = max(arr1[index1], arr2[index2], arr3[index3])
+
+        if arr1[index1] < current_max:
+            index1 += 1
+        if arr2[index2] < current_max:
+            index2 += 1
+        if arr3[index3] < current_max:
+            index3 += 1
+
+    return result
+```
+
 ## Largest Number At Least Twice of Others
 
 In a given integer array nums, there is always exactly one largest element.
@@ -111,8 +156,6 @@ If it is, return the index of the largest element, otherwise return -1.
 Input: `[3, 6, 1, 0]`
 
 Output: `1`
-
-[Leetcode Problem](https://leetcode.com/problems/largest-number-at-least-twice-of-others/)
 
 ```python
 def largest_number_at_least_twice_of_others(nums: [int]) -> int:
@@ -179,8 +222,6 @@ def make_array_consecutive(arr: [int]) -> int:
 
 ## Plus One
 
-[Leetcode: Plus One](https://leetcode.com/problems/plus-one/)
-
 Given a non-empty array of digits representing a non-negative integer, plus one to the integer.
 
 The digits are stored such that the most significant digit is at the head of the list, and each element in the array
@@ -214,8 +255,6 @@ def plus_one(digits: List[int]) -> List[int]:
 ```
 
 ## Search Insert Position
-
-[Leetcode: Search Insert Position](https://leetcode.com/problems/search-insert-position/description/)
 
 Given a sorted array and a target value, return the index if the target is found. If not, return the index where it 
 would be if it were inserted in order.

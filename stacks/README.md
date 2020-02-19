@@ -10,8 +10,6 @@
 
 ## Daily Temperatures
 
-Leetcode
-
 Given a list of daily temperatures T, return a list such that, for each day in the input, tells you how many days you
 would have to wait until a warmer temperature. If there is no future day for which this is possible, put 0 instead.
 
@@ -57,8 +55,6 @@ def daily_temperatures(temps: List[int]) -> List[int]:
 
 ## Decode String
 
-Leetcode
-
 Given an encoded string, return its decoded string.
 
 The encoding rule is: k[encoded_string], where the encoded_string inside the square brackets is being repeated exactly 
@@ -95,8 +91,6 @@ def decode_string(value: str) -> str:
 ```
 
 ## Evaluate Reverse Polish Notation
-
-Leetcode
 
 Evaluate the value of an arithmetic expression in Reverse Polish Notation.
 
@@ -163,8 +157,6 @@ def compute(left: int, right: int, operator: str) -> int:
 
 ## Implement Stack with Queue
 
-Leetcode
-
 Implement the following operations of a stack using queues.
 
 push(x) -- Push element x onto stack.
@@ -203,8 +195,6 @@ class Stack(Generic[T]):
 
 ## Min Stack
 
-Leetcode
-
 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
 
 push(x) -- Push element x onto stack.
@@ -241,8 +231,6 @@ class MinStack:
 ```
 
 ## Roman to Integer
-
-Leetcode
 
 Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
 
@@ -292,8 +280,6 @@ def roman_to_integer(roman: str) -> int:
 ```
 
 ## Valid Parentheses
-
-Leetcode
 
 Given a string containing just the characters `'(', ')', '{', '}', '[' and ']'`, determine if the input string is valid.
 
