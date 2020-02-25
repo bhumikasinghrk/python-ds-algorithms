@@ -4,8 +4,9 @@
 * [Doubly Linked List](#doubly-linked-list)
 * [Circularly Linked List](#circularly-linked-list)
 * [Binary Tree](#binary-tree)
-* [Stack](#stack)
 * [Queues](#queue)
+* [Stack](#stack)
+* [Trie](#trie)
 
 ## Singly Linked List
 
@@ -388,26 +389,6 @@ class BinaryTree(object):
         self._root = root
 ```
 
-## Stack
-
-A stack is a FIFO (first in first out) data structure. It can be backed by a list since append and pop are O(1)
-
-```python
-class StackList(Generic[T]):
-
-    def __init__(self):
-        self.__list = []
-
-    def __len__(self):
-        return len(self.__list)
-
-    def push(self, data: T):
-        self.__list.append(data)
-
-    def pop(self, data: T):
-        self.__list.pop(data)
-```
-
 ## Queue
 
 A Queue is a FIFO (first in first out) data structure. The simplest analogy would be waiting in line.  
@@ -523,4 +504,81 @@ from collections import deque
 queue = deque()
 queue.append(1)
 queue.popleft() # 1
+```
+
+## Stack
+
+A stack is a FIFO (first in first out) data structure. It can be backed by a list since append and pop are O(1)
+
+```python
+class StackList(Generic[T]):
+
+    def __init__(self):
+        self.__list = []
+
+    def __len__(self):
+        return len(self.__list)
+
+    def push(self, data: T):
+        self.__list.append(data)
+
+    def pop(self, data: T):
+        self.__list.pop(data)
+```
+
+
+## Trie
+
+A Trie is a special form of a Nary tree. Typically, a trie is used to store strings. Each Trie node represents a string 
+(a prefix). Each node might have several children nodes while the paths to different children nodes represent different 
+characters. And the strings the child nodes represent will be the origin string represented by the node itself plus the 
+character on the path. - Leetcode
+
+Leetcode - Prefix Trie
+
+```text
+     head
+     /  \
+    a    b
+   /    /  \
+ am    ba  be
+      /
+    bad
+```
+
+Implemented with dictionary (Hash table)
+
+```python
+class TrieHashTable(Generic[T]):
+    """
+    O(1) for accessing elements
+    O(M * N) - Because multiple values of a key must be tracked (plus their associated True/False values)
+    """
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.nodes = dict()
+
+    def insert(self, word: str) -> None:
+        """
+        Inserts a word into the trie.
+        """
+        for index in range(1, len(word)):
+            if self.nodes.get(word[0:index]) is None:
+                self.nodes[word[0:index]] = False
+        self.nodes[word] = True
+
+    def search(self, word: str) -> bool:
+        """
+        Returns if the word is in the trie.
+        """
+        return self.nodes.get(word) is True
+
+    def starts_with(self, prefix: str) -> bool:
+        """
+        Returns if there is any word in the trie that starts with the given prefix.
+        """
+        return self.nodes.get(prefix) is not None
 ```

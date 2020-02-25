@@ -1,4 +1,4 @@
-from trees.binary_tree_path import TreeNode, binary_tree_paths
+from binary_tree.binary_tree_path import TreeNode, binary_tree_paths
 
 
 def test_binary_tree_paths():
