@@ -1,9 +1,7 @@
-from typing import Generic, TypeVar
-
-T = TypeVar('T')
+from typing import Dict
 
 
-class TrieHashTable(Generic[T]):
+class TrieWithFlatDictionary:
     """
     O(1) for accessing elements
     O(M * N) - Because multiple values of a key must be tracked (plus their associated True/False values)
@@ -13,7 +11,7 @@ class TrieHashTable(Generic[T]):
         """
         Initialize your data structure here.
         """
-        self.nodes = dict()
+        self.nodes: Dict[str: bool] = dict()
 
     def insert(self, word: str) -> None:
         """
