@@ -18,8 +18,8 @@ class TrieWithFlatDictionary:
         Inserts a word into the trie.
         """
         for index in range(1, len(word)):
-            if self.nodes.get(word[0:index]) is None:
-                self.nodes[word[0:index]] = False
+            if self.nodes.get(word[:index]) is None:
+                self.nodes[word[:index]] = False
         self.nodes[word] = True
 
     def search(self, word: str) -> bool:

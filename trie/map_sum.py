@@ -4,24 +4,24 @@ from typing import Dict
 class MapSum:
     def __init__(self):
         self.value = 0
-        self.nodes: Dict[str: MapSumNode] = dict()
+        self.head: MapSumNode = MapSumNode()
 
     def insert(self, key: str, val: int) -> None:
-        current_node = self
+        current_node = self.head
         for index in range(1, len(key) + 1):
-            if key[0:index] in current_node.nodes:
-                current_node = current_node.nodes.get(key[0:index])
+            if key[:index] in current_node.nodes:
+                current_node = current_node.nodes.get(key[:index])
             else:
-                current_node.nodes.setdefault(key[0:index], MapSumNode())
-                current_node = current_node.nodes.get(key[0:index])
+                current_node.nodes.setdefault(key[:index], MapSumNode())
+                current_node = current_node.nodes.get(key[:index])
         current_node.value = val
 
     def sum(self, prefix: str) -> int:
-        current_node = self
+        current_node = self.head
         # Find target node
         for index in range(1, len(prefix) + 1):
-            if prefix[0:index] in current_node.nodes:
-                current_node = current_node.nodes.get(prefix[0:index])
+            if prefix[:index] in current_node.nodes:
+                current_node = current_node.nodes.get(prefix[:index])
             else:
                 return 0
 

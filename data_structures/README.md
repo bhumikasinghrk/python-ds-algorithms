@@ -551,16 +551,13 @@ Trie with arrays
 ```python
 class TrieWithArray:
     def __init__(self):
-        """
-        Initialize your data structure here.
-        """
-        self.child_nodes: List[Optional[TrieNode]] = [None] * 26
+        self.head: TrieNode = TrieNode()
 
     def insert(self, word: str) -> None:
         """
         Inserts a word into the trie.
         """
-        current_trie = self
+        current_trie = self.head
         for index in range(1, len(word) + 1):
             node_index = ord(word[:index][-1]) - ord('a')
             if current_trie.child_nodes[node_index]:
@@ -571,9 +568,9 @@ class TrieWithArray:
 
     def search(self, word: str) -> bool:
         """
-        Returns if the word is in the trie.
+        Returns True if the word is in the trie.
         """
-        current_trie = self
+        current_trie = self.head
         for index in range(1, len(word) + 1):
             node_index = ord(word[:index][-1]) - ord('a')
             if current_trie.child_nodes[node_index]:
@@ -584,9 +581,9 @@ class TrieWithArray:
 
     def starts_with(self, prefix: str) -> bool:
         """
-        Returns if there is any word in the trie that starts with the given prefix.
+        Returns True if there is any word in the trie that starts with the given prefix.
         """
-        current_trie = self
+        current_trie = self.head
         for index in range(1, len(prefix) + 1):
             node_index = ord(prefix[:index][-1]) - ord('a')
             if current_trie.child_nodes[node_index]:
@@ -597,7 +594,6 @@ class TrieWithArray:
 
 
 class TrieNode:
-
     def __init__(self):
         self.child_nodes: List[Optional[TrieNode]] = [None] * 26
 ```
@@ -610,13 +606,13 @@ class TrieWithDictionary:
         """
         Initialize your data structure here.
         """
-        self.child_nodes: Dict[str: TrieNode] = dict()
+        self.head: TrieNode = TrieNode()
 
     def insert(self, word: str) -> None:
         """
         Inserts a word into the trie.
         """
-        current_trie = self
+        current_trie = self.head
         for index in range(1, len(word) + 1):
             if word[:index] in current_trie.child_nodes:
                 current_trie = current_trie.child_nodes.get(word[:index])
@@ -629,7 +625,7 @@ class TrieWithDictionary:
         """
         Returns if the word is in the trie.
         """
-        current_trie = self
+        current_trie = self.head
         for index in range(1, len(word) + 1):
             if word[:index] in current_trie.child_nodes:
                 current_trie = current_trie.child_nodes.get(word[:index])
@@ -641,7 +637,7 @@ class TrieWithDictionary:
         """
         Returns if there is any word in the trie that starts with the given prefix.
         """
-        current_trie = self
+        current_trie = self.head
         for index in range(1, len(prefix) + 1):
             if prefix[:index] in current_trie.child_nodes:
                 current_trie = current_trie.child_nodes.get(prefix[:index])
@@ -651,10 +647,8 @@ class TrieWithDictionary:
 
 
 class TrieNode:
-
     def __init__(self):
         self.child_nodes: Dict[str: TrieNode] = dict()
-
 ```
 
 Trie like implementation with a flat dictionary (Hash table)
@@ -677,8 +671,8 @@ class TrieWithFlatDictionary:
         Inserts a word into the trie.
         """
         for index in range(1, len(word)):
-            if self.nodes.get(word[0:index]) is None:
-                self.nodes[word[0:index]] = False
+            if self.nodes.get(word[:index]) is None:
+                self.nodes[word[:index]] = False
         self.nodes[word] = True
 
     def search(self, word: str) -> bool:
