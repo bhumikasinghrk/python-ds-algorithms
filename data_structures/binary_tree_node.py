@@ -1,30 +1,30 @@
 class BinaryTreeNode:
 
     def __init__(self, data, left_node=None, right_node=None):
-        self._data = data
-        self._left_node = left_node
-        self._right_node = right_node
+        self.__data = data
+        self.__left_node = left_node
+        self.__right_node = right_node
 
     @property
     def data(self):
-        return self._data
+        return self.__data
 
     @data.setter
     def data(self, data):
-        self._data = data
+        self.__data = data
 
     @property
     def left_node(self):
-        return self._left_node
+        return self.__left_node
 
     @left_node.setter
     def left_node(self, node):
-        self._left_node = node
+        self.__left_node = node
 
     @property
     def right_node(self):
-        return self._right_node
+        return self.__right_node
 
     @right_node.setter
     def right_node(self, node):
-        self._right_node = node
+        self.__right_node = node

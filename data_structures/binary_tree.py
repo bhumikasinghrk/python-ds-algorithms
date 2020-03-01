@@ -3,12 +3,12 @@ from data_structures.binary_tree_node import BinaryTreeNode
 
 class BinaryTree:
     def __init__(self, root: BinaryTreeNode = None):
-        self._root = root
+        self.__root = root
 
     @property
     def root(self) -> BinaryTreeNode:
-        return self._root
+        return self.__root
 
     @root.setter
     def root(self, root: BinaryTreeNode):
-        self._root = root
+        self.__root = root
