@@ -1,4 +1,4 @@
-from binary_tree.pre_order_traversal import preorder_traversal_iterative, preorder_traversal_morris
+from binary_tree.preorder_traversal import preorder_traversal_iterative, preorder_traversal_morris
 from binary_tree.binary_tree_generator import generate_binary_tree
 
 

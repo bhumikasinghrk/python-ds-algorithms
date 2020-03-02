@@ -1,6 +1,7 @@
 # Binary Tree
 
 * [Binary Tree Path](#binary-tree-path)
+* [In-order Traversal](#in-order-traversal)
 * [Pre-order Traversal](#pre-order-traversal)
 
 ## Binary Tree Path
@@ -38,6 +39,14 @@ def get_path(node: TreeNode, path: str, paths: []) -> str:
         get_path(node.left, path + str(node.val) + '->', paths)
     if node.right:
         get_path(node.right, path + str(node.val) + '->', paths)
+```
+
+## In-order Traversal
+
+In-order traversal is to traverse the left subtree first. Then visit the root. Finally, traverse the right subtree.
+
+```python
+
 ```
 
 ## Pre-order Traversal
