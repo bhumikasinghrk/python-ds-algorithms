@@ -16,12 +16,12 @@ class Node(Generic[T]):
 
 class SinglyLinkedList(Generic[T]):
 
-    def __init__(self, data: Optional[T] = None):
-        self._head = Node(data) if data else None
+    def __init__(self):
+        self.__head = Node()
 
     def all_values(self) -> [T]:
         values = []
-        node = self._head
+        node = self.__head.next_node
 
         while node:
             values.append(node.data)
@@ -32,79 +32,63 @@ class SinglyLinkedList(Generic[T]):
     # O(N)
     def append(self, data: T) -> None:
         node = Node(data)
-        if not self._head:
-            self._head = node
-            return
-        last_node = self._head
+        last_node = self.__head
 
         while last_node:
-            next_node = last_node.next_node
-            if not next_node:
+            if not last_node.next_node:
                 break
-            last_node = next_node
+            last_node = last_node.next_node
         last_node.next_node = node
 
     # O(N)
     def get(self, index: int) -> Optional[T]:
-        if not self._head:  # No index and head is null
-            return None
-        node = self.get_node(index)
-        if node:
-            return node.data
-        return None
-
-    # O(N)
-    def get_node(self, index: int) -> Optional[Node]:
-        if not self._head:  # No index and head is null
-            return None
+        current_node = self.__head.next_node
         count = 0
-        current_node = self._head
 
         while current_node:
             if count == index:
-                return current_node
+                break
             current_node = current_node.next_node
             count += 1
-        return None
+        if current_node is None or count != index:
+            return None
+        return current_node.data
 
-    # O(N)
-    def insert(self, data: T, index: int):
+    def insert(self, data: T, index: int) -> None:
         node = Node(data)
-        # None --> Node
-        if not self._head:
-            self._head = node
-        # Head -> .... --> Node -> Head -> ....
-        elif index == 0:
-            node.next_node = self._head
-            self._head = node
-        # Previous -> Next --> Previous -> Node -> Next
-        else:
-            previous_node = self.get_node(index - 1)
-            if not previous_node:
-                raise IndexError("Index out of bounds")
-            node.next_node = previous_node.next_node
-            previous_node.next_node = node
+        current_node = self.__head
+        count = 0
+        while current_node:
+            if count == index:
+                next_node = current_node.next_node
+                node.next_node = next_node
+                current_node.next_node = node
+                return
+            current_node = current_node.next_node
+            count += 1
+        if count < index:
+            IndexError('Index out of bounds')
 
-    # O(N)
-    def remove(self, index: int) -> Optional[T]:
-        value = None
+    def remove(self, index: int) -> None:
+        count = 0
+        current_node = self.__head
 
-        if index == 0 and self._head:
-            value = self._head.data
-            self._head = self._head.next_node
-        else:
-            previous_node = self.get_node(index - 1)
-            if previous_node and previous_node.next_node:
-                value = previous_node.next_node.data
-                previous_node.next_node = previous_node.next_node.next_node
-        return value
+        while current_node:
+            if count == index:
+                remove_node = current_node.next_node
+                if remove_node and remove_node.next_node:
+                    current_node.next_node = remove_node.next_node
+                    return
+                current_node.next_node = None
+            current_node = current_node.next_node
+            count += 1
 
     # O(N)
     def size(self) -> int:
         count = 0
-        node = self._head
+        current_node = self.__head.next_node
 
-        while node:
+        while current_node:
             count += 1
-            node = node.next_node
+            current_node = current_node.next_node
         return count

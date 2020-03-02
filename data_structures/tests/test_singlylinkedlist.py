@@ -1,41 +1,36 @@
 from data_structures.singlylinkedlist import SinglyLinkedList
 
 EMPTY_LIST = SinglyLinkedList()
-ONE_NODE_LIST = SinglyLinkedList(5)
 
 
 def test_init():
-    assert ONE_NODE_LIST.size() == 1
-    assert ONE_NODE_LIST.get(0) == 5
-
-
-def test_init_none():
-    assert not EMPTY_LIST.get(0)
-    assert EMPTY_LIST.size() == 0
+    linked_list = SinglyLinkedList()
+    assert linked_list.size() == 0
 
 
 def test_all_values():
-    singly_linked_list = get_multi_node_list()
-    assert singly_linked_list.all_values() == [5, 2, 4, 1]
+    linked_list = get_multi_node_list()
+    assert linked_list.all_values() == [1, 2, 3]
 
 
 def test_append_empty():
-    singly_linked_list = SinglyLinkedList()
-    singly_linked_list.append(1)
-    assert singly_linked_list.size() == 1
-    assert singly_linked_list.get(0) == 1
+    linked_list = SinglyLinkedList()
+    linked_list.append(1)
+    assert linked_list.size() == 1
+    assert linked_list.get(0) == 1
 
 
 def test_append():
-    singly_linked_list = SinglyLinkedList(3)
-    singly_linked_list.append(4)
-    assert singly_linked_list.size() == 2
-    assert singly_linked_list.get(0) == 3
-    assert singly_linked_list.get(1) == 4
+    linked_list = SinglyLinkedList()
+    linked_list.append(4)
+    linked_list.append(5)
+    assert linked_list.size() == 2
+    assert linked_list.get(0) == 4
+    assert linked_list.get(1) == 5
 
 
 def test_get_empty():
-    assert not EMPTY_LIST.get(0)
+    assert not SinglyLinkedList().get(0)
 
 
 def test_get_invalid():
@@ -43,73 +38,68 @@ def test_get_invalid():
 
 
 def test_get_valid():
-    assert get_multi_node_list().get(3) == 1
-
-
-def test_get_node():
-    singly_linked_list = SinglyLinkedList()
-    singly_linked_list.insert(3, 0)
-    assert singly_linked_list.get_node(0).data == 3
+    assert get_multi_node_list().get(2) == 3
 
 
 def test_insert_empty():
-    singly_linked_list = SinglyLinkedList()
-    singly_linked_list.insert(3, 0)
-    assert singly_linked_list.size() == 1
-    assert singly_linked_list.get(0) == 3
+    linked_list = SinglyLinkedList()
+    linked_list.insert(3, 0)
+    assert linked_list.size() == 1
+    assert linked_list.get(0) == 3
 
 
 def test_insert_head():
-    singly_linked_list = get_multi_node_list()
-    singly_linked_list.insert(32, 0)
-    assert singly_linked_list.size() == 5
-    assert singly_linked_list.get(0) == 32
-    assert singly_linked_list.get(1) == 5
+    linked_list = get_multi_node_list()
+    linked_list.insert(32, 0)
+    assert linked_list.size() == 4
+    assert linked_list.get(0) == 32
+    assert linked_list.get(1) == 1
 
 
 def test_insert_middle():
-    singly_linked_list = get_multi_node_list()
-    singly_linked_list.insert(11, 1)
-    assert singly_linked_list.size() == 5
-    assert singly_linked_list.get(0) == 5
-    assert singly_linked_list.get(1) == 11
-    assert singly_linked_list.get(2) == 2
+    linked_list = get_multi_node_list()
+    linked_list.insert(11, 1)
+    assert linked_list.size() == 4
+    assert linked_list.get(0) == 1
+    assert linked_list.get(1) == 11
+    assert linked_list.get(2) == 2
 
 
 def test_insert_tail():
-    singly_linked_list = get_multi_node_list()
-    singly_linked_list.insert(22, 3)
-    assert singly_linked_list.size() == 5
-    assert singly_linked_list.get(3) == 22
-    assert singly_linked_list.get(4) == 1
+    linked_list = get_multi_node_list()
+    linked_list.insert(22, 3)
+    assert linked_list.size() == 4
+    assert linked_list.get(3) == 22
 
 
 def test_remove_empty():
-    singly_linked_list = SinglyLinkedList()
-    assert not singly_linked_list.remove(0)
+    linked_list = SinglyLinkedList()
+    assert not linked_list.remove(0)
 
 
 def test_remove():
-    singly_linked_list = get_multi_node_list()
-    assert singly_linked_list.remove(0) == 5
-    assert singly_linked_list.size() == 3
+    linked_list = get_multi_node_list()
+    linked_list.remove(0)
+    assert linked_list.size() == 2
 
-    assert singly_linked_list.remove(2) == 1
-    assert singly_linked_list.size() == 2
+    linked_list.remove(1)
+    assert linked_list.size() == 1
 
 
 def test_size():
-    assert EMPTY_LIST.size() == 0
-    assert ONE_NODE_LIST.size() == 1
-    assert get_multi_node_list().size() == 4
+    assert SinglyLinkedList().size() == 0
+    linked_list = SinglyLinkedList()
+    linked_list.append(1)
+    assert linked_list.size() == 1
+    assert get_multi_node_list().size() == 3
 
 
 # Helpers
 
 
 def get_multi_node_list() -> SinglyLinkedList:
-    multi_node_list = SinglyLinkedList(5)
-    multi_node_list.append(2)
-    multi_node_list.append(4)
+    multi_node_list = SinglyLinkedList()
     multi_node_list.append(1)
+    multi_node_list.append(2)
+    multi_node_list.append(3)
     return multi_node_list
