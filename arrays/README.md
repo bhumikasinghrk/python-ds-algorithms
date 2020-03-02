@@ -1,5 +1,6 @@
 # Arrays
 
+* [Find Index of Largest Number](#find-index-of-largest-number)
 * [First Duplicate](#first-duplicate)
 * [First Not Repeating Character](#first-not-repeating-character)
 * [First Pivot Index](#first-pivot-index)
@@ -8,6 +9,23 @@
 * [Make Array Consecutive](#make-array-consecutive)
 * [Plus One](#plus-one)
 * [Search Insert Position](#search-insert-position)
+
+## Find Index of Largest Number
+
+Find the index of the largest number in a list. Return a -1 if empty
+
+```python
+def find_index_largest_number(numbers: List[int]) -> int:
+    if not numbers:
+        return -1
+
+    largest_index = numbers[0]
+
+    for index in range(1, len(numbers)):
+        if numbers[index] > numbers[largest_index]:
+            largest_index = index
+    return largest_index
+```
 
 ## First Duplicate
 
