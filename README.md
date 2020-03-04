@@ -25,6 +25,7 @@ to prevent obscuring the function and logic of the algorithms / data-structures.
 * [Binary Search](binary_search/README.md)
 * [Binary Tree](binary_tree/README.md)
 * [Integers](integers/README.md)
+* [Linked Lists](linked_lists/README.md)
 * [Matrices](multi_dimensional_arrays/README.md)
 * [Queues](queues/README.md)
 * [Stacks](stacks/README.md)
