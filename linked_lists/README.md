@@ -1,6 +1,7 @@
 # Linked Lists
 
 * [Detect Cycle](#detect-cycle)
+* [Intersection Two Linked Lists](#intersection-two-linked-lists)
 * [Linked List Cycle](#linked-list-cycle)
 
 ## Detect Cycle
@@ -55,6 +56,44 @@ def detect_cycle_with_set(head: ListNode) -> Optional[ListNode]:
         visited_nodes.add(node)
         node = node.next
     return None
+```
+
+## Intersection Two Linked Lists
+
+Find the node at which the intersection of two singly linked lists begins
+
+Example:
+
+a1 -> a2 -> a3 \
+                -> c1 -> c2 -> c3
+      b1 -> b2 /
+      
+Answer: c1
+
+Solution using two pointers:
+      
+```python
+def get_intersection_node(head_a: ListNode, head_b: ListNode) -> Optional[ListNode]:
+    if not head_a or not head_b:
+        return None
+    
+    node_a: ListNode = head_a
+    node_b: ListNode = head_b
+
+    while node_a != node_b:
+        node_a = node_a.next
+        node_b = node_b.next
+
+        if node_a is None and node_b is None:
+            return None
+
+        if node_a is None:
+            node_a = head_b
+
+        if node_b is None:
+            node_b = head_a
+
+    return node_a
 ```
 
 ## Linked List Cycle
