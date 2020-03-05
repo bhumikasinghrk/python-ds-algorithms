@@ -3,6 +3,7 @@
 * [Detect Cycle](#detect-cycle)
 * [Intersection Two Linked Lists](#intersection-two-linked-lists)
 * [Linked List Cycle](#linked-list-cycle)
+* [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
 
 ## Detect Cycle
 
@@ -164,4 +165,31 @@ def has_cycle_with_set(head: Optional['ListNode']) -> bool:
         node_set.add(node)
         node = node.next
     return False
+```
+
+## Remove Nth Node From End of List
+
+Given a linked list, remove the n-th node from the end of list and return its head.
+
+Time: O(N), Space: O(1)
+
+```python
+def remove_nth_from_end(head: ListNode, nth: int) -> Optional[ListNode]:
+    dummy: ListNode = ListNode(0)
+    dummy.next = head
+    previous: ListNode = dummy
+    lead: ListNode = dummy
+
+    # Move lead forward
+    for _ in range(nth + 1):
+        lead = lead.next
+
+    # Move through list until lead is None
+    while lead:
+        previous = previous.next
+        lead = lead.next
+
+    # Delete Node by relinking nodes or reassigning head
+    previous.next = previous.next.next
+    return dummy.next
 ```

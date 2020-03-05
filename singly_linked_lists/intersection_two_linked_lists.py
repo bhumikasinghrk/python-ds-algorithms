@@ -1,5 +1,5 @@
 from typing import Optional
-from linked_lists.list_node import ListNode
+from singly_linked_lists.list_node import ListNode
 
 
 def get_intersection_node(head_a: ListNode, head_b: ListNode) -> Optional[ListNode]:

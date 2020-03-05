@@ -1,4 +1,4 @@
-from linked_lists.linked_list_cycle import ListNode, has_cycle, has_cycle_with_set
+from singly_linked_lists.linked_list_cycle import ListNode, has_cycle, has_cycle_with_set
 
 
 def test_has_cycle():
