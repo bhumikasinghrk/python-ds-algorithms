@@ -3,6 +3,7 @@
 * [Detect Cycle](#detect-cycle)
 * [Intersection Two Linked Lists](#intersection-two-linked-lists)
 * [Linked List Cycle](#linked-list-cycle)
+* [Remove Linked List Elements](#remove-linked-list-elements)
 * [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
 * [Reverse Linked List](#reverse-linked-list)
 
@@ -166,6 +167,36 @@ def has_cycle_with_set(head: Optional['ListNode']) -> bool:
         node_set.add(node)
         node = node.next
     return False
+```
+
+## Remove Linked List Elements
+
+Remove all elements from a linked list of integers that have value val.
+
+Example:
+
+Input:  `1->2->6->3->4->5->6, val = 6`
+Output: `1->2->3->4->5`
+
+Time: O(N), Space: O(1)
+
+```python
+def remove_elements(head: Optional[ListNode], val: int) -> Optional[ListNode]:
+    dummy_node: ListNode = ListNode(0)
+    dummy_node.next = head
+
+    previous: ListNode = dummy_node
+    current: Optional[ListNode] = head
+
+    while current:
+        if current.val == val:
+            previous.next = current.next
+            current = current.next
+        else:
+            previous = current
+            current = current.next
+
+    return dummy_node.next
 ```
 
 ## Remove Nth Node From End of List

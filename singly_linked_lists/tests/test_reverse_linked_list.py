@@ -1,5 +1,6 @@
 from singly_linked_lists.reverse_linked_list import reverse_linked_list
 from singly_linked_lists.list_node import ListNode
+from test_helpers.test_helpers import get_list_values
 
 
 def test_reverse_linked_list():
@@ -14,12 +15,3 @@ def test_reverse_linked_list():
 
     head = ListNode(1)
     assert get_list_values(reverse_linked_list(head)) == [1]
-
-
-def get_list_values(head: ListNode):
-    node = head
-    values = []
-    while node:
-        values.append(node.val)
-        node = node.next
-    return values
