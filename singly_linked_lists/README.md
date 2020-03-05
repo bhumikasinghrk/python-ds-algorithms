@@ -4,6 +4,7 @@
 * [Intersection Two Linked Lists](#intersection-two-linked-lists)
 * [Linked List Cycle](#linked-list-cycle)
 * [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
+* [Reverse Linked List](#reverse-linked-list)
 
 ## Detect Cycle
 
@@ -192,4 +193,27 @@ def remove_nth_from_end(head: ListNode, nth: int) -> Optional[ListNode]:
     # Delete Node by relinking nodes or reassigning head
     previous.next = previous.next.next
     return dummy.next
+```
+
+## Reverse Linked List
+
+Reverse a Singly Linked List.
+
+Time: O(N), Space: O(1)
+
+```python
+def reverse_linked_list(head: ListNode) -> Optional[ListNode]:
+    if not head:
+        return None
+    current_node: ListNode = head.next
+    end = head
+    new_list = head
+
+    while current_node:
+        next_node = current_node.next
+        current_node.next = new_list
+        new_list = current_node
+        current_node = next_node
+    end.next = None
+    return new_list
 ```
