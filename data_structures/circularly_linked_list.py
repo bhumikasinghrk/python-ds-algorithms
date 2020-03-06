@@ -1,21 +1,21 @@
-from data_structures.singlylinkedlist import Node
+from data_structures.singly_linked_list import Node
 
 
 class CircularlyLinkedList:
     def __init__(self, node=None):
-        self._head = node
+        self.__head = node
         if node:
-            node.next_node = self._head
+            node.next_node = self.__head
 
     @property
     def head(self) -> Node:
-        return self._head
+        return self.__head
 
     @head.setter
     def head(self, node: Node):
-        self._head = node
+        self.__head = node
         if node:
-            node.next_node = self._head
+            node.next_node = self.__head
 
     def all_values(self) -> []:
         values = []

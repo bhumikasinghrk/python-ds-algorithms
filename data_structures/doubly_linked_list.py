@@ -18,18 +18,18 @@ class Node(Generic[T]):
 class DoublyLinkedList(Generic[T]):
 
     def __init__(self):
-        self._head = Node()
-        self._tail = Node()
+        self.__head = Node()
+        self.__tail = Node()
 
-        self._head.next_node = self._tail
-        self._tail.previous_node = self._head
+        self.__head.next_node = self.__tail
+        self.__tail.previous_node = self.__head
 
     # O(N)
     def all_values(self) -> [T]:
         values = []
-        node = self._head.next_node
+        node = self.__head.next_node
 
-        while node and node.next_node:
+        while node is not self.__tail:
             values.append(node.data)
             node = node.next_node
 
@@ -37,27 +37,22 @@ class DoublyLinkedList(Generic[T]):
 
     # O(1)
     def append(self, data: T):
-        node = Node(data)
-        last_node = self._tail.previous_node
         # Last <-> Tail --> Last <-> New <-> Tail
+        node = Node(data)
+        last_node = self.__tail.previous_node
 
-        # Link the new node to the original last node and the tail
         last_node.next_node = node
         node.previous_node = last_node
 
-        # Point the tail to the new last node
-        node.next_node = self._tail
-        self._tail.previous_node = node
+        node.next_node = self.__tail
+        self.__tail.previous_node = node
 
     # O(N)
     def get_node(self, index: int) -> Optional[Node]:
-        current_node = self._head.next_node
-        if current_node == self._tail:  # empty list
-            return None
-
+        current_node = self.__head.next_node
         count = 0
 
-        while current_node:
+        while current_node is not self.__tail:
             if count == index:
                 return current_node
             current_node = current_node.next_node
@@ -65,7 +60,7 @@ class DoublyLinkedList(Generic[T]):
         return None
 
     # O(N)
-    def get_value(self, index: int) -> Optional[T]:
+    def get(self, index: int) -> Optional[T]:
         node = self.get_node(index)
         if node:
             return node.data
@@ -74,42 +69,42 @@ class DoublyLinkedList(Generic[T]):
     # O(N)
     def insert(self, data: T, index: int):
         node = Node(data)
-        original_node = self._tail
+        current_node: Node = self.get_node(index)
 
-        if index != 0 or self._head.next_node != self._tail:  # empty list
-            original_node = self.get_node(index)
+        if not current_node and index == 0:
+            self.__head.next_node = node
+            node.previous_node = self.__head
+            node.next_node = self.__tail
+            self.__tail.previous_node = node
+            return
 
-        if not original_node:
-            raise IndexError("Node not present at index")
+        if not current_node:
+            raise IndexError("Index out of bounds")
 
-        previous_node = original_node.previous_node
         # Previous <-> Original --> Previous <-> New <-> Original
-        previous_node.next_node = node      # previous node points to the new node
-        node.previous_node = previous_node  # previous node is new node's previous node
-        node.next_node = original_node      # new node's next node is the original node
-        original_node.previous_node = node  # original node's previous node is the new node
+        current_node.previous_node.next_node = node
+        node.previous_node = current_node.previous_node
+        node.next_node = current_node
+        current_node.previous_node = node
 
     # O(N)
     def remove(self, index: int) -> Optional[T]:
         node = self.get_node(index)
         if not node:
-            return None  # Could also raise an exception
-
-        previous_node = node.previous_node
-        next_node = node.next_node
+            return None
 
         # Previous <-> Node <-> Next --> Previous <-> Next
-        previous_node.next_node = next_node
-        next_node.previous_node = previous_node
+        node.previous_node.next_node = node.next_node
+        node.next_node.previous_node = node.previous_node
 
         return node.data
 
     # O(N)
     def size(self) -> int:
         count = 0
-        node = self._head.next_node
+        node = self.__head.next_node
 
-        while node != self._tail:
+        while node != self.__tail:
             count += 1
             node = node.next_node
         return count

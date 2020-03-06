@@ -1,5 +1,5 @@
 from typing import Generic, TypeVar, List
-from data_structures.doublylinkedlist import DoublyLinkedList
+from data_structures.doubly_linked_list import DoublyLinkedList
 
 T = TypeVar('T')
 

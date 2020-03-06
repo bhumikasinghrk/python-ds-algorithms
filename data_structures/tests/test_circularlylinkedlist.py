@@ -1,4 +1,4 @@
-from data_structures.circularlylinkedlist import CircularlyLinkedList, Node
+from data_structures.circularly_linked_list import CircularlyLinkedList, Node
 
 EMPTY_LIST = CircularlyLinkedList()
 ONE_NODE_LIST = CircularlyLinkedList(Node(1))
