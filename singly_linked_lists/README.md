@@ -1,9 +1,11 @@
 # Linked Lists
 
 * [Detect Cycle](#detect-cycle)
+* [Find Middle Node](#find-middle-node)
 * [Intersection Two Linked Lists](#intersection-two-linked-lists)
 * [Linked List Cycle](#linked-list-cycle)
-* [Odd Even Linked List]()
+* [Odd Even Linked List](#odd-even-linked-list)
+* [Palindrome Linked List](#)
 * [Remove Linked List Elements](#remove-linked-list-elements)
 * [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
 * [Reverse Linked List](#reverse-linked-list)
@@ -60,6 +62,33 @@ def detect_cycle_with_set(head: ListNode) -> Optional[ListNode]:
         visited_nodes.add(node)
         node = node.next
     return None
+```
+
+## Find Middle Node
+
+Find the node that is before the middle node. 
+
+Example:
+
+```text
+[1] = 1
+[1, 2] = 1
+[1, 2, 3] = 2
+[1, 2, 3, 4] = 2
+```
+
+```python
+def find_middle_node(head: Optional[ListNode]) -> Optional[ListNode]:
+    if not head:
+        return None
+    slow = head
+    fast = head
+
+    while fast.next and fast.next.next:
+        slow = slow.next
+        fast = fast.next.next
+
+    return slow
 ```
 
 ## Intersection Two Linked Lists
@@ -201,6 +230,49 @@ def odd_even_list(head: Optional[ListNode]) -> Optional[ListNode]:
     odd.next = even_head
 
     return head
+```
+
+## Palindrome Linked List
+
+Given a singly linked list, determine if it is a palindrome.
+
+Example 1:
+
+Input: `1->2`
+Output: `false`
+
+Example 2:
+
+Input: `1->2->2->1`
+Output: `true`
+
+Time: O(N), Space: O(1)
+
+```python
+def is_palindrome(head: Optional[ListNode]) -> bool:
+    if not head:
+        return False
+
+    # Find midway
+    first_half_end = find_middle_node(head)
+
+    # reverse second half
+    second_half_head = reverse_linked_list(first_half_end.next)
+
+    # first half should match second half
+    palindrome = True
+    first_pointer = head
+    second_pointer = second_half_head
+    
+    while palindrome and second_pointer:
+        if first_pointer.val != second_pointer.val:
+            return False
+        first_pointer = first_pointer.next
+        second_pointer = second_pointer.next
+
+    # restore list
+    first_half_end.next = reverse_linked_list(second_half_head)
+    return palindrome
 ```
 
 ## Remove Linked List Elements
