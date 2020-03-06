@@ -3,6 +3,7 @@
 * [Detect Cycle](#detect-cycle)
 * [Intersection Two Linked Lists](#intersection-two-linked-lists)
 * [Linked List Cycle](#linked-list-cycle)
+* [Odd Even Linked List]()
 * [Remove Linked List Elements](#remove-linked-list-elements)
 * [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
 * [Reverse Linked List](#reverse-linked-list)
@@ -167,6 +168,39 @@ def has_cycle_with_set(head: Optional['ListNode']) -> bool:
         node_set.add(node)
         node = node.next
     return False
+```
+
+## Odd Even Linked List
+
+Given a singly linked list, group all odd nodes together followed by the even nodes. Please note here we are talking
+about the node number and not the value in the nodes.
+
+You should try to do it in place. The program should run in O(1) space complexity and O(nodes) time complexity.
+
+Example 1:
+
+Input: `1->2->3->4->5->NULL`
+Output: `1->3->5->2->4->NULL`
+
+Time: O(N), Space: O(1)
+
+```python
+def odd_even_list(head: Optional[ListNode]) -> Optional[ListNode]:
+    if not head:
+        return None
+
+    odd = head
+    even = head.next
+    even_head = head.next
+
+    while even and even.next:
+        odd.next = even.next
+        odd = odd.next
+        even.next = odd.next
+        even = even.next
+    odd.next = even_head
+
+    return head
 ```
 
 ## Remove Linked List Elements
