@@ -10,6 +10,7 @@
 * [Remove Linked List Elements](#remove-linked-list-elements)
 * [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
 * [Reverse Linked List](#reverse-linked-list)
+* [Rotate List](#rotate-list)
 
 ## Add Two Numbers
 
@@ -437,5 +438,40 @@ def reverse_linked_list_recursive(head: ListNode) -> Optional[ListNode]:
     new_head = reverse_linked_list_recursive(head.next)
     head.next.next = head
     head.next = None
+    return new_head
+```
+
+## Rotate List
+
+Given a linked list, rotate the list to the right by k places, where k is non-negative.
+
+Example 1:
+
+Input: `1->2->3->4->5->NULL, k = 2`
+Output: `4->5->1->2->3->NULL`
+
+
+```python
+def rotate_list(head: Optional[ListNode], amount: int) -> Optional[ListNode]:
+    if not head:
+        return None
+
+    if not head.next:
+        return head
+
+    current = head
+    number = 1
+
+    while current.next:
+        number += 1
+        current = current.next
+    current.next = head
+    current = head
+
+    for _ in range((number - amount) % number - 1):
+        current = current.next
+
+    new_head = current.next
+    current.next = None
     return new_head
 ```
