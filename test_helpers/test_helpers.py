@@ -1,7 +1,10 @@
+from typing import TypeVar
 from data_structures.list_node import ListNode
 
+T = TypeVar('T')
 
-def get_list_values(head: ListNode):
+
+def get_list_values(head: T):
     node = head
     values = []
     while node:
