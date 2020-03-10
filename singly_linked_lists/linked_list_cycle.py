@@ -1,5 +1,5 @@
 from typing import Optional, Set, TypeVar
-from singly_linked_lists.list_node import ListNode
+from data_structures.list_node import ListNode
 
 T = TypeVar('T')
 

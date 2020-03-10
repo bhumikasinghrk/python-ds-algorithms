@@ -1,4 +1,4 @@
-from singly_linked_lists.list_node import ListNode
+from data_structures.list_node import ListNode
 from singly_linked_lists.palindrome_linked_list import is_palindrome
 
 

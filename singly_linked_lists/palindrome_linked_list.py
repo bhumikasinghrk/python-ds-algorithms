@@ -1,7 +1,7 @@
 from typing import Optional
 from singly_linked_lists.find_middle_node import find_middle_node
-from singly_linked_lists.list_node import ListNode
 from singly_linked_lists.reverse_linked_list import reverse_linked_list
+from data_structures.list_node import ListNode
 
 
 def is_palindrome(head: Optional[ListNode]) -> bool:

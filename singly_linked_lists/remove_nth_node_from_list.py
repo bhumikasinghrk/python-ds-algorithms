@@ -1,5 +1,5 @@
 from typing import Optional
-from singly_linked_lists.list_node import ListNode
+from data_structures.list_node import ListNode
 
 
 def remove_nth_from_end(head: ListNode, nth: int) -> Optional[ListNode]:

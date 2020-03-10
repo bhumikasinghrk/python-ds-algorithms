@@ -24,6 +24,8 @@ to prevent obscuring the function and logic of the algorithms / data-structures.
 * [Arrays](arrays/README.md)
 * [Binary Search](binary_search/README.md)
 * [Binary Tree](binary_tree/README.md)
+* [Circularly Linked Lists](circularly_linked_list/README.md)
+* [Doubly Linked Lists](doubly_linked_list/README.md)
 * [Integers](integers/README.md)
 * [Singly Linked Lists](singly_linked_lists/README.md)
 * [Matrices](multi_dimensional_arrays/README.md)

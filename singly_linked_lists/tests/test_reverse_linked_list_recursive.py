@@ -1,5 +1,5 @@
 from singly_linked_lists.reverse_linked_list_recursive import reverse_linked_list_recursive
-from singly_linked_lists.list_node import ListNode
+from data_structures.list_node import ListNode
 
 
 def test_reverse_linked_list():

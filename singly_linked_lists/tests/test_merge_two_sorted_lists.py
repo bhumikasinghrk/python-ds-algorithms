@@ -1,5 +1,5 @@
 from singly_linked_lists.merge_two_sorted_lists import merge_two_lists
-from singly_linked_lists.list_node import ListNode
+from data_structures.list_node import ListNode
 from test_helpers.test_helpers import get_list_values
 
 

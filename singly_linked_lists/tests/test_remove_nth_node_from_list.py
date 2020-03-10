@@ -1,5 +1,5 @@
 from singly_linked_lists.remove_nth_node_from_list import remove_nth_from_end
-from singly_linked_lists.list_node import ListNode
+from data_structures.list_node import ListNode
 
 
 def test_remove_nth_from_end():

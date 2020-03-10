@@ -1,5 +1,5 @@
 from typing import Optional
-from singly_linked_lists.list_node import ListNode
+from data_structures.list_node import ListNode
 
 
 def merge_two_lists(head1: Optional[ListNode], head2: Optional[ListNode]) -> Optional[ListNode]:

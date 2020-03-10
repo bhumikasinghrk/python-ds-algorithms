@@ -1,5 +1,5 @@
 from singly_linked_lists.remove_linked_list_elements import remove_elements
-from singly_linked_lists.list_node import ListNode
+from data_structures.list_node import ListNode
 from test_helpers.test_helpers import get_list_values
 
 

@@ -1,5 +1,5 @@
 from typing import Optional, Set
-from singly_linked_lists.list_node import ListNode
+from data_structures.list_node import ListNode
 
 
 def detect_cycle(head: ListNode) -> Optional[ListNode]:
