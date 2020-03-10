@@ -1,12 +1,14 @@
 # Linked Lists
 
+* [Add Two Numbers](#add-two-numbers)
+* [Copy List with Random Pointer](#copy-list-with-random-pointer)
 * [Detect Cycle](#detect-cycle)
 * [Find Middle Node](#find-middle-node)
 * [Intersection Two Linked Lists](#intersection-two-linked-lists)
 * [Linked List Cycle](#linked-list-cycle)
 * [Merge Two Sorted Lists](#)
 * [Odd Even Linked List](#odd-even-linked-list)
-* [Palindrome Linked List](#)
+* [Palindrome Linked List](#palindrome-linked-list)
 * [Remove Linked List Elements](#remove-linked-list-elements)
 * [Remove Nth Node From End of List](#remove-nth-node-from-end-of-list)
 * [Reverse Linked List](#reverse-linked-list)
@@ -50,6 +52,41 @@ Explanation: `342 + 465 = 807`
         result.next = ListNode(carry)
 
     return dummy_node.next
+```
+
+## Copy List with Random Pointer
+
+A linked list is given such that each node contains an additional random pointer which could point to any node in the
+list or null.
+
+Return a deep copy of the list.
+
+```python
+def copy_random_list(head: Node) -> Node:
+    if not head:
+        return None
+
+    current = head
+    nodes = {}
+    new_node = Node(head.value, None, None)
+    nodes[current] = new_node
+
+    while current:
+        new_node.random = get_cloned_node(current.random, nodes)
+        new_node.next = get_cloned_node(current.next, nodes)
+        current = current.next
+        new_node = new_node.next
+
+    return get_cloned_node(head, nodes)
+
+
+def get_cloned_node(node: Node, visited: Dict) -> Optional[Node]:
+    if node:
+        if node in visited:
+            return visited[node]
+        visited[node] = Node(node.value, None, None)
+        return visited[node]
+    return None
 ```
 
 ## Detect Cycle
@@ -422,8 +459,16 @@ Time: O(N), Space: O(1)
 def reverse_linked_list(head: ListNode) -> Optional[ListNode]:
     if not head:
         return None
-    previous: O = None
+    previous: Optional[ListNode] = None
+    current: Optional[ListNode] = head
 
+    while current:
+        temp = current.next
+        current.next = previous
+        previous = current
+        current = temp
+
+    return previous
 ```
 
 Solution using recursion
