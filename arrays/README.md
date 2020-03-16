@@ -7,6 +7,7 @@
 * [Intersection of Three Sorted Arrays](#intersection-of-three-sorted-arrays)
 * [Largest Number At Least Twice of Others](#largest-number-at-least-twice-of-others)
 * [Make Array Consecutive](#make-array-consecutive)
+* [Move Zeros](#move-zeros)
 * [Plus One](#plus-one)
 * [Search Insert Position](#search-insert-position)
 
@@ -237,6 +238,40 @@ def make_array_consecutive(arr: [int]) -> int:
 
     return numbers_needed
 ``` 
+
+## Move Zeros
+
+Given an array nums, write a function to move all 0's to the end of it while maintaining the relative order of the
+non-zero elements.
+
+Example:
+
+Input: `[0,1,0,3,12]`
+Output: `[1,3,12,0,0]`
+Note:
+
+You must do this in-place without making a copy of the array.
+Minimize the total number of operations.
+
+```python
+def move_zeros(nums: List[int]) -> None:
+    if not nums or len(nums) == 0:
+        return
+
+    current_index = 0
+    last_num = None
+
+    while current_index < len(nums):
+        if nums[current_index] == 0:
+            next_num = last_num if last_num else current_index + 1
+            while next_num < len(nums):
+                if nums[next_num] != 0:
+                    nums[next_num], nums[current_index] = nums[current_index], nums[next_num]
+                    last_num = next_num + 1
+                    break
+                next_num += 1
+        current_index += 1
+```
 
 ## Plus One
 
