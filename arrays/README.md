@@ -10,6 +10,7 @@
 * [Move Zeros](#move-zeros)
 * [Plus One](#plus-one)
 * [Search Insert Position](#search-insert-position)
+* [Single Number](#single-number)
 
 ## Find Index of Largest Number
 
@@ -335,4 +336,54 @@ def search_insert(nums: [int], target: int) -> int:
             right_index = middle - 1
 
     return left_index
+```
+
+## Single Number
+
+Given a non-empty array of integers, every element appears twice except for one. Find that single one.
+
+Note:
+
+Your algorithm should have a linear runtime complexity.
+
+Example 1:
+
+Input: `[2,2,1]`
+
+Solution using hash table:
+
+Solution: Time: O(N), Space: O(N)  
+
+```python
+def single_number(nums: List[int]) -> int:
+    if not nums:
+        return 0
+    
+    nums_dict = dict()
+
+    for num in nums:
+        if num in nums_dict:
+            nums_dict[num] += 1
+        else:
+            nums_dict[num] = 1
+
+    for num in nums_dict:
+        if nums_dict[num] == 1:
+            return num
+
+    return 0
+```
+
+Solution using bitwise function. Time: O(N), Space: O(1)
+
+```python
+def single_number_bitwise(nums: List[int]) -> int:
+    if not nums:
+        return 0
+    current = nums[0]
+    
+    for index in range(1, len(nums)):
+        current ^= nums[index]
+        
+    return current
 ```
