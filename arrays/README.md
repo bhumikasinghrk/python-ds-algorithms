@@ -9,6 +9,7 @@
 * [Make Array Consecutive](#make-array-consecutive)
 * [Move Zeros](#move-zeros)
 * [Plus One](#plus-one)
+* [Remove Duplicates](#remove-duplicates)
 * [Search Insert Position](#search-insert-position)
 * [Single Number](#single-number)
 
@@ -306,6 +307,37 @@ def plus_one(digits: List[int]) -> List[int]:
             digits.insert(0, 1)
             break
     return digits
+```
+
+## Remove Duplicates
+
+Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new
+length.
+
+Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra
+memory.
+
+Example:
+
+Input: `[1, 1, 2`
+Output: `[1, 2, 2], count: 2`
+
+```python
+def remove_duplicates(nums: List[int]) -> int:
+    if len(nums) == 0:
+        return 0
+
+    last_index = 0
+    count = 1
+
+    for index in range(1, len(nums)):
+        if nums[index] == nums[last_index]:
+            continue
+        count += 1
+        last_index += 1
+        nums[last_index] = nums[index]
+
+    return count
 ```
 
 ## Search Insert Position
