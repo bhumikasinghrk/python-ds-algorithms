@@ -1,6 +1,8 @@
 # Strings
 
 * [Jewels and Stones](#jewels-and-stones)
+* [Longest Common Prefix](#longest-common-prefix)
+* [Reverse String](#reverse-string)
 
 ## Jewels and Stones
 
@@ -33,6 +35,43 @@ def jewels_and_stones(jewels: str, stones: str) -> int:
             count += stone_count[jewel]
 
     return count
+```
+
+## Longest Common Prefix
+
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+
+Example 1:
+
+Input: `["flower", "flow", "flight"]`
+Output: `"fl"`
+
+```python
+def longest_common_prefix(strings: List[str]) -> str:
+    if not strings or len(strings[0]) == 0:
+        return ""
+
+    longest = len(strings[0])
+    current = 0
+
+    while current < longest:
+        for i in range(1, len(strings)):
+            if len(strings[i]) == 0:
+                return ""
+
+            if len(strings[i]) < longest:
+                longest = len(strings[i])
+                if current > longest:
+                    return strings[0][0:longest]
+
+            if strings[0][current] != strings[i][current]:
+                return strings[0][0:current]
+
+        current += 1
+
+    return strings[0][0:longest]
 ```
 
 ## Reverse String
