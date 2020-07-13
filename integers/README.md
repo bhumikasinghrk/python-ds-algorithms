@@ -54,21 +54,21 @@ Given `nums = [2, 7, 11, 15], target = 9`,
 
 Because `nums[0] + nums[1] = 2 + 7 = 9`, `return [0, 1]`.
 
-Solution - O(N)
+Solution - Time: O(N)
 ```python
-def two_sum(array: [], target: int) -> []:
+def two_sum(array: [int], target: int) -> [int]:
     complements = dict()
 
-    for index, num in enumerate(array):
-        complement = str(target - num)
+    for index, number in enumerate(array):
+        complement = target - number
         if complement in complements:
-            return [index, complements[complement]]
-        else:
-            complements[str(num)] = index
+            return [complements[complement], index]
+        complements[number] = index
+
     return [-1, -1]
 ```
 
-Solution for sorted arrays - O(N)
+Alternate solution for sorted arrays - O(N)
 
 ```python
 def two_sum_sorted(array: [], target: int) -> []:
