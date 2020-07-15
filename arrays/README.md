@@ -10,6 +10,7 @@
 * [Move Zeros](#move-zeros)
 * [Plus One](#plus-one)
 * [Remove Duplicates](#remove-duplicates)
+* [Rotate Array](#rotate-array)
 * [Search Insert Position](#search-insert-position)
 * [Single Number](#single-number)
 
@@ -338,6 +339,30 @@ def remove_duplicates(nums: List[int]) -> int:
         nums[last_index] = nums[index]
 
     return count
+```
+
+## Rotate Array
+
+Given an array, rotate the array to the right by `k` steps, where `k` is non-negative.
+
+Example:
+
+Input: `k = 3`, `[1, 2, 3, 4, 5, 6]`
+Output: `[4, 5, 6, 1, 2, 3]`
+
+With array:
+Time: O(N)
+Space: O(N)
+
+```python
+def rotate_array_with_array(nums: List[int], k: int) -> List[int]:
+    length = len(nums)
+    copy = [0] * length
+
+    for index in range(length):
+        copy[(index + k) % length] = nums[index]
+
+    return copy
 ```
 
 ## Search Insert Position
