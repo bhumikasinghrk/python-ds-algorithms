@@ -1,8 +1,35 @@
 # Strings
 
+* [First Unique Character](#first-unique-character-in-a-string)
 * [Jewels and Stones](#jewels-and-stones)
 * [Longest Common Prefix](#longest-common-prefix)
 * [Reverse String](#reverse-string)
+
+## First Unique Character In A String
+
+Given a string, find the first non-repeating character in it and return its index. If it doesn't exist, return -1.
+
+Example:
+
+Input: `ilovecoding`
+Output: `l`
+
+```python
+def first_unique_character_in_str(val: str) -> int:
+    chars = {}
+
+    for char in val:
+        if char in chars:
+            chars[char] += 1
+        else:
+            chars[char] = 1
+
+    for index, char in enumerate(val):
+        if chars[char] == 1:
+            return index
+
+    return -1
+```
 
 ## Jewels and Stones
 
