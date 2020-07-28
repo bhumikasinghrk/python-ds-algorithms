@@ -5,6 +5,7 @@
 * [First Not Repeating Character](#first-not-repeating-character)
 * [First Pivot Index](#first-pivot-index)
 * [Intersection of Three Sorted Arrays](#intersection-of-three-sorted-arrays)
+* [Intersection of Two Arrays](#intersection-of-two-arrays)
 * [Largest Number At Least Twice of Others](#largest-number-at-least-twice-of-others)
 * [Make Array Consecutive](#make-array-consecutive)
 * [Move Zeros](#move-zeros)
@@ -165,6 +166,34 @@ def arrays_intersection2(arr1: List[int], arr2: List[int], arr3: List[int]) -> L
             index3 += 1
 
     return result
+```
+
+## Intersection of Two Arrays
+
+Given two arrays, write a function to compute their intersection.
+
+Example 1:
+
+Input: nums1 = `[1,2,2,1]`, nums2 = `[2,2]`
+Output: `[2,2]`
+
+```python
+def intersection_of_two_arrays(nums1: List[int], nums2: List[int]) -> List[int]:
+    intersection = []
+    nums1_map = {}
+
+    for num in nums1:
+        if num in nums1_map:
+            nums1_map[num] += 1
+        else:
+            nums1_map[num] = 1
+
+    for num in nums2:
+        if num in nums1_map and nums1_map[num] > 0:
+            intersection.append(num)
+            nums1_map[num] -= 1
+
+    return intersection
 ```
 
 ## Largest Number At Least Twice of Others
