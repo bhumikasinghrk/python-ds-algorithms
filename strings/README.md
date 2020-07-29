@@ -1,9 +1,43 @@
 # Strings
 
+* [Valid Anagram](#valid-anagram)
 * [First Unique Character](#first-unique-character-in-a-string)
 * [Jewels and Stones](#jewels-and-stones)
 * [Longest Common Prefix](#longest-common-prefix)
 * [Reverse String](#reverse-string)
+
+## Valid Anagram
+
+Given two strings, write a function to determine if string A is an anagram of B.
+
+Example:
+
+`star, rats` -> `True`
+
+```python
+def valid_anagram(val1: str, val2: str) -> bool:
+    if len(val1) != len(val2):
+        return False
+
+    char_counter = {}
+
+    for char in val1:
+        if char in char_counter:
+            char_counter[char] += 1
+        else:
+            char_counter[char] = 1
+
+    for char in val2:
+        if char in char_counter:
+            char_counter[char] -= 1
+        else:
+            return False
+
+    for result in char_counter.values():
+        if result != 0:
+            return False
+    return True
+```
 
 ## First Unique Character In A String
 
