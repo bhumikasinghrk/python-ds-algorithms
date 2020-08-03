@@ -9,6 +9,7 @@
 * [Largest Number At Least Twice of Others](#largest-number-at-least-twice-of-others)
 * [Make Array Consecutive](#make-array-consecutive)
 * [Move Zeros](#move-zeros)
+* [Peaks](#peaks)
 * [Plus One](#plus-one)
 * [Remove Duplicates](#remove-duplicates)
 * [Rotate Array](#rotate-array)
@@ -303,6 +304,27 @@ def move_zeros(nums: List[int]) -> None:
                     break
                 next_num += 1
         current_index += 1
+```
+
+## Peaks
+
+Given an array of integers return the values that are between two smaller values.
+
+Example: `[1, 3, 2] -> [3]`
+
+```python
+def peaks(numbers: List[int]) -> List[int]:
+    length = len(numbers)
+    peak_nums = []
+
+    if length < 3:
+        return peak_nums
+
+    for index in range(1, length - 1):
+        if numbers[index - 1] < numbers[index] and numbers[index] > numbers[index + 1]:
+            peak_nums.append(numbers[index])
+
+    return peak_nums
 ```
 
 ## Plus One
