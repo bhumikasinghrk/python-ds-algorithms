@@ -5,6 +5,7 @@
 * [Jewels and Stones](#jewels-and-stones)
 * [Longest Common Prefix](#longest-common-prefix)
 * [Reverse String](#reverse-string)
+* [Valid Palindrome](#valid-palindrome)
 
 ## Valid Anagram
 
@@ -159,4 +160,43 @@ def reverse_string_with_loop(string: str) -> str:
     for index in range(len(string) - 1, -1, -1):
         reversed_str[len(string) - 1 - index] = string[index]
     return ''.join(reversed_str)
+```
+
+## Valid Palindrome
+
+A string that is the same forwards and backwards. 2nd solution accounts for punctuation characters
+
+```python
+def valid_palindrome_naive(s: str) -> bool:
+    return s == s[::-1]
+
+
+def valid_palindrome(string: str) -> bool:
+    length = len(string)
+
+    if length < 2:
+        return True
+
+    start = 0
+    end = length - 1
+
+    normalized_string = string.lower()
+
+    while start < end:
+        if not normalized_string[start].isalnum():
+            start += 1
+            continue
+
+        if not normalized_string[end].isalnum():
+            end -= 1
+            continue
+
+        if normalized_string[start] is not normalized_string[end]:
+            return False
+
+        start += 1
+        end -= 1
+
+    return True
+
 ```
