@@ -1,6 +1,7 @@
 # Arrays
 
 * [Find Index of Largest Number](#find-index-of-largest-number)
+* [Find Smallest Positive Integer](#find-smallest-positive-integer)
 * [First Duplicate](#first-duplicate)
 * [First Not Repeating Character](#first-not-repeating-character)
 * [First Pivot Index](#first-pivot-index)
@@ -31,6 +32,34 @@ def find_index_largest_number(numbers: List[int]) -> int:
         if numbers[index] > numbers[largest_index]:
             largest_index = index
     return largest_index
+```
+
+## Find Smallest Positive Integer
+
+Find the smallest positive integer in an array. Return zero if no positive integers
+
+Input: `[1, -2, 3]`
+Output: `1`
+
+```python
+def find_smallest_positive_integer(arr: List[int]) -> int:
+    length = len(arr)
+
+    if length == 0:
+        return 0
+
+    smallest = None
+
+    for i in range(length):
+        if arr[i] > 0:
+            if smallest is None:
+                smallest = arr[i]
+            elif arr[i] < smallest:
+                smallest = arr[i]
+
+    if smallest is None:
+        return 0
+    return smallest
 ```
 
 ## First Duplicate
