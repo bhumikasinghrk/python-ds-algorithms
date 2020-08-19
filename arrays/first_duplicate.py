@@ -5,11 +5,16 @@
 
 
 def first_duplicate(array: [int]) -> int:
-    unique_set = set()
+    number_counter = dict()
     for value in array:
-        if value in unique_set:
+        if value in number_counter:
+            number_counter[value] += 1
+        else:
+            number_counter[value] = 1
+
+    for value in array:
+        if number_counter[value] > 1:
             return value
-        unique_set.add(value)
     return -1
 
 

@@ -44,13 +44,17 @@ the other number does. If there are no such elements, return `-1`.
 First Duplicate w/ Set
 
 ```python
-def first_duplicate(a: [int]) -> int:
-    unique_set = set()
-    for value in a:
-        if value in unique_set:
-            return value
+def first_duplicate(array: [int]) -> int:
+    number_counter = dict()
+    for value in array:
+        if value in number_counter:
+            number_counter[value] += 1
         else:
-            unique_set.add(value)
+            number_counter[value] = 1
+
+    for value in array:
+        if number_counter[value] > 1:
+            return value
     return -1
 ```
 
