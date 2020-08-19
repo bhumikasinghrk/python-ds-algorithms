@@ -5,6 +5,7 @@
 * [Jewels and Stones](#jewels-and-stones)
 * [Longest Common Prefix](#longest-common-prefix)
 * [Reverse String](#reverse-string)
+* [String to Integer](#string-to-integer)
 * [Valid Palindrome](#valid-palindrome)
 
 ## Valid Anagram
@@ -160,6 +161,51 @@ def reverse_string_with_loop(string: str) -> str:
     for index in range(len(string) - 1, -1, -1):
         reversed_str[len(string) - 1 - index] = string[index]
     return ''.join(reversed_str)
+```
+
+## String to Integer
+
+Convert a string to an integer. String may include spaces before the number and after the number. String may end in words, these should be ignored.
+
+```python
+def string_to_integer(string: str) -> int:
+    length = len(string)
+    numbers = set(list('1234567890'))
+    positive = True
+    start_index = -1
+
+    if length < 1:
+        return 0
+
+    for index in range(length):
+        if string[index] in ' ':
+            continue
+
+        if string[index] in '-':
+            positive = False
+            continue
+
+        if string[index] not in numbers:
+            return 0
+
+        if string[index] in numbers:
+            start_index = index
+            break
+
+    # Handle empty string (no numbers)
+    if start_index is -1:
+        return 0
+
+    end_index = start_index
+
+    for index in range(start_index, length):
+        if string[index] in numbers:
+            end_index += 1
+        else:
+            break
+
+    return int(string[start_index: end_index]) if positive else -int(string[start_index: end_index])
+
 ```
 
 ## Valid Palindrome
