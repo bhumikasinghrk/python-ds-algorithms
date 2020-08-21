@@ -9,6 +9,7 @@
 * [Intersection of Two Arrays](#intersection-of-two-arrays)
 * [Largest Number At Least Twice of Others](#largest-number-at-least-twice-of-others)
 * [Make Array Consecutive](#make-array-consecutive)
+* [Max Consecutive Ones](#max-consecutive-ones)
 * [Move Zeros](#move-zeros)
 * [Peaks](#peaks)
 * [Plus One](#plus-one)
@@ -304,6 +305,27 @@ def make_array_consecutive(arr: [int]) -> int:
 
     return numbers_needed
 ``` 
+
+## Max Consecutive Ones
+
+Return the largest number of consecutive 1s from an array of binary integers
+
+Input: `[1, 1, 0, 1, 1, 1, 0, 0, 1]`
+Output: `3`
+
+```python
+def max_consecutive_ones(nums: List[int]) -> int:
+    max_ones, count = 0, 0
+
+    for num in nums:
+        if num == 1:
+            count += 1
+        else:
+            max_ones = max(max_ones, count)
+            count = 0
+
+    return max(max_ones, count)
+```
 
 ## Move Zeros
 
