@@ -1,5 +1,6 @@
 # Arrays
 
+* [Count Elements](#count-elements)
 * [Find Index of Largest Number](#find-index-of-largest-number)
 * [Find Smallest Positive Integer](#find-smallest-positive-integer)
 * [First Duplicate](#first-duplicate)
@@ -17,6 +18,27 @@
 * [Rotate Array](#rotate-array)
 * [Search Insert Position](#search-insert-position)
 * [Single Number](#single-number)
+
+## Count Elements
+
+Given an integer array arr, count how many elements x there are, such that x + 1 is also in arr.
+
+If there're duplicates in arr, count them separately.
+
+```python
+def count_elements(arr: List[int]) -> int:
+    elements = set()
+    counter = 0
+
+    for element in arr:
+        elements.add(element)
+
+    for element in arr:
+        if element + 1 in elements:
+            counter += 1
+
+    return counter
+```
 
 ## Find Index of Largest Number
 
