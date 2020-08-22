@@ -7,6 +7,7 @@
 * [Multiply Strings](#multiply-strings)
 * [Reverse String](#reverse-string)
 * [String to Integer](#string-to-integer)
+* [String to Integer II](#string-to-integer-ii)
 * [Valid Anagram](#valid-anagram)
 * [Valid Palindrome](#valid-palindrome)
 
@@ -227,6 +228,40 @@ def string_to_integer(string: str) -> int:
             break
 
     return int(string[start_index: end_index]) if positive else -int(string[start_index: end_index])
+```
+
+## String to Integer II
+
+Convert a number string to an integer. Number may be prefixed by `-` or `+`
+
+Example: 
+- `"-34"` -> `-34`
+- `"100"` -> `100`
+
+```python
+def string_to_integer_ii(string: str) -> int:
+    zero = ord('0')
+    positive = True
+    length = len(string)
+    start = 0
+    number = 0
+
+    if length < 1:
+        return 0
+
+    # Determine Positive / Negative
+    if string[0] == '-':
+        start = 1
+        positive = False
+    elif string[0] == '+':
+        start = 1
+
+    # Iterate over remaining characters
+    for index in range(start, length):
+        temp = ord(string[index]) - zero
+        number += temp * (10 ** (length - index - 1))
+
+    return number if positive else number * -1
 ```
 
 ## Valid Anagram
