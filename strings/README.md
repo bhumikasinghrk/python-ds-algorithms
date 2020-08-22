@@ -1,44 +1,38 @@
 # Strings
 
-* [Valid Anagram](#valid-anagram)
+* [Crop String](#crop-string)
 * [First Unique Character](#first-unique-character-in-a-string)
 * [Jewels and Stones](#jewels-and-stones)
 * [Longest Common Prefix](#longest-common-prefix)
 * [Reverse String](#reverse-string)
 * [String to Integer](#string-to-integer)
+* [Valid Anagram](#valid-anagram)
 * [Valid Palindrome](#valid-palindrome)
 
-## Valid Anagram
+## Crop String
 
-Given two strings, write a function to determine if string A is an anagram of B.
+Crop a string of words separated by spaces. 
 
-Example:
+Return the longest string possible without; ending with white space and partial words
 
-`star, rats` -> `True`
+Input will not start or end with spaces
+
+If rules cannot be met return an empty string
 
 ```python
-def valid_anagram(val1: str, val2: str) -> bool:
-    if len(val1) != len(val2):
-        return False
 
-    char_counter = {}
+def crop_string(string: str, new_length: int) -> str:
+    length = len(string)
+    last_valid_index = 0
 
-    for char in val1:
-        if char in char_counter:
-            char_counter[char] += 1
-        else:
-            char_counter[char] = 1
+    if length <= new_length:
+        return string
 
-    for char in val2:
-        if char in char_counter:
-            char_counter[char] -= 1
-        else:
-            return False
+    for i in range(new_length):
+        if string[i] == ' ':
+            last_valid_index = i
 
-    for result in char_counter.values():
-        if result != 0:
-            return False
-    return True
+    return string[:last_valid_index]
 ```
 
 ## First Unique Character In A String
@@ -205,7 +199,39 @@ def string_to_integer(string: str) -> int:
             break
 
     return int(string[start_index: end_index]) if positive else -int(string[start_index: end_index])
+```
 
+## Valid Anagram
+
+Given two strings, write a function to determine if string A is an anagram of B.
+
+Example:
+
+`star, rats` -> `True`
+
+```python
+def valid_anagram(val1: str, val2: str) -> bool:
+    if len(val1) != len(val2):
+        return False
+
+    char_counter = {}
+
+    for char in val1:
+        if char in char_counter:
+            char_counter[char] += 1
+        else:
+            char_counter[char] = 1
+
+    for char in val2:
+        if char in char_counter:
+            char_counter[char] -= 1
+        else:
+            return False
+
+    for result in char_counter.values():
+        if result != 0:
+            return False
+    return True
 ```
 
 ## Valid Palindrome
@@ -244,5 +270,4 @@ def valid_palindrome(string: str) -> bool:
         end -= 1
 
     return True
-
 ```
