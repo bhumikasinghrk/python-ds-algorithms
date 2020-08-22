@@ -4,6 +4,7 @@
 * [First Unique Character](#first-unique-character-in-a-string)
 * [Jewels and Stones](#jewels-and-stones)
 * [Longest Common Prefix](#longest-common-prefix)
+* [Multiply Strings](#multiply-strings)
 * [Reverse String](#reverse-string)
 * [String to Integer](#string-to-integer)
 * [Valid Anagram](#valid-anagram)
@@ -129,6 +130,33 @@ def longest_common_prefix(strings: List[str]) -> str:
         current += 1
 
     return strings[0][0:longest]
+```
+
+## Multiply Strings
+
+Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2, also represented as a string.
+
+* The length of both num1 and num2 is < 110.
+* Both num1 and num2 contain only digits 0-9.
+* Both num1 and num2 do not contain any leading zero, except the number 0 itself.
+* You must not use any built-in BigInteger library or convert the inputs to integer directly.
+
+Input: `num1 = "123"`, `num2 = "456"`
+Output: `"56088"`
+
+```python
+def multiply_strings(num1: str, num2: str) -> str:
+    def string_to_int(string: str) -> int:
+        length = len(string)
+        zero = ord('0')
+        value = 0
+
+        for index in range(length):
+            temp = ord(string[index]) - zero
+            value += temp * (10 ** (length - index - 1))
+        return value
+
+    return str(string_to_int(num1) * string_to_int(num2))
 ```
 
 ## Reverse String
