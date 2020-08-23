@@ -5,6 +5,7 @@
 * [Jewels and Stones](#jewels-and-stones)
 * [Longest Common Prefix](#longest-common-prefix)
 * [Multiply Strings](#multiply-strings)
+* [Pangram](#pangram)
 * [Reverse String](#reverse-string)
 * [String to Integer](#string-to-integer)
 * [String to Integer II](#string-to-integer-ii)
@@ -158,6 +159,21 @@ def multiply_strings(num1: str, num2: str) -> str:
         return value
 
     return str(string_to_int(num1) * string_to_int(num2))
+```
+
+## Pangram
+
+Determine if a string has all characters a-z. Should handle uppercase, lowercase, whitespace, and special characters.
+
+```python
+def pangram(string: str) -> bool:
+    alpha_set = set()
+
+    for char in string:
+        if char.isalpha():
+            alpha_set.add(char.lower())
+
+    return len(alpha_set) == 26
 ```
 
 ## Reverse String
