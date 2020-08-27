@@ -7,6 +7,7 @@
 * [Multiply Strings](#multiply-strings)
 * [Pangram](#pangram)
 * [Reverse String](#reverse-string)
+* [Reverse Words In Sentence](#reverse-words-in-sentence)
 * [Run Length Encoding](#run-length-encoding)
 * [String to Integer](#string-to-integer)
 * [String to Integer II](#string-to-integer-ii)
@@ -201,6 +202,42 @@ def reverse_string_with_loop(string: str) -> str:
     for index in range(len(string) - 1, -1, -1):
         reversed_str[len(string) - 1 - index] = string[index]
     return ''.join(reversed_str)
+```
+
+## Reverse Words In Sentence
+
+Reverse the words in a sentence.
+
+Input: `The fox is red`
+Output: `ehT xof si der`
+
+```python
+def reverse_words(sentence: str) -> str:
+    length = len(sentence)
+    if length < 2:
+        return sentence
+
+    sentence_array = list(sentence)
+    left = 0
+
+    def reverse(array: List[str], start: int, end: int):
+        left_index = start
+        right_index = end
+
+        while left_index < right_index:
+            array[left_index], array[right_index] = array[right_index], array[left_index]
+            left_index += 1
+            right_index -= 1
+
+    for index in range(1, length):
+        if sentence_array[index - 1] == ' ':
+            reverse(sentence_array, left, index - 2)
+            left = index
+
+    # reverse last word, or sentence if one word
+    reverse(sentence_array, left, length - 1)
+
+    return ''.join(sentence_array)
 ```
 
 ## Run Length Encoding
