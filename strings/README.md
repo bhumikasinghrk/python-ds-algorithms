@@ -7,6 +7,7 @@
 * [Multiply Strings](#multiply-strings)
 * [Pangram](#pangram)
 * [Reverse String](#reverse-string)
+* [Run Length Encoding](#run-length-encoding)
 * [String to Integer](#string-to-integer)
 * [String to Integer II](#string-to-integer-ii)
 * [Valid Anagram](#valid-anagram)
