@@ -25,7 +25,7 @@ def string_to_integer(string: str) -> int:
             break
 
     # Handle empty string (no numbers)
-    if start_index is -1:
+    if start_index == -1:
         return 0
 
     end_index = start_index
