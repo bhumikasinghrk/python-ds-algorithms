@@ -7,7 +7,8 @@
 * [Multiply Strings](#multiply-strings)
 * [Pangram](#pangram)
 * [Reverse String](#reverse-string)
-* [Reverse Words In Sentence](#reverse-words-in-sentence)
+* [Reverse Words In A Sentence](#reverse-words-in-a-sentence)
+* [Reverse Words In A Sentence II](#reverse-words-in-a-sentence-ii)
 * [Run Length Encoding](#run-length-encoding)
 * [String to Integer](#string-to-integer)
 * [String to Integer II](#string-to-integer-ii)
@@ -205,7 +206,7 @@ def reverse_string_with_loop(string: str) -> str:
     return ''.join(reversed_str)
 ```
 
-## Reverse Words In Sentence
+## Reverse Words In A Sentence
 
 Reverse the words in a sentence.
 
@@ -239,6 +240,40 @@ def reverse_words(sentence: str) -> str:
     reverse(sentence_array, left, length - 1)
 
     return ''.join(sentence_array)
+```
+
+## Reverse Words In A Sentence II
+
+Reverse the order of the words in a sentence. Sentence will be an array of characters separated by spaces
+
+Example:
+
+Input: `["a", " ", "b", "o", "y"]`
+Output: `["b", "o", "y", " ", "a"]`
+
+```python
+def reverse_words_ii(sentence: List[str]):
+    def reverse(string: List[str], start_index: int, end_index: int):
+        left = start_index
+        right = end_index
+        while left < right:
+            string[left], string[right] = string[right], string[left]
+            left += 1
+            right -= 1
+
+    length = len(sentence)
+    reverse(sentence, 0, length - 1)
+    start = None
+
+    for index in range(length - 1):
+        if start is None and sentence[index] != " ":
+            start = index
+        if sentence[index + 1] == " ":
+            reverse(sentence, start, index)
+            start = None
+
+    if start is not None:
+        reverse(sentence, start, length - 1)
 ```
 
 ## Run Length Encoding
