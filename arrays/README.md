@@ -625,20 +625,21 @@ def sorted_squares(nums: List[int]) -> List[int]:
     right = first_positive
     squares = []
 
-    while left >= 0 or right < length:
-        if left >= 0 and right < length:
-            if abs(nums[left]) < nums[right]:
-                squares.append(nums[left] * nums[left])
-                left -= 1
-            else:
-                squares.append(nums[right] * nums[right])
-                right += 1
-        elif right < length:
-            squares.append(nums[right] * nums[right])
-            right += 1
-        elif left >= 0:
+    while left >= 0 and right < length:
+        if abs(nums[left]) < nums[right]:
             squares.append(nums[left] * nums[left])
             left -= 1
+        else:
+            squares.append(nums[right] * nums[right])
+            right += 1
+
+    while right < length:
+        squares.append(nums[right] * nums[right])
+        right += 1
+
+    while left >= 0:
+        squares.append(nums[left] * nums[left])
+        left -= 1
 
     return squares
 ```
