@@ -1,5 +1,6 @@
 # Arrays
 
+* [Container With Max Area](#container-with-max-area)
 * [Count Elements](#count-elements)
 * [Duplicate Zeros](#duplicate-zeros)
 * [Find Index of Largest Number](#find-index-of-largest-number)
@@ -20,6 +21,30 @@
 * [Search Insert Position](#search-insert-position)
 * [Single Number](#single-number)
 * [Sorted Squares](#sorted-squares)
+
+## Container With Max Area
+
+Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai). n vertical lines are
+drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a
+container, such that the container contains the most water.
+
+```python
+def container_with_max_area(height: List[int]) -> int:
+    length = len(height)
+    left = 0
+    right = length - 1
+    max_area = 0
+
+    while left < right:
+        lowest = min(height[left], height[right])
+        max_area = max(max_area, lowest * (right - left))
+        if height[left] < height[right]:
+            left += 1
+        else:
+            right -= 1
+
+    return max_area
+```
 
 ## Count Elements
 
