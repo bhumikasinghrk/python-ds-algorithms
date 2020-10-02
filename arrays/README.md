@@ -13,6 +13,7 @@
 * [Largest Number At Least Twice of Others](#largest-number-at-least-twice-of-others)
 * [Make Array Consecutive](#make-array-consecutive)
 * [Max Consecutive Ones](#max-consecutive-ones)
+* [Merge Sorted Array](#merge-sorted-array)
 * [Move Zeros](#move-zeros)
 * [Peaks](#peaks)
 * [Plus One](#plus-one)
@@ -401,6 +402,44 @@ def max_consecutive_ones(nums: List[int]) -> int:
             count = 0
 
     return max(max_ones, count)
+```
+
+## Merge Sorted Array
+
+Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.
+
+Note:
+
+The number of elements initialized in nums1 and nums2 are m and n respectively.
+You may assume that nums1 has enough space (size that is equal to m + n) to hold additional elements from nums2.
+Example:
+
+Input:
+`nums1 = [1,2,3,0,0,0], m = 3`
+`nums2 = [2,5,6],       n = 3`
+
+Output: `[1,2,2,3,5,6]`
+
+```python
+def merge_sorted_array(nums1: List[int], nums1_length: int, nums2: List[int], nums2_length: int) -> List[int]:
+    index_nums1 = nums1_length - 1
+    index_nums2 = nums2_length - 1
+    current_index = nums1_length + nums2_length - 1
+
+    while index_nums2 >= 0:
+        if index_nums1 < 0 <= index_nums2:
+            nums1[current_index] = nums2[index_nums2]
+            index_nums2 -= 1
+        elif nums1[index_nums1] > nums2[index_nums2]:
+            nums1[current_index] = nums1[index_nums1]
+            index_nums1 -= 1
+        else:
+            nums1[current_index] = nums2[index_nums2]
+            index_nums2 -= 1
+
+        current_index -= 1
+
+    return nums1
 ```
 
 ## Move Zeros
