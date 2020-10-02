@@ -18,6 +18,7 @@
 * [Peaks](#peaks)
 * [Plus One](#plus-one)
 * [Remove Duplicates](#remove-duplicates)
+* [Remove Element](#remove-element)
 * [Rotate Array](#rotate-array)
 * [Search Insert Position](#search-insert-position)
 * [Single Number](#single-number)
@@ -560,6 +561,32 @@ def remove_duplicates(nums: List[int]) -> int:
         nums[last_index] = nums[index]
 
     return count
+```
+
+## Remove Element
+
+Given an array nums and a value val, remove all instances of that value in-place and return the new length.
+Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
+The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+
+Example 1:
+`nums = [3,2,2,3]`, `val = 3`,
+
+Your function should return `2`, with the array being mutated to `[2, 2, 2, 3]`
+
+```python
+def remove_element(nums: List[int], val: int) -> int:
+    index = 0
+    count = 0
+    length = len(nums)
+
+    while index < length:
+        if nums[index] == val:
+            count += 1
+        else:
+            nums[index - count] = nums[index]
+        index += 1
+    return length - count
 ```
 
 ## Rotate Array
