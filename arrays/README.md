@@ -24,6 +24,7 @@
 * [Search Insert Position](#search-insert-position)
 * [Single Number](#single-number)
 * [Sorted Squares](#sorted-squares)
+* [Valid Mountain Array](#valid-mountain-array)
 
 ## Check Double
 
@@ -790,4 +791,45 @@ def sorted_squares(nums: List[int]) -> List[int]:
         left -= 1
 
     return squares
+```
+
+## Valid Mountain Array
+
+Given an array of integers, return true if it is valid mountain array.
+
+A valid mountain array is:
+
+`A.length >= 3`
+There exists some i with `0 < i < A.length - 1` such that:
+`A[0] < A[1] < ... A[i-1] < A[i]`
+`A[i] > A[i+1] > ... > A[A.length - 1]`
+
+Example: `[1, 2, 3, 2, 1]`
+
+```python
+def valid_mountain_array(arr: List[int]) -> bool:
+    length = len(arr)
+    if length <= 2:
+        return False
+
+    index = 1
+
+    # Check increasing
+    while index < length:
+        if arr[index - 1] < arr[index]:
+            index += 1
+        else:
+            break
+
+    # Edge case: only increasing, only decreasing
+    if index == length or index == 1:
+        return False
+
+    # Check decreasing
+    while index < length:
+        if arr[index - 1] > arr[index]:
+            index += 1
+        else:
+            return False
+    return True
 ```
