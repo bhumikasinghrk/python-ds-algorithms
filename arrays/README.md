@@ -1,5 +1,6 @@
 # Arrays
 
+* [Check Double](#check-double)
 * [Container With Max Area](#container-with-max-area)
 * [Count Elements](#count-elements)
 * [Duplicate Zeros](#duplicate-zeros)
@@ -23,6 +24,34 @@
 * [Search Insert Position](#search-insert-position)
 * [Single Number](#single-number)
 * [Sorted Squares](#sorted-squares)
+
+## Check Double
+
+Given an array arr of integers, check if there exists two integers N and M such that N is the double of M ( i.e. N = 2 * M).
+
+More formally check if there exists two indices i and j such that :
+
+`i != j`
+`arr[i] == 2 * arr[j]`
+ 
+Example 1:
+
+Input: `[10,2,5,3]`
+Output: `true`
+Explanation: `N = 10 is the double of M = 5,that is, 10 = 2 * 5.`
+
+```python
+def check_double(arr: List[int]) -> bool:
+    elements = set()
+
+    for num in arr:
+        if num * 2 in elements:
+            return True
+        if num % 2 == 0 and num / 2 in elements:
+            return True
+        elements.add(num)
+    return False
+```
 
 ## Container With Max Area
 
