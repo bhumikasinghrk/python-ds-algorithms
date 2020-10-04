@@ -11,4 +11,3 @@ def test_first_duplicate_in_place():
     assert first_duplicate_in_place([1, 2, 3]) == -1
     assert first_duplicate_in_place([1, 2, 3, 4, 5, 1]) == 1
     assert first_duplicate_in_place([1, 2, 2, 3, 4, 5, 1]) == 1
-
