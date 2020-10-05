@@ -144,6 +144,43 @@ def find_index_largest_number(numbers: List[int]) -> int:
     return largest_index
 ```
 
+## Find Max Consecutive Ones
+
+Given a binary array, find the maximum number of consecutive 1s in this array if you can flip at most one 0.
+
+Example 1:
+
+Input: `[1,0,1,1,0]`
+Output: `4`
+Explanation: Flip the first zero will get the the maximum number of consecutive 1s. After flipping, the maximum number of consecutive 1s is 4.
+
+```python
+def find_max_consecutive_ones(nums: List[int]) -> int:
+    zero = -1
+    ones = 0
+    highest = 0
+
+    for index, num in enumerate(nums):
+        if num == 1:
+            ones += 1
+        elif zero != -1:
+            total = ones + 1
+            if total > highest:
+                highest = total
+            ones = index - zero - 1
+            zero = index
+        else:
+            zero = index
+
+    last_total = ones
+    
+    if zero != -1:
+        last_total += 1
+    if last_total > highest:
+        return last_total
+    return highest
+```
+
 ## Find Smallest Positive Integer
 
 Find the smallest positive integer in an array. Return zero if no positive integers
