@@ -578,20 +578,19 @@ Output: `[1, 2, 2], count: 2`
 
 ```python
 def remove_duplicates(nums: List[int]) -> int:
-    if len(nums) == 0:
-        return 0
+    length = len(nums)
+    if length <= 1:
+        return length
 
     last_index = 0
-    count = 1
 
-    for index in range(1, len(nums)):
+    for index in range(1, length):
         if nums[index] == nums[last_index]:
             continue
-        count += 1
         last_index += 1
         nums[last_index] = nums[index]
 
-    return count
+    return last_index + 1
 ```
 
 ## Remove Element
