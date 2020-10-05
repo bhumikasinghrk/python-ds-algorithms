@@ -2,19 +2,17 @@ from typing import List
 
 
 def move_zeros(nums: List[int]) -> None:
-    if not nums or len(nums) == 0:
-        return
+    length = len(nums)
 
-    current_index = 0
-    last_num = None
+    read_index = 0
+    write_index = 0
 
-    while current_index < len(nums):
-        if nums[current_index] == 0:
-            next_num = last_num if last_num else current_index + 1
-            while next_num < len(nums):
-                if nums[next_num] != 0:
-                    nums[next_num], nums[current_index] = nums[current_index], nums[next_num]
-                    last_num = next_num + 1
-                    break
-                next_num += 1
-        current_index += 1
+    while read_index < length:
+        if nums[read_index] != 0:
+            nums[write_index] = nums[read_index]
+            write_index += 1
+        read_index += 1
+
+    while write_index < read_index:
+        nums[write_index] = 0
+        write_index += 1
