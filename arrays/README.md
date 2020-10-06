@@ -928,6 +928,34 @@ def sorted_squares(nums: List[int]) -> List[int]:
     return squares
 ```
 
+## Third Max
+
+Given a non-empty array of integers, return the third maximum number in this array. If it does not exist, return the maximum number. 
+
+Example 1:
+
+Input: `[3, 2, 1]`
+Output: `1`
+
+Example 2:
+
+Input: `[1, 2]`
+Output: `2`
+
+Explanation: The third maximum does not exist, so the maximum (2) is returned instead.
+
+```python
+def third_max(nums: List[int]) -> int:
+    unique_nums = set(nums)
+
+    if len(unique_nums) < 3:
+        return max(unique_nums)
+
+    unique_nums.remove(max(unique_nums))    # 1st
+    unique_nums.remove(max(unique_nums))    # 2nd
+    return max(unique_nums)                 # 3rd
+```
+
 ## Valid Mountain Array
 
 Given an array of integers, return true if it is valid mountain array.
