@@ -4,7 +4,9 @@
 * [Container With Max Area](#container-with-max-area)
 * [Count Elements](#count-elements)
 * [Duplicate Zeros](#duplicate-zeros)
+* [Find Disappeared Numbers](#find-disappeared-numbers)
 * [Find Index of Largest Number](#find-index-of-largest-number)
+* [Find Max Consecutive Ones](#find-max-consecutive-ones)
 * [Find Smallest Positive Integer](#find-smallest-positive-integer)
 * [First Duplicate](#first-duplicate)
 * [First Not Repeating Character](#first-not-repeating-character)
@@ -25,6 +27,7 @@
 * [Search Insert Position](#search-insert-position)
 * [Single Number](#single-number)
 * [Sorted Squares](#sorted-squares)
+* [Sort By Parity](#sort-by-parity)
 * [Valid Mountain Array](#valid-mountain-array)
 
 ## Check Double
@@ -125,6 +128,49 @@ def duplicate_zeros(arr: List[int]) -> List[int]:
         arr[i] = stack.pop()
 
     return arr
+```
+
+## Find Disappeared Numbers
+
+Given an array of integers where `1 ≤ a[i] ≤ n` (n = size of array), some elements appear twice and others appear once.
+
+Find all the elements of `[1, n]` inclusive that do not appear in this array.
+
+Could you do it without extra space and in O(n) runtime? You may assume the returned list does not count as extra space.
+
+Example:
+
+Input: `[4,3,2,7,8,2,3,1]`
+Output: `[5,6]`
+
+```python
+def find_disappeared_numbers(nums: List[int]) -> List[int]:
+    # O(N), O(N)
+    unique_nums = set(nums)
+    length = len(nums)
+    disappeared_nums = []
+
+    for num in range(1, length + 1):
+        if num not in unique_nums:
+            disappeared_nums.append(num)
+    return disappeared_nums
+
+
+def find_disappeared_numbers_ii(nums: List[int]) -> List[int]:
+    # O(N) O(1)
+    length = len(nums)
+
+    for index in range(length):
+        num_index = abs(nums[index]) - 1
+        if nums[num_index] > 0:
+            nums[num_index] *= -1
+
+    disappeared_nums = []
+
+    for index in range(length):
+        if nums[index] > 0:
+            disappeared_nums.append(index + 1)
+    return disappeared_nums
 ```
 
 ## Find Index of Largest Number
