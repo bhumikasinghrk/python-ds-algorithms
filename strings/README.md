@@ -119,6 +119,27 @@ def first_unique_character_in_str(val: str) -> int:
     return -1
 ```
 
+## Implement strStr
+
+Implement `strStr()`.
+
+Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack. If needle is empty return 0
+
+
+```python
+def str_str(haystack: str, needle: str) -> int:
+    if not needle:
+        return 0
+
+    length_haystack = len(haystack)
+    length_needle = len(needle)
+
+    for index in range(length_haystack):
+        if haystack[index:index + length_needle] == needle:
+            return index
+    return -1
+```
+
 ## Jewels and Stones
 
 You're given strings J representing the types of stones that are jewels, and S representing the stones you have.  
