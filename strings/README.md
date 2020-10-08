@@ -185,29 +185,45 @@ Input: `["flower", "flow", "flight"]`
 Output: `"fl"`
 
 ```python
-def longest_common_prefix(strings: List[str]) -> str:
+def longest_common_prefix_horizontal(strings: List[str]) -> str:
     if not strings or len(strings[0]) == 0:
         return ""
 
-    longest = len(strings[0])
-    current = 0
+    length = len(strings)
+    longest = strings[0]
 
-    while current < longest:
-        for i in range(1, len(strings)):
-            if len(strings[i]) == 0:
-                return ""
+    for index in range(1, length):
+        last_match = -1  # slices empty string if no match
+        for char_index, value in enumerate(strings[index]):
+            # If word is longer than longest word or characters do not match break and update last match
+            if char_index >= len(longest) or longest[char_index] != value:
+                break
+            last_match = char_index
+        # Add 1 to end index since last index in slice is exclusive
+        longest = strings[index][0:last_match + 1]
+    return longest
 
-            if len(strings[i]) < longest:
-                longest = len(strings[i])
-                if current > longest:
-                    return strings[0][0:longest]
 
-            if strings[0][current] != strings[i][current]:
-                return strings[0][0:current]
+# Slightly more optimal since it can exit earlier
+def longest_common_prefix_vertical(strings: List[str]) -> str:
+    if not strings:
+        return ""
 
-        current += 1
+    length = len(strings)
+    prefix = strings[0]
 
-    return strings[0][0:longest]
+    for index in range(len(prefix)):
+        for string_index in range(1, length):
+            if index > len(prefix) - 1:
+                return prefix
+            if index > len(strings[string_index]) - 1:
+                prefix = prefix[:len(strings[string_index])]
+                continue
+            if strings[string_index][index] != prefix[index]:
+                prefix = strings[string_index][:index]
+
+    return prefix
+
 ```
 
 ## Longest Substring Without Duplicates
