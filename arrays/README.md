@@ -17,6 +17,7 @@
 * [Make Array Consecutive](#make-array-consecutive)
 * [Max Consecutive Ones](#max-consecutive-ones)
 * [Merge Sorted Array](#merge-sorted-array)
+* [Minimum Subarray Length](#minimum-subarray-length)
 * [Move Zeros](#move-zeros)
 * [Peaks](#peaks)
 * [Plus One](#plus-one)
@@ -555,6 +556,36 @@ def merge_sorted_array(nums1: List[int], nums1_length: int, nums2: List[int], nu
         current_index -= 1
 
     return nums1
+```
+
+## Minimum Subarray Length
+
+Find the minimal length of a contiguous subarray of which the sum ≥ target. If there isn't one, return 0 instead.
+
+Example: 
+
+Input: `7, [2,3,1,2,4,3]`
+Output: `2`
+
+Explanation: the subarray `[4,3]` has the minimal length under the problem constraint.
+
+```python
+def minimum_subarray_length(target: int, numbers: List[int]) -> int:
+    answer = None
+    left = 0
+    total = 0
+
+    for index, _ in enumerate(numbers):
+        total += numbers[index]
+        while total >= target:
+            if answer:
+                answer = min(answer, index + 1 - left)
+            else:
+                answer = index + 1 - left
+            total -= numbers[left]
+            left += 1
+
+    return answer if answer else 0
 ```
 
 ## Move Zeros
