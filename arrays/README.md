@@ -29,6 +29,8 @@
 * [Single Number](#single-number)
 * [Sorted Squares](#sorted-squares)
 * [Sort By Parity](#sort-by-parity)
+* [Two Sum](#two-sum)
+* [Two Sum II](#two-sum-ii)
 * [Valid Mountain Array](#valid-mountain-array)
 
 ## Check Double
@@ -985,6 +987,65 @@ def third_max(nums: List[int]) -> int:
     unique_nums.remove(max(unique_nums))    # 1st
     unique_nums.remove(max(unique_nums))    # 2nd
     return max(unique_nums)                 # 3rd
+```
+
+## Two Sum
+
+Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+Example:
+
+Given `nums = [2, 7, 11, 15], target = 9`,
+
+Because `nums[0] + nums[1] = 2 + 7 = 9`, `return [0, 1]`.
+
+Solution - Time: O(N)
+```python
+def two_sum(array: [int], target: int) -> [int]:
+    complements = dict()
+
+    for index, number in enumerate(array):
+        complement = target - number
+        if complement in complements:
+            return [complements[complement], index]
+        complements[number] = index
+
+    return [-1, -1]
+```
+
+## Two Sum II
+
+Given an array of integers that is already sorted in ascending order, find two numbers such that they add up to a specific target number.
+
+The function should return the indices such that they add up to the target, where the first number must be less than the second.
+
+Note:
+
+Your returned answers (both index1 and index2) are not zero-based.
+You may assume that each input would have exactly one solution and you may not use the same element twice.
+ 
+
+Example 1:
+
+Input: `[2, 7, 11, 15], 9`
+Output: `[1, 2]`
+Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
+
+```python
+def two_sum_ii(numbers: List[int], target: int) -> List[int]:
+    index_left = 0
+    index_right = len(numbers) - 1
+
+    while index_left < index_right:
+        total = numbers[index_left] + numbers[index_right]
+        if total < target:
+            index_left += 1
+        elif total > target:
+            index_right -= 1
+        else:
+            return [index_left + 1, index_right + 1]
 ```
 
 ## Valid Mountain Array
