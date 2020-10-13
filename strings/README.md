@@ -331,29 +331,23 @@ Output: `ehT xof si der`
 
 ```python
 def reverse_words(sentence: str) -> str:
+    def reverse(array: List[str], left: int, right: int):
+        while left < right:
+            array[left], array[right] = array[right], array[left]
+            left += 1
+            right -= 1
+
     length = len(sentence)
-    if length < 2:
-        return sentence
-
     sentence_array = list(sentence)
-    left = 0
+    left_index = 0
 
-    def reverse(array: List[str], start: int, end: int):
-        left_index = start
-        right_index = end
-
-        while left_index < right_index:
-            array[left_index], array[right_index] = array[right_index], array[left_index]
-            left_index += 1
-            right_index -= 1
-
-    for index in range(1, length):
-        if sentence_array[index - 1] == ' ':
-            reverse(sentence_array, left, index - 2)
-            left = index
+    for index in range(length):
+        if sentence_array[index] == ' ':
+            reverse(sentence_array, left_index, index - 1)
+            left_index = index + 1
 
     # reverse last word, or sentence if one word
-    reverse(sentence_array, left, length - 1)
+    reverse(sentence_array, left_index, length - 1)
 
     return ''.join(sentence_array)
 ```
@@ -369,9 +363,7 @@ Output: `["b", "o", "y", " ", "a"]`
 
 ```python
 def reverse_words_ii(sentence: List[str]):
-    def reverse(string: List[str], start_index: int, end_index: int):
-        left = start_index
-        right = end_index
+    def reverse(string: List[str], left: int, right: int):
         while left < right:
             string[left], string[right] = string[right], string[left]
             left += 1
@@ -379,17 +371,17 @@ def reverse_words_ii(sentence: List[str]):
 
     length = len(sentence)
     reverse(sentence, 0, length - 1)
-    start = None
+    left_index = None
 
-    for index in range(length - 1):
-        if start is None and sentence[index] != " ":
-            start = index
-        if sentence[index + 1] == " ":
-            reverse(sentence, start, index)
-            start = None
+    for index in range(length):
+        if left_index is None and sentence[index] != " ":
+            left_index = index
+        if sentence[index] == " ":
+            reverse(sentence, left_index, index - 1)
+            left_index = None
 
-    if start is not None:
-        reverse(sentence, start, length - 1)
+    if left_index is not None:
+        reverse(sentence, left_index, length - 1)
 ```
 
 ## Run Length Encoding

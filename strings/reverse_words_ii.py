@@ -2,9 +2,7 @@ from typing import List
 
 
 def reverse_words_ii(sentence: List[str]):
-    def reverse(string: List[str], start_index: int, end_index: int):
-        left = start_index
-        right = end_index
+    def reverse(string: List[str], left: int, right: int):
         while left < right:
             string[left], string[right] = string[right], string[left]
             left += 1
@@ -12,14 +10,14 @@ def reverse_words_ii(sentence: List[str]):
 
     length = len(sentence)
     reverse(sentence, 0, length - 1)
-    start = None
+    left_index = None
 
-    for index in range(length - 1):
-        if start is None and sentence[index] != " ":
-            start = index
-        if sentence[index + 1] == " ":
-            reverse(sentence, start, index)
-            start = None
+    for index in range(length):
+        if left_index is None and sentence[index] != " ":
+            left_index = index
+        if sentence[index] == " ":
+            reverse(sentence, left_index, index - 1)
+            left_index = None
 
-    if start is not None:
-        reverse(sentence, start, length - 1)
+    if left_index is not None:
+        reverse(sentence, left_index, length - 1)

@@ -2,28 +2,22 @@ from typing import List
 
 
 def reverse_words(sentence: str) -> str:
-    sentence_array = list(sentence)
+    def reverse(array: List[str], left: int, right: int):
+        while left < right:
+            array[left], array[right] = array[right], array[left]
+            left += 1
+            right -= 1
+
     length = len(sentence)
-    left = 0
+    sentence_array = list(sentence)
+    left_index = 0
 
-    if length < 2:
-        return sentence
-
-    def reverse(array: List[str], start: int, end: int):
-        left_index = start
-        right_index = end
-
-        while left_index < right_index:
-            array[left_index], array[right_index] = array[right_index], array[left_index]
-            left_index += 1
-            right_index -= 1
-
-    for index in range(1, length):
-        if sentence_array[index - 1] == ' ':
-            reverse(sentence_array, left, index - 2)
-            left = index
+    for index in range(length):
+        if sentence_array[index] == ' ':
+            reverse(sentence_array, left_index, index - 1)
+            left_index = index + 1
 
     # reverse last word, or sentence if one word
-    reverse(sentence_array, left, length - 1)
+    reverse(sentence_array, left_index, length - 1)
 
     return ''.join(sentence_array)
