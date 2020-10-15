@@ -132,3 +132,20 @@ def preorder_traversal_morris(root: TreeNode) -> List[int]:
 
     return output
 ```
+
+Time: O(N), Space: O(N)
+
+```python
+def preorder_traversal_recursive(root: TreeNode) -> List[int]:
+    values = []
+    if not root:
+        return values
+
+    values.append(root.val)
+
+    if root.left:
+        values.extend(preorder_traversal_recursive(root.left))
+    if root.right:
+        values.extend(preorder_traversal_recursive(root.right))
+    return values
+```

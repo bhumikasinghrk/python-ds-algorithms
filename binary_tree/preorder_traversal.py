@@ -47,3 +47,17 @@ def preorder_traversal_morris(root: TreeNode) -> List[int]:
                 node = node.right
 
     return output
+
+
+def preorder_traversal_recursive(root: TreeNode) -> List[int]:
+    values = []
+    if not root:
+        return values
+
+    values.append(root.val)
+
+    if root.left:
+        values.extend(preorder_traversal_recursive(root.left))
+    if root.right:
+        values.extend(preorder_traversal_recursive(root.right))
+    return values
