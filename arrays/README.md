@@ -19,6 +19,7 @@
 * [Merge Sorted Array](#merge-sorted-array)
 * [Minimum Subarray Length](#minimum-subarray-length)
 * [Move Zeros](#move-zeros)
+* [Pascal's Triangle II](#pascals-triangle-ii)
 * [Peaks](#peaks)
 * [Plus One](#plus-one)
 * [Remove Duplicates](#remove-duplicates)
@@ -620,6 +621,34 @@ def move_zeros(nums: List[int]) -> None:
     while write_index < read_index:
         nums[write_index] = 0
         write_index += 1
+```
+
+## Pascal's Triangle II
+
+Note: Pascal's Triangle I is under Matrices
+
+Given an integer `row_index`, return the row of the Pascal's triangle.
+
+A Pascal Triangle is:
+    1
+   1 1
+  1 2 1
+ 1 3 3 1
+1 4 6 4 1
+
+```python
+def pascals_triangle_ii(row_index: int) -> List[int]:
+    row = [1]
+
+    # Generate a row by adding numbers right to left  ([i] + [i - 1])
+    # then append a closing 1
+
+    for i in range(row_index):
+        for j in range(i, 0, -1):
+            row[j] = row[j] + row[j - 1]
+        row.append(1)
+
+    return row
 ```
 
 ## Peaks

@@ -5,7 +5,7 @@ import sys
 # Get path of this file's directory
 DIRECTORY = os.path.dirname(os.path.realpath(__file__))
 
-# Check that files are can compile
+# Check that files can compile
 SUCCESS = compileall.compile_dir(dir=DIRECTORY, maxlevels=20, force=True)
 
 # Return appropriate exit code
