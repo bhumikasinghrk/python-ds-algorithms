@@ -4,9 +4,9 @@ from binary_tree.inorder_traversal import inorder_traversal, inorder_traversal_s
 
 def test_inorder_traversal():
     tree = generate_binary_tree()
-    assert inorder_traversal(tree) == [3, 2, 4, 1, 5]
+    assert inorder_traversal(tree) == [4, 2, 5, 1, 3]
 
 
 def test_inorder_traversal_stack():
     tree = generate_binary_tree()
-    assert inorder_traversal_stack(tree) == [3, 2, 4, 1, 5]
+    assert inorder_traversal_stack(tree) == [4, 2, 5, 1, 3]

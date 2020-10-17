@@ -2,6 +2,7 @@
 
 * [Binary Tree Path](#binary-tree-path)
 * [In-order Traversal](#in-order-traversal)
+* [Post-order Traversal](#post-order-traversal)
 * [Pre-order Traversal](#pre-order-traversal)
 
 ## Binary Tree Path
@@ -45,6 +46,16 @@ def get_path(node: TreeNode, path: str, paths: []) -> str:
 
 In-order traversal is to traverse the left subtree first. Then visit the root. Finally, traverse the right subtree.
 
+Example:
+
+     1
+    / \
+   2   3
+  / \
+ 4   5 
+ 
+Output: [4, 2, 5, 1, 1]
+
 In-order traversal recursively
 
 ```python
@@ -83,9 +94,80 @@ def inorder_traversal_stack(root: TreeNode) -> List[int]:
     return output
 ```
 
+## Post-order Traversal
+
+Algorithm Postorder(tree)
+   1. Traverse the left subtree
+   2. Traverse the right subtree
+   3. Visit the root.
+
+Example:
+
+     1
+    / \
+   2   3
+  / \
+ 4   5 
+ 
+Output: [4, 5, 2, 3, 1]
+   
+Recursive Approach:
+
+ ```python
+def postorder_traversal_recursive(root: TreeNode) -> List[int]:
+    values = []
+    if not root:
+        return values
+
+    if root.left:
+        values.extend(postorder_traversal_recursive(root.left))
+    if root.right:
+        values.extend(postorder_traversal_recursive(root.right))
+
+    values.append(root.val)
+
+    return values
+```
+
+Iterative Approach:
+
+```python
+def postorder_traversal_iterative(root: TreeNode) -> List[int]:
+    values = []
+    stack = []
+
+    while root or stack:
+        while root:
+            if root.right:
+                stack.append(root.right)
+            stack.append(root)
+            root = root.left
+
+        root = stack.pop()
+
+        if stack and root.right == stack[-1]:
+            stack[-1] = root
+            root = root.right
+        else:
+            values.append(root.val)
+            root = None
+
+    return values
+```
+
 ## Pre-order Traversal
 
 Pre-order traversal is to visit the root first. Then traverse the left subtree. Finally, traverse the right subtree.
+
+Example:
+
+     1
+    / \
+   2   3
+  / \
+ 4   5 
+ 
+Output: [1, 2, 4, 5, 3]
 
 Iterative approach Time: O(N), Space: O(N)
 
