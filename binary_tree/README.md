@@ -2,6 +2,7 @@
 
 * [Binary Tree Path](#binary-tree-path)
 * [In-order Traversal](#in-order-traversal)
+* [Level-order Traversal](#)
 * [Post-order Traversal](#post-order-traversal)
 * [Pre-order Traversal](#pre-order-traversal)
 
@@ -92,6 +93,49 @@ def inorder_traversal_stack(root: TreeNode) -> List[int]:
         current_node = current_node.right
 
     return output
+```
+
+## Level-order Traversal
+
+Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
+
+Example:
+
+    1
+   / \
+  2   3
+    /   \
+   4     5
+
+`[
+  [1],
+  [2, 3],
+  [4, 5]
+]`
+
+```python
+def level_order_traversal(root: TreeNode) -> List[List[int]]:
+    values = []
+
+    if not root:
+        return values
+
+    queue = deque([root])
+
+    while queue:
+        level = []
+
+        for _ in range(len(queue)):
+            node = queue.popleft()
+            level.append(node.val)
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+
+        values.append(level)
+
+    return values
 ```
 
 ## Post-order Traversal
